@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'addresses﻿/create'
+  get 'addresses﻿/destroy'
   get 'users/index'
   get 'users/show'
   get 'users/edit'

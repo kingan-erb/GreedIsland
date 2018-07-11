@@ -1,2 +1,44 @@
 <h1>Products#new</h1>
-<p>Find me in app/views/products/new.html.erb</p>
+
+
+<%= form_for(@product) do |f| %>
+	<!-- 仮にbootstrap方式 -->
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-ls-6">
+			<%= f.attachment_field :product_image_name_id %>
+		</div>
+		<div class="col-ls-6">
+			<!-- 型の指定はまだ -->
+			<p>アーティスト名<span class="product-input"><%= f.text_field :artist_name %></span></p>
+			<p>シングル/アルバム名<span class="product-input"><%= f.text_field :product_name %></span></p>
+			<p>レーベル名<span class="product-input"><%= f.text_field :label_name %></span></p>
+			<p>ジャンル<span class="product-input"><%= f.text_field :genre_name %></span></p>
+			<p>値段<span class="product-input"><%= f.text_field :price %></span></p>
+			<p>在庫数<span class="product-input"><%= f.text_field :inventry_status %></span></p>
+		</div>
+	</div>
+
+	<div class="row add-music">
+		<%= form_for(@music) do |g| %>
+			<%= g.select :disk_number, [['Disk1',1],['Disk2',2],['Disk3',3],['Disk4',4]] %>
+			<%= g.text_field :music_name %>
+			<%= g.submit '曲追加' %>
+		<% end %>
+	</div>
+	<div class="row add-music-index">
+		<table>
+			<!-- musics#createから@musics = Music.where(productid: 0) で受け取る？ & @product = Product.new(product_params)? -->
+			<% @musics.each do |music| %>
+				<tr>
+					<td><%= music.disk_number %></td>
+					<td><%= music.music_name %></td>
+					<td>ゴミ箱アイコン</td>
+				</tr>
+			<% end %>
+		</table>
+	</div>
+	<div class="row add-product-field">
+		<%= f.submit '商品追加', class: 'btn btn-primary' %>
+</div>
+<% end %>

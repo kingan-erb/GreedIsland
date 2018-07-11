@@ -1,2 +1,34 @@
 <h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
+
+
+<div class="body">
+	<div class="eye-catch">
+		<p>アイキャッチ</p>
+	</div>
+	<div class="main(仮)">
+		<% @Products.each do |product| %>
+			<div class="product-box">
+				<div class="product-image">
+					<%= attachment_image_tag product %>
+				</div>
+				<div class="product-text">
+					<!-- とりあえず全部pタグ -->
+					<p>アーティスト：<%= product.artist_name %></p>
+					<p>シングル/アルバム名：<%= product.product_name %></p>
+					<p>価格：<%= product.price %></p>
+					<p>在庫：<%= case product.inventry_status
+							when 0 then
+								puts '×'
+							when 1..10 then
+								puts product.inventry_status
+							when 11..30 then
+								puts '△'
+							else
+								puts '◯'
+							end %></p>
+				</div>
+
+			</div>
+		<% end %>
+	</div>
+</div>

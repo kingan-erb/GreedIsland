@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2018_07_11_063528) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "product_id", null: false
     t.integer "quantity", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "postal_code", limit: 7, null: false
+    t.string "address", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -30,6 +39,38 @@ ActiveRecord::Schema.define(version: 2018_07_11_063528) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+ 
+  create_table "musics", force: :cascade do |t|
+    t.string "music_name", null: false
+    t.integer "music_number", null: false
+    t.integer "disk_number", limit: 4, null: false
+    t.integer "product_id", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "greeds", force: :cascade do |t|
+    t.string "greed_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["greed_type"], name: "index_greeds_on_greed_type"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "artist_name", null: false
+    t.string "product_name", null: false
+    t.string "product_image_name_id", null: false
+    t.integer "price", null: false
+    t.integer "label_name", null: false
+    t.integer "genre_name", null: false
+    t.integer "inventry_status", null: false
+    t.integer "sales_quantity", default: 0, null: false
+    t.integer "greed_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["greed_id"], name: "index_products_on_greed_id"
+    t.index ["product_name"], name: "index_products_on_product_name"
   end
 
 end

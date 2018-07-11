@@ -5,6 +5,8 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @product = Product.find(params[:id])
+    # @musics = ソート？？
   end
 
   def new

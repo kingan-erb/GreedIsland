@@ -1,2 +1,33 @@
 <h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+
+<!-- クラス名は仮でつけています -->
+<div class="body container-fluid">
+	<div class="row">
+		<div class="col-lg-5">
+			<%= attachment_image_tag @product, :product_image_name %>
+		</div>
+		<div class="col-lg-7">
+			<div>シングル名/アルバム名<p><%= @product.product_name %></p></div>
+			<div>アーティスト名<p><%= @product.aritist_name %></p></div>
+			<p>値段<span><%= @product.price %></span></p>
+			<p>在庫<span><%= @product.inventry_status %></span></p>
+			<p>数量<%= select_tag :quantity, options_for_select((1..10).to_i) %></p>
+		</div>
+	</div>
+	<div class="row">
+		<h2>登録情報</h2>
+		<div class="col-lg-5">
+			<p>レーベル名</p>
+			<p><%= @product.label_name %></p>
+			<p>ジャンル</p>
+			<p><%= @product.genre_name %></p>
+		</div>
+		<div class="col-lg-7">
+			<p>曲名</p>
+			<!-- 並び替えはどうする？コントローラーで？こっちで？ -->
+			<% @product.musics.each do |music| %>
+				<p><%= music.music_number %><span><%= music.music_name %></span></p>
+			<% end %>
+		</div>
+	</div>
+</div>

@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_10_123935) do
+
+ActiveRecord::Schema.define(version: 2018_07_11_065940) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "postal_code", limit: 7, null: false
+    t.string "address", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "musics", force: :cascade do |t|
     t.string "music_name", null: false
@@ -19,6 +28,13 @@ ActiveRecord::Schema.define(version: 2018_07_10_123935) do
     t.integer "product_id", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "greeds", force: :cascade do |t|
+    t.string "greed_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["greed_type"], name: "index_greeds_on_greed_type"
   end
 
   create_table "products", force: :cascade do |t|

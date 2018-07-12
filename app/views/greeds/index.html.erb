@@ -1,2 +1,10 @@
-<h1>Greeds#index</h1>
-<p>Find me in app/views/greeds/index.html.erb</p>
+
+<h1>欲の選択</h1>
+
+<% @greeds.each do |greed| %>
+	<div class="greed_image" style="?<%= attachment_image_tag greed %>">
+		<div class="greed_text">
+			<%= greeds.greed_type %>
+		</div>
+	</div>
+<% end %>

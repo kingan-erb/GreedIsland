@@ -1,0 +1,39 @@
+<div class="cart-items-edit">
+	<table class="table_cart_items">
+		<thead>
+			<tr>
+				<th>カートアイコンshopping cart</th>
+			</tr>
+		</thead>
+			<% @cart_items.each do |cart_items| %>
+		<tbody>
+			<tr>
+				<td><%= attachment_image_tag booker.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %></td>
+				<td><%= cart_items.product_name %></td>
+				<td><%= cart_items.artist_name %></td>
+				<td><%= cart_items.カテゴリアイコンimage %></td>
+				<td>在庫:<%= case cart_items.inventy_status
+						when 0 then
+							puts '×'
+						when 1..10 then
+							puts '△' cart_items.inventy_status '枚'
+						else
+							puts '◯'
+						end %></td>
+				<td>¥<%= cart_items.price %></td>
+						<%= form_for(@cart_items) do |g| %>
+				<td><%= g.select quantity,[["1"]["2"]["3"]["4"]["5"]["6"]["7"]["8"]["9"] %></td>
+						<% end %>
+				<td>ゴミ箱</td>
+			</tr>
+		</tbody>
+		<div class="total_price">
+			<% @cart_items.each do |p| %>
+			<div>合計金額：<%= sum += p.price %></div>
+		</div>
+		<div class="add-product-field">
+			<%= cart_items.submit '決済ページへ', class: 'btn btn-primary' %>
+		</div>
+		<% end %>
+	</table>
+</div>

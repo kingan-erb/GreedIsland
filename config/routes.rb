@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :administrators, controllers: {
     sessions:      'administrators/sessions',
     passwords:     'administrators/passwords',
@@ -11,7 +12,9 @@ Rails.application.routes.draw do
   }
   get 'products/index'
   get 'products/show'
-  get 'products/new'
+  get 'products/new' => 'products#new', as:'new_product'
+  post 'products/new' => 'products#create'
+  post '/admin/musics/new' => 'musics#create'
   get 'products/edit'
   get 'users/index'
   get 'users/show'

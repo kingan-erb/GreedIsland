@@ -2,9 +2,8 @@
 <h1>欲の選択</h1>
 
 <% @greeds.each do |greed| %>
-	<div class="greed_image" style="?<%= attachment_image_tag greed %>">
-		<div class="greed_text">
-			<%= greeds.greed_type %>
-		</div>
+	<div class="greed">
+		<%= attachment_image_tag greed %>
+		<%= greeds.greed_type %>
 	</div>
 <% end %>

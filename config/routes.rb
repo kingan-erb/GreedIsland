@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
-  get 'products/index', as:'products'
+
+  devise_for :administrators, controllers: {
+    sessions:      'administrators/sessions',
+    passwords:     'administrators/passwords',
+    registrations: 'administrators/registrations'
+  }
+  devise_for :users, controllers: {
+    sessions:      'users/sessions',
+    passwords:     'users/passwords',
+    registrations: 'users/registrations'
+  }
+  get 'products/index'
   get 'products/show'
   get 'products/new' => 'products#new', as:'new_product'
   post 'products/new' => 'products#create'

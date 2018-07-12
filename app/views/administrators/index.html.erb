@@ -1,0 +1,31 @@
+商品一覧（管理）
+<table>
+<thead>
+	<tr>
+		<th>カテゴリー</th>
+		<th>商品ID</th>
+		<th>ジャケット画像</th>
+		<th>商品名</th>
+		<th>アーティスト</th>
+		<th>価格</th>
+		<th>在庫数</th>
+		<th>売上数</th>
+		<th colspan="8"></th>
+	</tr>
+</thead>
+
+<tbody>
+<% @products.each do |product| %>
+  <tr>
+    <td><%= attachment_image_tag product.greed, :greed_image_name, :fill, 40, 40, format: 'jpeg' %></td>
+    <td><%= product.id %></td>
+    <td><%= attachment_image_tag product, :product_image_name, :fill, 40, 40, format: 'jpeg' %></td>
+    <td><%= product.product_name %></td>
+    <td><%= product.artist_name %></td>
+    <td><%= product.price %></td>
+    <td><%= product.inventry_status %></td>
+    <td><%= product.sales_quantity %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>

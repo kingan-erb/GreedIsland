@@ -18,12 +18,13 @@
 <table>
 	<thead>
 		<tr>
+			<th>ID</th>
 			<th>アイコン</th>
 			<th></th>
 			<th>カテゴリー</th>
 			<th></th>
 			<th></th>
-			<th colspan="5"></th>
+			<th colspan="6"></th>
 		</tr>
 	</thead>
 
@@ -31,6 +32,7 @@
 	<% @greeds.each do |greed| %>
 		<tr>
 			<%= form_for greed, url: administrator_path(greed.id) do |g| %>
+			<td><%= g.text_field :id %></td>
 			<td><%= attachment_image_tag greed, :greed_image_name, :fill, 40, 40, format: 'jpeg' %></td>
 			<td><%= g.attachment_field :greed_image_name %></td>
 			<td><%= g.text_field :greed_type %></td>

@@ -8,8 +8,8 @@ class MusicsController < ApplicationController
 		@product = Product.find(params[:id])
 		@music = Music.new(music_params)
 		@music.product_id = @product.id
-      	@music.save
-      	redirect_to edit_product_path(@product.id)
+		@music.save
+		redirect_to edit_product_path(@product.id)
 	end
 
 	def update
@@ -34,10 +34,10 @@ class MusicsController < ApplicationController
 
 	def delete
 		@product = Product.find(params[:id])
-    	@music = Music.find(params[:id])
-    	@music.destroy
-    	redirect_to edit_product_path(@music.product_id)
-      	flash[:notice] = "削除されました"
+		@music = Music.find(params[:id])
+		@music.destroy
+		redirect_to edit_product_path(@music.product_id)
+		flash[:notice] = "削除されました"
 	end
 
 

@@ -1,17 +1,17 @@
 class ProductsController < ApplicationController
   def index
-    greed = Greed.find(params[:id])
+    @greed = Greed.find(params[:id])
     @products = greed.products
   end
 
   def show
     @product = Product.find(params[:id])
-    @musics = Music.where(product_id: @product.id)
+    @musics = Music.where(product_id: @product.id).order(disk_number: :asc).order(music_number: :asc)
   end
 
   def new
     @music = Music.new
-    @musics = Music.where(product_id: 0)
+    @musics = Music.where(product_id: 0).order(disk_number: :asc)
     @product = Product.new
   end
 
@@ -30,9 +30,15 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    @music = Music.new
+    @product = Product.find(params[:id])
+    @musics = Music.where(product_id: @product.id).order(disk_number: :asc).order(music_number: :asc)
   end
 
   def update
+    @product = Product.find(params[:id])
+    @product.update(product_params)
+    redirect_to edit_product_path(@product.id)
   end
 
   def destroy

@@ -1,9 +1,5 @@
-<h1>Products#new</h1>
-
-<p>曲保存<%= puts @flag %></p>
-
-
-<%= form_for(@product) do |f| %>
+商品追加
+<%= form_for @product,url: products_path do |f| %>
 	<!-- 仮にbootstrap方式 -->
 <div class="container-fluid">
 	<div class="row">
@@ -22,26 +18,48 @@
 		</div>
 	</div>
 
-	<div class="row add-music-index">
-		<% if !@musics.nil? %>
-			<table>
-			<!-- musics#createから@musics = Music.where(productid: 0) で受け取る？ & @product = Product.new(product_params)? -->
-				<% @musics.each do |music| %>
-					<tr>
-						<td><%= music.disk_number %></td>
-						<td><%= music.music_name %></td>
-						<td>ゴミ箱アイコン</td>
-					</tr>
-				<% end %>
-			</table>
-		<% end %>
-	</div>
+
+曲追加
+<%= form_for @music, url: musics_path do |form| %>
+
+<div class="field">
+  <%= form.label :disk_number %><br />
+  <%= form.text_field :disk_number %>
+</div>
+
+<div class="field">
+  <%= form.label :music_name %><br />
+  <%= form.text_field :music_name %>
+</div>
+
+<div class="actions">
+  <%= form.submit "Create Music" %>
+</div>
+<% end %>
+
+曲リスト
+
+<table>
+	<thead>
+		<tr>
+			<th>Disk</th>
+			<th>Music_name</th>
+			<th colspan="2"></th>
+		</tr>
+	</thead>
+
+	<tbody>
+	<% @musics.each do |music| %>
+		<tr>
+			<td><%= music.disk_number %></td>
+			<td><%= music.music_name %></td>
+		</tr>
+	<% end %>
+	</tbody>
+</table>
 	<div class="row add-product-field">
 		<%= f.submit '商品追加', class: 'btn btn-primary' %>
 	</div>
 </div>
 <% end %>
-
-<!-- musicビューに移動 -->
-
 

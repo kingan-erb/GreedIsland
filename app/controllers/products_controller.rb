@@ -6,18 +6,24 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    # @musics = ソート？？
+    @musics = Music.where(product_id: @product.id)
   end
 
   def new
-    @product = Product.new
     @music = Music.new
+    @musics = Music.where(product_id: 0)
+    @product = Product.new
   end
 
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to controller: :musics, action: :new, id: :@product.id #ビューを分けてみる
+      @musics = Music.where(product_id: 0).update_all(:product_id => @product.id)
+      redirect_to product_path(@product.id)
+    elsif
+      @music = Music.new(music_params)
+      @music.save
+      redirect_to new_product_path
     else
       redirect_to new_product_path
     end
@@ -37,7 +43,9 @@ class ProductsController < ApplicationController
   def product_params
     params.require(:product).permit(:artist_name,:product_name,:product_image_name,:price,:label_name,:genre_name,
       :inventry_status,:sales_quantity,:greed_id)
-    # [:id,:music_name,:music_number,:disk_number]
+  end
+  def music_params
+    params.require(:music).permit(:music_name,:music_number,:disk_number)
   end
 
 

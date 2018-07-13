@@ -1,57 +1,66 @@
+
 欲カテゴリー追加
-<%= form_for(@greed) do |f| %>
-
+<%= form_for @greed, url: administrators_path do |f| %>
 <div class="field">
-  <%= f.label :name %><br />
-  <%= f.text_field :username %>
+  <%= f.label :category %><br />
+  <%= f.text_field :greed_type %>
 </div>
-
 <div class="field">
   <%= f.label :image %><br />
-  <%= f.attachment_field :profile_image %>
+  <%= f.attachment_field :greed_image_name %>
 </div>
-
-<div class="field">
-  <%= f.label :introduction %><br />
-  <%= f.text_area :introduction %>
-</div>
-
 <div class="actions">
-  <%= f.submit "Update User" %>
+  <%= f.submit "Create Greed" %>
 </div>
-
 <% end %>
 
+<table>
+	<thead>
+		<tr>
+			<th>アイコン</th>
+			<th>カテゴリー</th>
+			<th colspan="2"></th>
+		</tr>
+	</thead>
 
+	<tbody>
+	<% @greeds.each do |greed| %>
+		<tr>
+			<td><%= attachment_image_tag greed, :greed_image_name, :fill, 40, 40, format: 'jpeg' %></td>
+			<td><%= greed.greed_type %></td>
+		</tr>
+	<% end %>
+	</tbody>
+</table>
 
 商品一覧（管理）
 <table>
-<thead>
-	<tr>
-		<th>カテゴリー</th>
-		<th>商品ID</th>
-		<th>ジャケット画像</th>
-		<th>商品名</th>
-		<th>アーティスト</th>
-		<th>価格</th>
-		<th>在庫数</th>
-		<th>売上数</th>
-		<th colspan="8"></th>
-	</tr>
-</thead>
+	<thead>
+		<tr>
+			<th>カテゴリー</th>
+			<th>商品ID</th>
+			<th>ジャケット画像</th>
+			<th>商品名</th>
+			<th>アーティスト</th>
+			<th>価格</th>
+			<th>在庫数</th>
+			<th>売上数</th>
+			<th colspan="8"></th>
+		</tr>
+	</thead>
 
-<tbody>
-<% @products.each do |product| %>
-  <tr>
-    <td><%= attachment_image_tag product.greed, :greed_image_name, :fill, 40, 40, format: 'jpeg' %></td>
-    <td><%= product.id %></td>
-    <td><%= attachment_image_tag product, :product_image_name, :fill, 40, 40, format: 'jpeg' %></td>
-    <td><%= product.product_name %></td>
-    <td><%= product.artist_name %></td>
-    <td><%= product.price %></td>
-    <td><%= product.inventry_status %></td>
-    <td><%= product.sales_quantity %></td>
-  </tr>
-<% end %>
-</tbody>
+	<tbody>
+	<% @products.each do |product| %>
+		<tr>
+			<td><%= attachment_image_tag product.greed, :greed_image_name, :fill, 40, 40, format: 'jpeg' %></td>
+			<td><%= product.id %></td>
+			<td><%= attachment_image_tag product, :product_image_name, :fill, 40, 40, format: 'jpeg' %></td>
+			<td><%= product.product_name %></td>
+			<td><%= product.artist_name %></td>
+			<td><%= product.price %></td>
+			<td><%= product.inventry_status %></td>
+			<td><%= product.sales_quantity %></td>
+		</tr>
+	<% end %>
+	</tbody>
 </table>

@@ -10,12 +10,14 @@ Rails.application.routes.draw do
     passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
-  get 'products/index'
-  get 'products/show'
-  get 'products/new' => 'products#new', as:'new_product'
-  post 'products/new' => 'products#create'
+  # get 'products/index',as:'products'
+  # get 'products/show'
+  # get 'products/new' => 'products#new', as:'new_product'
+  # post 'products/new' => 'products#create'
+  resources :products
   post '/admin/musics/new' => 'musics#create'
-  get 'products/edit'
+  get '/admin/products/:product_id/musics/new' => 'musics#new', as:'admin_new_music'
+  # get 'products/edit'
   get 'users/index'
   get 'users/show'
   get 'users/edit'

@@ -25,5 +25,21 @@
 		<% end %>
 	</table>
 
-	<div class="
-	">
+<!-- odersコントローラーcreateアクション？ -->
+	<div class="orders_status">
+	<% form_for @user, :url => {:controller => :orders, :action => :creste}) do |f| %>
+		<div class="orders_address">
+			<% = f.radio_button :delivery_address %>f.addresses.id[1]
+			<% = f.radio_button :delivery_address %>f.addresses.id[2]
+			<% = f.radio_button :delivery_address %>f.addresses.id[3]
+		</div>
+		<div class="delivery_information">
+			<%= f.select payment_method,["代金引換"]["銀行振込"] %>
+			<%= f.select delivery_date,[注文日から３日以降の選択肢] %>
+			<%= f.select delivery_time,["午前中"]["12:00~15:00"]["15:00~18:00"]["18:00~21:00"] %>
+		</div>
+	</div>
+	<div class="/">
+		<div><%= f.submit '!!!!!決済!!!!!', class: 'btn btn-primary' %></div>
+	</div>
+	<% end %>

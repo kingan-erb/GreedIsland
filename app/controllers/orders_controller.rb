@@ -1,6 +1,10 @@
 class OrdersController < ApplicationController
   def create
-    
+    @user = current_user.id
+    if  @user.save
+        redirect_to thanks_path
+    else
+    end
   end
 
   def index

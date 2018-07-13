@@ -1,0 +1,27 @@
+<div class="thanks_box">
+	<div class="thanks_image">
+		<p><img src="image.png"></p>
+		<p>ありがとうございやす！</p>
+	</div>
+	<div class ="order_information">
+		<%= link_to "注文No.:", orders_path(params[:id]) %>
+		<%= link_to "マイページへ戻る", root_path %>
+	</div>
+	<div>
+		<table>
+			<thead>
+				<tr>決済情報</tr>
+			</thead>
+			<tbody>
+				<tr>代金引換
+					<td>代引情報記入</td>
+					<td>代引情報記入</td>
+				</tr>
+				<tr>銀行振込
+					<td>振込先情報記入</td>
+					<td>振込先情報記入</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -11,7 +11,7 @@ class AdministratorsController < ApplicationController
         @greed = Greed.new(greed_params)
         @greed.save
         redirect_to new_administrator_path
-    end
+  end
 
 	def show
 	end
@@ -20,17 +20,17 @@ class AdministratorsController < ApplicationController
 	end
 
 	def update
-		@greed = Greed.find(params[:id])
-		@greed.update(greed_params)
-        redirect_to new_administrator_path
-        flash[:notice] = "更新されました"
+		   @greed = Greed.find(params[:id])
+		   @greed.update(greed_params)
+       redirect_to new_administrator_path
+       flash[:notice] = "更新されました"
 	end
 
 	def destroy
     	@greed = Greed.find(params[:id])
     	@greed.destroy
     	redirect_to new_administrator_path
-      	flash[:notice] = "削除されました"
+      flash[:notice] = "削除されました"
 	end
 
 	private

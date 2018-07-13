@@ -1,37 +1,5 @@
 
-欲カテゴリー追加
-<%= form_for @greed, url: administrators_path do |f| %>
-<div class="field">
-  <%= f.label :category %><br />
-  <%= f.text_field :greed_type %>
-</div>
-<div class="field">
-  <%= f.label :image %><br />
-  <%= f.attachment_field :greed_image_name %>
-</div>
-<div class="actions">
-  <%= f.submit "Create Greed" %>
-</div>
-<% end %>
-
-<table>
-	<thead>
-		<tr>
-			<th>アイコン</th>
-			<th>カテゴリー</th>
-			<th colspan="2"></th>
-		</tr>
-	</thead>
-
-	<tbody>
-	<% @greeds.each do |greed| %>
-		<tr>
-			<td><%= attachment_image_tag greed, :greed_image_name, :fill, 40, 40, format: 'jpeg' %></td>
-			<td><%= greed.greed_type %></td>
-		</tr>
-	<% end %>
-	</tbody>
-</table>
+<%= link_to "Create Greed",  new_administrator_path %>
 
 商品一覧（管理）
 <table>

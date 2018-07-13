@@ -1,0 +1,43 @@
+欲カテゴリー追加
+<%= form_for @greed, url: administrators_path do |f| %>
+<div class="field">
+  <%= f.label :category %><br />
+  <%= f.text_field :greed_type %>
+</div>
+<div class="field">
+  <%= f.label :image %><br />
+  <%= f.attachment_field :greed_image_name %>
+</div>
+<div class="actions">
+  <%= f.submit "Create Greed" %>
+</div>
+<% end %>
+
+<p class="notice"><%= notice %></p>
+
+<table>
+	<thead>
+		<tr>
+			<th>アイコン</th>
+			<th></th>
+			<th>カテゴリー</th>
+			<th></th>
+			<th></th>
+			<th colspan="5"></th>
+		</tr>
+	</thead>
+
+	<tbody>
+	<% @greeds.each do |greed| %>
+		<tr>
+			<%= form_for greed, url: administrator_path(greed.id) do |g| %>
+			<td><%= attachment_image_tag greed, :greed_image_name, :fill, 40, 40, format: 'jpeg' %></td>
+			<td><%= g.attachment_field :greed_image_name %></td>
+			<td><%= g.text_field :greed_type %></td>
+			<td><%= g.submit 'Update Greed' %></td>
+			<td><%= link_to "Destroy", administrator_path(greed.id), method: :delete, "data-confirm" => "Are you sure?" %></td>
+			<% end %>
+		</tr>
+	<% end %>
+	</tbody>
+</table>

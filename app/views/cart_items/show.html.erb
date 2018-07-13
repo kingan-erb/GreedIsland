@@ -1,0 +1,28 @@
+<div class="oders_new">
+	<table class="table_cart_items">
+		<thead>
+			<tr>
+			</tr>
+		</thead>
+		<% @cart_items.each do |cart_items| %>
+		<tbody>
+			<tr>
+				<td><%= attachment_image_tag cart_items, :product_image_name_id, :fill, 100, 100, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %></td>
+				<td><%= cart_items.product_name %></td>
+				<td><%= cart_items.quantity %>点</td>
+				<td>¥<%= cart_items.price %></td>
+				<td>在庫:<%= case cart_items.inventy_status
+						when 0 then
+							puts '×'
+						when 1..10 then
+							puts '△' cart_items.inventy_status '枚'
+						else
+							puts '◯'
+						end %></td>
+				<td>合計金額：<%= sum += cart_items.price %></td>
+			</tr>
+		</tbody>
+		<% end %>
+	</table>
+
+	<div class="">

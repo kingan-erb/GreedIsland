@@ -4,7 +4,7 @@ class CartItemsController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
-	@cart_items = @user.cart_items
+    @cart_items = @user.cart_items
   end
 
   def edit
@@ -20,5 +20,6 @@ class CartItemsController < ApplicationController
   def update
   	@cart_item = CartItem.find(params[:id])
   	@cart_item.update
+    redirect_to cart_items_path(@cart_item)
   end
 end

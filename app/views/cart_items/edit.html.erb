@@ -5,10 +5,11 @@
 				<th>カートアイコンshopping cart</th>
 			</tr>
 		</thead>
+		<%= form_for(@cart_items) do |f| %>
 			<% @cart_items.each do |cart_items| %>
 		<tbody>
 			<tr>
-				<td><%= attachment_image_tag booker.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %></td>
+				<td><%= attachment_image_tag cart_items, :product_image_name_id, :fill, 100, 100, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %></td>
 				<td><%= cart_items.product_name %></td>
 				<td><%= cart_items.artist_name %></td>
 				<td><%= cart_items.カテゴリアイコンimage %></td>
@@ -21,19 +22,18 @@
 							puts '◯'
 						end %></td>
 				<td>¥<%= cart_items.price %></td>
-						<%= form_for(@cart_items) do |g| %>
-				<td><%= g.select quantity,[["1"]["2"]["3"]["4"]["5"]["6"]["7"]["8"]["9"] %></td>
-						<% end %>
+				<td><%= cart_items.select quantity,[["1"]["2"]["3"]["4"]["5"]["6"]["7"]["8"]["9"] %></td>
 				<td>ゴミ箱</td>
+			<% end %>
 			</tr>
 		</tbody>
 		<div class="total_price">
-			<% @cart_items.each do |p| %>
-			<div>合計金額：<%= sum += p.price %></div>
+			<div>合計金額：<%= sum += f.price %></div>
 		</div>
 		<div class="add-product-field">
-			<%= cart_items.submit '決済ページへ', class: 'btn btn-primary' %>
+			<%= f.submit '決済ページへ', class: 'btn btn-primary' %>
 		</div>
 		<% end %>
 	</table>
 </div>
+

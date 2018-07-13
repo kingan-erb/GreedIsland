@@ -12,6 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2018_07_13_031906) do
 
+  create_table "addresses", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "postal_code", limit: 7, null: false
+    t.string "address", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "administrators", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -35,6 +43,14 @@ ActiveRecord::Schema.define(version: 2018_07_13_031906) do
     t.integer "quantity", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "greeds", force: :cascade do |t|
+    t.string "greed_type", null: false
+    t.string "greed_image_name_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["greed_type"], name: "index_greeds_on_greed_type"
   end
 
   create_table "musics", force: :cascade do |t|

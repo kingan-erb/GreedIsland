@@ -8,9 +8,9 @@ class AdministratorsController < ApplicationController
 	end
 
 	def create
-        @greed = Greed.new(greed_params)
-        @greed.save
-        redirect_to new_administrator_path
+		@greed = Greed.new(greed_params)
+		@greed.save
+		redirect_to new_administrator_path
     end
 
 	def show

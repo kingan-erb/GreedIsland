@@ -1,8 +1,34 @@
+<div class="container-fluid">
+	<div class="row show-prouct">
+		<p>商品id:<%= @product.id %></p>
+		<%= @product.product_name %>
+	</div>
+
+
+
 	<div class="row add-music">
-		<%= form_for(@music, url:admin_musics_new_path) do |g| %>
+		<%= form_for(@music, url:'/admin/products/musics') do |g| %>
 			<%= g.select :disk_number, [['Disk1',1],['Disk2',2],['Disk3',3],['Disk4',4]] %>
 			<%= g.text_field :music_name %>
 			<%= g.submit '曲追加' %>
 		<% end %>
-		<%= @music.product_id %>
+		<p>作成予定の曲のproduct_id:<%= @music.product_id %></p>
 	</div>
+
+	<div class="row add-music-index">
+		<% if !@musics.nil? %>
+			<table>
+			<!-- musics#createから@musics = Music.where(productid: 0) で受け取る？ & @product = Product.new(product_params)? -->
+				<% @musics.each do |music| %>
+					<tr>
+						<td>親商品:<%= music.product.product_name %></td>
+						<td>disk:<%= music.disk_number %></td>
+						<td>曲名:<%= music.music_name %></td>
+						<td>曲順:<%= music.music_number %></td>
+						<td><%= link_to '削除', admin_destroy_music_path(music.id), method: :delete %></td>
+					</tr>
+				<% end %>
+			</table>
+		<% end %>
+	</div>
+</div>

@@ -16,7 +16,9 @@ Rails.application.routes.draw do
   # post 'products/new' => 'products#create'
   resources :products
   post '/admin/musics/new' => 'musics#create'
-  get '/admin/products/:product_id/musics/new' => 'musics#new', as:'admin_new_music'
+  get '/admin/products/musics/new' => 'musics#new', as:'admin_new_music'
+  post '/admin/products/musics' => 'musics#create'
+  delete '/admin/products/musics/:id'  => 'musics#destroy', as:'admin_destroy_music'
   # get 'products/edit'
   get 'users/index'
   get 'users/show'

@@ -6,10 +6,10 @@
 		<p>アイキャッチ</p>
 	</div>
 	<div class="main(仮)">
-		<% @Products.each do |product| %>
+		<% @products.each do |product| %>
 			<div class="product-box">
 				<div class="product-image">
-					<%= attachment_image_tag product %>
+					<%= attachment_image_tag product, :product_image_name, format: 'jpeg' %>
 				</div>
 				<div class="product-text">
 					<!-- とりあえず全部pタグ -->

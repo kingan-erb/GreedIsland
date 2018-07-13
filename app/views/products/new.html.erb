@@ -22,20 +22,6 @@
 		</div>
 	</div>
 
-	<div class="row add-music-index">
-		<% if !@musics.nil? %>
-			<table>
-			<!-- musics#createから@musics = Music.where(productid: 0) で受け取る？ & @product = Product.new(product_params)? -->
-				<% @musics.each do |music| %>
-					<tr>
-						<td><%= music.disk_number %></td>
-						<td><%= music.music_name %></td>
-						<td>ゴミ箱アイコン</td>
-					</tr>
-				<% end %>
-			</table>
-		<% end %>
-	</div>
 	<div class="row add-product-field">
 		<%= f.submit '商品追加', class: 'btn btn-primary' %>
 	</div>

@@ -10,15 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_12_040509) do
-
-  create_table "addresses", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "postal_code", limit: 7, null: false
-    t.string "address", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 2018_07_13_031906) do
 
   create_table "administrators", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -45,14 +37,6 @@ ActiveRecord::Schema.define(version: 2018_07_12_040509) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "greeds", force: :cascade do |t|
-    t.string "greed_type", null: false
-    t.string "greed_image_name_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["greed_type"], name: "index_greeds_on_greed_type"
-  end
-
   create_table "musics", force: :cascade do |t|
     t.string "music_name", null: false
     t.integer "music_number"
@@ -60,6 +44,21 @@ ActiveRecord::Schema.define(version: 2018_07_12_040509) do
     t.integer "product_id", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "product_id", null: false
+    t.string "o_artist_name", null: false
+    t.string "o_product_name", null: false
+    t.string "o_product_image_name_id", null: false
+    t.integer "o_price", null: false
+    t.integer "o_greed_id", null: false
+    t.integer "o_quantity", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["o_greed_id"], name: "index_order_items_on_o_greed_id"
+    t.index ["o_product_name"], name: "index_order_items_on_o_product_name"
   end
 
   create_table "orders", force: :cascade do |t|

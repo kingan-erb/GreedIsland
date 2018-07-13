@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2018_07_13_031906) do
 
   create_table "greeds", force: :cascade do |t|
     t.string "greed_type", null: false
-    t.string "greed_image_name_id"
+    t.string "greed_image_name_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["greed_type"], name: "index_greeds_on_greed_type"

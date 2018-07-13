@@ -67,7 +67,7 @@
 			<tr>
 				<%= form_for music, url: music_path(music.id) do |m| %>
 				<td><%= m.select :disk_number,[['Disk1',1],['Disk2',2],['Disk3',3],['Disk4',4]] %></td>
-				<td><%= m.text_field :music_number %></td>
+				<td><%= m.text_field :music_number, class: "No" %></td>
 				<td><%= m.text_field :music_name %></td>
 				<td><%= m.submit 'Update Music' %></td>
 				<td><%= link_to "Destroy", music_path(music.id), method: :delete, "data-confirm" => "Are you sure?" %></td>

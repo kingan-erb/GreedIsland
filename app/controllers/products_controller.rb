@@ -15,7 +15,12 @@ class ProductsController < ApplicationController
   end
 
   def create
-
+    @product = Product.new(product_params)
+    if @product.save
+      redirect_to controller: :musics, action: :new, id: :@product.id #ビューを分けてみる
+    else
+      redirect_to new_product_path
+    end
   end
 
   def edit
@@ -30,8 +35,9 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:artist_name,:product_name,:product_image_name_id,:price,:label_name,:genre_name,
-      :inventry_status,:sales_quantity,:greed_id, musics_attributes:[:id,:music_name,:music_number,:disk_number])
+    params.require(:product).permit(:artist_name,:product_name,:product_image_name,:price,:label_name,:genre_name,
+      :inventry_status,:sales_quantity,:greed_id)
+    # [:id,:music_name,:music_number,:disk_number]
   end
 
 

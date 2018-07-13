@@ -8,10 +8,10 @@
 		</div>
 		<div class="col-lg-7">
 			<div>シングル名/アルバム名<p><%= @product.product_name %></p></div>
-			<div>アーティスト名<p><%= @product.aritist_name %></p></div>
+			<div>アーティスト名<p><%= @product.artist_name %></p></div>
 			<p>値段<span><%= @product.price %></span></p>
 			<p>在庫<span><%= @product.inventry_status %></span></p>
-			<p>数量<%= select_tag :quantity, options_for_select((1..10).to_i) %></p>
+			
 		</div>
 	</div>
 	<div class="row">

@@ -1,6 +1,6 @@
 <h1>Products#new</h1>
 
-<p>曲保存<%= @flag %></p>
+<p>曲保存<%= puts @flag %></p>
 
 
 <%= form_for(@product) do |f| %>
@@ -8,6 +8,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-ls-6">
+			<%= f.attachment_field :product_image_name %>
 		</div>
 		<div class="col-ls-6">
 			<!-- 型の指定はまだ -->
@@ -41,13 +42,6 @@
 </div>
 <% end %>
 
-	<div class="row add-music">
-		<%= form_for(@music, url:admin_musics_new_path) do |g| %>
-			<%= g.select :disk_number, [['Disk1',1],['Disk2',2],['Disk3',3],['Disk4',4]] %>
-			<%= g.text_field :music_name %>
-			<%= g.submit '曲追加' %>
-		<% end %>
-	</div>
+<!-- musicビューに移動 -->
 
-	
-		
+

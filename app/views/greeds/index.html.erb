@@ -3,7 +3,7 @@
 
 <% @greeds.each do |greed| %>
 	<div class="greed">
-		<%= attachment_image_tag greed %>
-		<%= greeds.greed_type %>
+		<%= attachment_image_tag greed, :greed_image_name, :fill, 40, 40, format: 'jpeg' %>
+		<%= greed.greed_type %>
 	</div>
 <% end %>

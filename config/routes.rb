@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get 'users/show'
   get 'users/edit'
   get 'greeds/index'
+  post 'products/:id/musics' => 'musics#create', as: 'music_new'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

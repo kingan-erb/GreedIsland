@@ -1,13 +1,12 @@
 class ProductsController < ApplicationController
   def index
-    # greed = Greed.find(params[:id])
-    # @products = greed.products
-    @products = Product.all
+    @greed = Greed.find(params[:id])
+    @products = greed.products
   end
 
   def show
     @product = Product.find(params[:id])
-    @musics = Music.where(product_id: @product.id)
+    @musics = Music.where(product_id: @product.id).order(disk_number: :asc).order(music_number: :asc)
     @cart_item = CartItem.new
     #在庫数表示
     case @product.inventry_status
@@ -34,7 +33,7 @@ class ProductsController < ApplicationController
 
   def new
     @music = Music.new
-    @musics = Music.where(product_id: 0)
+    @musics = Music.where(product_id: 0).order(disk_number: :asc)
     @product = Product.new
   end
 
@@ -53,16 +52,15 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    @music = Music.new
     @product = Product.find(params[:id])
+    @musics = Music.where(product_id: @product.id).order(disk_number: :asc).order(music_number: :asc)
   end
 
   def update
     @product = Product.find(params[:id])
-    if @product.update(product_params)
-      redirect_to product_path(@product.id)
-    else
-      redirect_to edit_product_path(@product.id)
-    end
+    @product.update(product_params)
+    redirect_to edit_product_path(@product.id)
   end
 
   def destroy

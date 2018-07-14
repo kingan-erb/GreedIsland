@@ -1,4 +1,6 @@
-<h1>Products#show</h1>
+
+<%= link_to "編集ページへ", edit_product_path(@product.id) %><br>
+<%= link_to "一覧へ", administrators_path %><br>
 
 <!-- クラス名は仮でつけています -->
 <div class="body container-fluid">
@@ -30,16 +32,34 @@
 			<p>ジャンル</p>
 			<p><%= @product.genre_name %></p>
 		</div>
-		<div class="col-lg-7">
-			<p>曲名</p>
-			<!-- 並び替えはどうする？コントローラーで？こっちで？ -->
-			<% @musics.each do |music| %>
-				<p><%= music.disk_number %><%= music.music_number %><%= music.music_name %></p>
-			<% end %>
-		</div>
 	</div>
 	<!-- 仮の編集画面へ遷移 -->
 	<div>
 		<%= link_to '仮の編集ページ', edit_product_path(@product.id) %>
 	</div>
+</div>
+
+<div class="box">
+	<h2>曲リスト</h2>
+	<p class="notice"><%= notice %></p>
+	<table>
+		<thead>
+			<tr>
+				<th>Disk</th>
+				<th>曲順</th>
+				<th>Music_name</th>
+				<th colspan="3"></th>
+			</tr>
+		</thead>
+
+		<tbody>
+		<% @musics.each do |music| %>
+			<tr>
+				<td><%= music.disk_number %></td>
+				<td><%= music.music_number %></td>
+				<td><%= music.music_name %></td>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
 </div>

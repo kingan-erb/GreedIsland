@@ -1,5 +1,6 @@
 
-<%= link_to "Create Greed",  new_administrator_path %>
+<%= link_to "Create Greed",  new_administrator_path %><br>
+<%= link_to "Create Product",  new_product_path %><br>
 
 商品一覧（管理）
 <table>
@@ -22,7 +23,10 @@
 		<tr>
 			<td><%= attachment_image_tag product.greed, :greed_image_name, :fill, 40, 40, format: 'jpeg' %></td>
 			<td><%= product.id %></td>
-			<td><%= attachment_image_tag product, :product_image_name, :fill, 40, 40, format: 'jpeg' %></td>
+			<td><%= link_to product_path(product.id) do %>
+				<%= attachment_image_tag product, :product_image_name, :fill, 40, 40, format: 'jpeg' %>
+				<% end %>
+				</td>
 			<td><%= product.product_name %></td>
 			<td><%= product.artist_name %></td>
 			<td><%= product.price %></td>

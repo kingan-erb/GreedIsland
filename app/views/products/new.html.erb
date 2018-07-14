@@ -1,4 +1,7 @@
-<!-- 商品追加 -->
+
+<%= link_to "一覧へ", administrators_path %><br>
+商品追加
+
 <%= form_for @product,url: products_path do |f| %>
 	<!-- 仮にbootstrap方式 -->
 <div class="container-fluid">
@@ -23,12 +26,12 @@
 <%= form_for @music, url: musics_path do |form| %>
 
 <div class="field">
-  <%= form.label :disk_number %><br />
-  <%= form.select :disk_number, [['Disk1',1],['Disk2',2],['Disk3',3],['Disk4',4]] %>
+  <%= form.label :disk_number %>
+  <%= form.select :disk_number,[['Disk1',1],['Disk2',2],['Disk3',3],['Disk4',4]] %>
 </div>
 
 <div class="field">
-  <%= form.label :music_name %><br />
+  <%= form.label :music_name %>
   <%= form.text_field :music_name %>
 </div>
 
@@ -37,14 +40,16 @@
 </div>
 <% end %>
 
-<!-- 曲リスト -->
 
+曲リスト
+<p class="notice"><%= notice %></p>
 <table>
 	<thead>
 		<tr>
 			<th>Disk</th>
 			<th>Music_name</th>
-			<th colspan="2"></th>
+			<th></th>
+			<th colspan="3"></th>
 		</tr>
 	</thead>
 
@@ -53,7 +58,7 @@
 		<tr>
 			<td><%= music.disk_number %></td>
 			<td><%= music.music_name %></td>
-			<td><%= link_to '削除', music_path(music.id), method: :delete %></td>
+			<td><%= link_to "Destroy", music_path(music.id), method: :delete, "data-confirm" => "Are you sure?" %></td>
 		</tr>
 	<% end %>
 	</tbody>

@@ -1,0 +1,80 @@
+
+<%= link_to "詳細へ", product_path(@product.id) %><br>
+<%= link_to "一覧へ", administrators_path %><br>
+<div class="box">
+商品編集
+<%= form_for @product, url: product_path do |f| %>
+	<!-- 仮にbootstrap方式 -->
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-ls-6">
+			<%= attachment_image_tag @product, :product_image_name, :fill, 100, 100, format: 'jpeg' %>
+			<%= f.attachment_field :product_image_name %>
+		</div>
+		<div class="col-ls-6">
+			<!-- 型の指定はまだ -->
+			<p>欲カテゴリ<span class="product-input"><%= f.select :greed_id,[['yoku1',1],['yoku2',2],['yoku3',3],['yoku4',4],['yoku5',5]] %></span></p>
+			<p>アーティスト名<span class="product-input"><%= f.text_field :artist_name %></span></p>
+			<p>シングル/アルバム名<span class="product-input"><%= f.text_field :product_name %></span></p>
+			<p>レーベル名<span class="product-input"><%= f.text_field :label_name %></span></p>
+			<p>ジャンル<span class="product-input"><%= f.text_field :genre_name %></span></p>
+			<p>値段<span class="product-input"><%= f.text_field :price %></span></p>
+			<p>在庫数<span class="product-input"><%= f.text_field :inventry_status %></span></p>
+		</div>
+	</div>
+	<div class="row add-product-field">
+		<%= f.submit 'Update Product', class: 'btn btn-primary' %>
+	</div>
+</div>
+<% end %>
+
+曲追加
+<%= form_for @music, url: music_new_path do |form| %>
+
+<div class="field">
+  <%= form.label :disk_number %>
+  <%= form.select :disk_number,[['Disk1',1],['Disk2',2],['Disk3',3],['Disk4',4]] %>
+</div>
+
+<div class="field">
+  <%= form.label :music_name %>
+  <%= form.text_field :music_name %>
+</div>
+
+<div class="actions">
+  <%= form.submit "Create Music" %>
+</div>
+<% end %>
+</div>
+
+<div class="box">
+曲リスト
+<p class="notice"><%= notice %></p>
+	<table>
+		<thead>
+			<tr>
+				<th>Disk</th>
+				<th>No.</th>
+				<th>Music_name</th>
+				<th></th>
+				<th></th>
+				<th colspan="5"></th>
+			</tr>
+		</thead>
+
+		<tbody>
+		<% @musics.each do |music| %>
+			<tr>
+				<%= form_for music, url: music_path(music.id) do |m| %>
+				<td><%= m.select :disk_number,[['Disk1',1],['Disk2',2],['Disk3',3],['Disk4',4]] %></td>
+				<td><%= m.text_field :music_number, class: "No" %></td>
+				<td><%= m.text_field :music_name %></td>
+				<td><%= m.submit 'Update Music' %></td>
+				<td><%= link_to "Destroy", music_path(music.id), method: :delete, "data-confirm" => "Are you sure?" %></td>
+				<% end %>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+</div>
+

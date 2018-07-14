@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   resources :products
   resources :musics
   resources :administrators
+  resources :cart_items, :except => [:create,:edit]
+  post '/product/:product_id/cart_items' => 'cart_items#create', as:'create_cart_item'
+  get '/cart_items/edit' => 'cart_items#edit', as:'edit_cart_items'
+  # post '/cart_items/:id/edit' => 'cart_items#edit', as: 'edit_cart_item'
   # get 'products/edit'
   get 'users/index'
   get 'users/show'

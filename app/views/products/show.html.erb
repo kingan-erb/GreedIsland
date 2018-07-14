@@ -4,13 +4,22 @@
 <div class="body container-fluid">
 	<div class="row">
 		<div class="col-lg-5">
-			<%= attachment_image_tag @product, :product_image_name %>
+			<%= attachment_image_tag @product, :product_image_name, :fill,500,500 %>
 		</div>
 		<div class="col-lg-7">
 			<div>シングル名/アルバム名<p><%= @product.product_name %></p></div>
 			<div>アーティスト名<p><%= @product.artist_name %></p></div>
 			<p>値段<span><%= @product.price %></span></p>
-			<p>在庫<span><%= @product.inventry_status %></span></p>
+			<p>在庫<span><%= @inventry_symbol %></span></p>
+			<% if @no_inventry == true %>
+				<p>品切れです！!！</p>
+			<% else %>
+				<%= form_for(@cart_item, url:create_cart_item_path(@product.id)) do |f| %>
+					<%= f.label :quantity, '数量' %>
+					<%= f.select :quantity, @inventry_array %>
+					<%= f.submit 'カートに入れる' %>
+				<% end %>
+			<% end %>
 		</div>
 	</div>
 	<div class="row">
@@ -28,5 +37,9 @@
 				<p><%= music.disk_number %><%= music.music_number %><%= music.music_name %></p>
 			<% end %>
 		</div>
+	</div>
+	<!-- 仮の編集画面へ遷移 -->
+	<div>
+		<%= link_to '仮の編集ページ', edit_product_path(@product.id) %>
 	</div>
 </div>

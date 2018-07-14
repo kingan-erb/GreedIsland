@@ -1,4 +1,4 @@
-商品追加
+<!-- 商品追加 -->
 <%= form_for @product,url: products_path do |f| %>
 	<!-- 仮にbootstrap方式 -->
 <div class="container-fluid">
@@ -19,12 +19,12 @@
 	</div>
 
 
-曲追加
+<!-- 曲追加 -->
 <%= form_for @music, url: musics_path do |form| %>
 
 <div class="field">
   <%= form.label :disk_number %><br />
-  <%= form.text_field :disk_number %>
+  <%= form.select :disk_number, [['Disk1',1],['Disk2',2],['Disk3',3],['Disk4',4]] %>
 </div>
 
 <div class="field">
@@ -37,7 +37,7 @@
 </div>
 <% end %>
 
-曲リスト
+<!-- 曲リスト -->
 
 <table>
 	<thead>
@@ -53,6 +53,7 @@
 		<tr>
 			<td><%= music.disk_number %></td>
 			<td><%= music.music_name %></td>
+			<td><%= link_to '削除', music_path(music.id), method: :delete %></td>
 		</tr>
 	<% end %>
 	</tbody>

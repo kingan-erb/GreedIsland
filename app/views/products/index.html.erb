@@ -6,28 +6,30 @@
 		<p>アイキャッチ</p>
 	</div>
 	<div class="main(仮)">
-		<% @Products.each do |product| %>
+		<% @products.each do |product| %>
 			<div class="product-box">
 				<div class="product-image">
-					<%= attachment_image_tag product %>
+					<%= attachment_image_tag product,:product_image_name, :fill,100,100 %>
 				</div>
 				<div class="product-text">
 					<!-- とりあえず全部pタグ -->
+					<% case product.inventry_status
+      					when 0 then
+							inventry = '×'
+						when 1..10 then
+							inventry = product.inventry_status
+						when 11..30 then
+							inventry = '△'
+						else
+							inventry = '◯'
+						end %>
 					<p>アーティスト：<%= product.artist_name %></p>
 					<p>シングル/アルバム名：<%= product.product_name %></p>
 					<p>価格：<%= product.price %></p>
-					<p>在庫：<%= case product.inventry_status
-							when 0 then
-								puts '×'
-							when 1..10 then
-								puts product.inventry_status
-							when 11..30 then
-								puts '△'
-							else
-								puts '◯'
-							end %></p>
+					<p>在庫：<%= inventry %></p>
+				<!-- 仮に設置 -->
+					
 				</div>
-
 			</div>
 		<% end %>
 	</div>

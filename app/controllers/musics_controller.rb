@@ -11,6 +11,10 @@ class MusicsController < ApplicationController
 	end
 
 	def destroy
+		music = Music.find(params[:id])
+		music.destroy
+		@musics = Music.where(product_id: 0)
+		redirect_to new_product_path
 	end
 
 

@@ -1,0 +1,10 @@
+<p>temporary_edit</p>
+<%= @product.inventry_status %>
+
+<div>
+<%= form_for(@product) do |f| %>
+	<%= f.label :inventry_status, '在庫数' %>
+	<%= f.text_field :inventry_status %>
+	<%= f.submit '変更完了' %>
+<% end %>
+</div>

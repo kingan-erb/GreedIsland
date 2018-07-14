@@ -13,6 +13,10 @@ class Product < ApplicationRecord
 
 	# accept_nested_attributes_for :musics
 	has_many :cart_items
-	has_many :musics
+	has_many :musics, dependent: :destroy
+	accepts_nested_attributes_for :musics, allow_destroy: true
 	belongs_to :greed
+	def musics
+  	return Music.where(product_id: self.id).order(disk_number: :asc).order(music_number: :asc)
+  end
 end

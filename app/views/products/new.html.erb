@@ -3,24 +3,28 @@
 商品追加
 <%= form_for @product, url: products_path, class: 'form-horizontal' do |f| %>
 	<!-- 仮にbootstrap方式 -->
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-ls-6">
-			<%= f.attachment_field :product_image_name %>
-		</div>
-		<div class="col-ls-6">
-			<!-- 型の指定はまだ -->
-			<p>欲カテゴリ<span class="product-input"><%= f.select :greed_id,[['yoku1',1],['yoku2',2],['yoku3',3],['yoku4',4],['yoku5',5]] %></span></p>
-			<p>アーティスト名<span class="product-input"><%= f.text_field :artist_name %></span></p>
-			<p>シングル/アルバム名<span class="product-input"><%= f.text_field :product_name %></span></p>
-			<p>レーベル名<span class="product-input"><%= f.text_field :label_name %></span></p>
-			<p>ジャンル<span class="product-input"><%= f.text_field :genre_name %></span></p>
-			<p>値段<span class="product-input"><%= f.text_field :price %></span></p>
-			<p>在庫数<span class="product-input"><%= f.text_field :inventry_status %></span></p>
+<div class="box">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-ls-6">
+				<%= f.attachment_field :product_image_name %>
+			</div>
+			<div class="col-ls-6">
+				<!-- 型の指定はまだ -->
+				<p>欲カテゴリ<span class="product-input"><%= f.select :greed_id,[['yoku1',1],['yoku2',2],['yoku3',3],['yoku4',4],['yoku5',5]] %></span></p>
+				<p>アーティスト名<span class="product-input"><%= f.text_field :artist_name %></span></p>
+				<p>シングル/アルバム名<span class="product-input"><%= f.text_field :product_name %></span></p>
+				<p>レーベル名<span class="product-input"><%= f.text_field :label_name %></span></p>
+				<p>ジャンル<span class="product-input"><%= f.text_field :genre_name %></span></p>
+				<p>値段<span class="product-input"><%= f.text_field :price %></span></p>
+				<p>在庫数<span class="product-input"><%= f.text_field :inventry_status %></span></p>
+			</div>
 		</div>
 	</div>
+</div>
 
 
+<div class="box">
 曲追加
 <table>
 	<thead>
@@ -41,33 +45,10 @@
 	</tbody>
 </table>
 <%= f.add_nested_fields_link :musics, 'Add new', class: 'btn btn-primary', role: 'button' %>
+</div>
 
-
-曲リスト
-<p class="notice"><%= notice %></p>
-<table>
-	<thead>
-		<tr>
-			<th>Disk</th>
-			<th>Music_name</th>
-			<th></th>
-			<th colspan="3"></th>
-		</tr>
-	</thead>
-
-	<tbody>
-	<% @musics.each do |music| %>
-		<tr>
-			<td><%= music.disk_number %></td>
-			<td><%= music.music_name %></td>
-			<td><%= link_to "Destroy", music_path(music.id), method: :delete, "data-confirm" => "Are you sure?" %></td>
-		</tr>
-	<% end %>
-	</tbody>
-</table>
 	<div class="row add-product-field">
 		<%= f.submit '商品追加', class: 'btn btn-primary' %>
 	</div>
-</div>
 <% end %>
-
+</div>

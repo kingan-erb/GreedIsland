@@ -32,14 +32,6 @@ class MusicsController < ApplicationController
 	    end
 	end
 
-	def delete
-		@product = Product.find(params[:id])
-		@music = Music.find(params[:id])
-		@music.destroy
-		redirect_to edit_product_path(@music.product_id)
-		flash[:notice] = "削除されました"
-	end
-
 
 	private
 

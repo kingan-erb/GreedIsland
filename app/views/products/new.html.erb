@@ -1,6 +1,7 @@
 
 <%= link_to "一覧へ", administrators_path %><br>
 商品追加
+
 <%= form_for @product,url: products_path do |f| %>
 	<!-- 仮にbootstrap方式 -->
 <div class="container-fluid">
@@ -21,7 +22,7 @@
 	</div>
 
 
-曲追加
+<!-- 曲追加 -->
 <%= form_for @music, url: musics_path do |form| %>
 
 <div class="field">
@@ -38,6 +39,7 @@
   <%= form.submit "Create Music" %>
 </div>
 <% end %>
+
 
 曲リスト
 <p class="notice"><%= notice %></p>

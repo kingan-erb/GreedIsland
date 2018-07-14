@@ -6,7 +6,7 @@ class Product < ApplicationRecord
 	validates :label_name, presence: true
 	validates :genre_name, presence: true
 	validates :inventry_status, presence: true
-	validates :sales_quantity, presence: true
+
 	validates :greed_id, presence: true
 
 	attachment :product_image_name

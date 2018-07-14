@@ -1,7 +1,7 @@
 
 <%= link_to "一覧へ", administrators_path %><br>
 商品追加
-<%= form_for @product,url: products_path do |f| %>
+<%= form_for @product, url: products_path, class: 'form-horizontal' do |f| %>
 	<!-- 仮にbootstrap方式 -->
 <div class="container-fluid">
 	<div class="row">
@@ -22,22 +22,26 @@
 
 
 曲追加
-<%= form_for @music, url: musics_path do |form| %>
+<table>
+	<thead>
+		<tr>
+			<th>Disk</th>
+			<th>Music_name</th>
+			<th></th>
+			<th colspan="3"></th>
+		</tr>
+	</thead>
 
-<div class="field">
-  <%= form.label :disk_number %>
-  <%= form.select :disk_number,[['Disk1',1],['Disk2',2],['Disk3',3],['Disk4',4]] %>
-</div>
+	<tbody>
+		<%= f.nested_fields_for :musics, wrapper_tag: :tr do |m| %>
+			<td><%= m.select :disk_number,[['Disk1',1],['Disk2',2],['Disk3',3],['Disk4',4]], class: 'form-control' %></td>
+			<td><%= m.text_field :music_name, class: 'form-control' %></td>
+			<td><%= m.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %><td>
+		<% end %>
+	</tbody>
+</table>
+<%= f.add_nested_fields_link :musics, 'Add new', class: 'btn btn-primary', role: 'button' %>
 
-<div class="field">
-  <%= form.label :music_name %>
-  <%= form.text_field :music_name %>
-</div>
-
-<div class="actions">
-  <%= form.submit "Create Music" %>
-</div>
-<% end %>
 
 曲リスト
 <p class="notice"><%= notice %></p>

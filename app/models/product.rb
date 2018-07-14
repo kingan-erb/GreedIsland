@@ -13,5 +13,6 @@ class Product < ApplicationRecord
 
 	# accept_nested_attributes_for :musics
 	has_many :cart_items
+	has_many :musics
 	belongs_to :greed
 end

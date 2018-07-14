@@ -94,8 +94,8 @@ ActiveRecord::Schema.define(version: 2018_07_13_031906) do
     t.string "product_name", null: false
     t.string "product_image_name_id", null: false
     t.integer "price", null: false
-    t.integer "label_name", null: false
-    t.integer "genre_name", null: false
+    t.integer "label_name", default: 0, null: false
+    t.integer "genre_name", default: 0, null: false
     t.integer "inventry_status", null: false
     t.integer "sales_quantity", default: 0, null: false
     t.integer "greed_id", null: false

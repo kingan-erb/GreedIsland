@@ -19,6 +19,7 @@ class ProductsController < ApplicationController
     if @product.save
        redirect_to product_path(@product.id)
     else
+       flash[:alert] = "エラーが発生しました"
        redirect_to new_product_path
     end
   end
@@ -30,9 +31,13 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-    @product.update(product_params)
-    redirect_to edit_product_path(@product.id)
-    flash[:notice] = "更新されました"
+    if @product.update(product_params)
+       redirect_to edit_product_path(@product.id)
+       flash[:notice] = "更新されました"
+    else
+       redirect_to edit_product_path(@product.id)
+       flash[:alert] = "エラーが発生しました"
+    end
   end
 
   def destroy

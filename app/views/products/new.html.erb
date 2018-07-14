@@ -1,6 +1,7 @@
 
 <%= link_to "一覧へ", administrators_path %><br>
 商品追加
+<% if alert %><p class="alert alert-danger"><%= alert %></p><% end %>
 <%= form_for @product, url: products_path, class: 'form-horizontal' do |f| %>
 	<!-- 仮にbootstrap方式 -->
 <div class="box">
@@ -14,8 +15,10 @@
 				<p>欲カテゴリ<span class="product-input"><%= f.select :greed_id,[['yoku1',1],['yoku2',2],['yoku3',3],['yoku4',4],['yoku5',5]] %></span></p>
 				<p>アーティスト名<span class="product-input"><%= f.text_field :artist_name %></span></p>
 				<p>シングル/アルバム名<span class="product-input"><%= f.text_field :product_name %></span></p>
-				<p>レーベル名<span class="product-input"><%= f.text_field :label_name %></span></p>
-				<p>ジャンル<span class="product-input"><%= f.text_field :genre_name %></span></p>
+				<p>レーベル名<span class="product-input"><%= f.select :label_name, Product.label_names.keys.to_a, {} %>
+				</span></p>
+				<p>ジャンル<span class="product-input"><%= f.select :genre_name, Product.genre_names.keys.to_a, {} %>
+				</span></p>
 				<p>値段<span class="product-input"><%= f.text_field :price %></span></p>
 				<p>在庫数<span class="product-input"><%= f.text_field :inventry_status %></span></p>
 			</div>

@@ -1,11 +1,9 @@
-
-<%= link_to "Create Greed",  new_greed_path %><br>
-<%= link_to "Create Product",  new_product_path %><br>
+<h1>欲の選択</h1>
 
 <div class="">
 	<% @greeds.each do |greed| %>
 		<div class="greed">
-			<%= link_to greed_products_path(greed.id) do %>
+			<%= link_to userside_products_path(greed.id) do %>
 				<%= attachment_image_tag greed, :greed_image_name, :fill, 40, 40, format: 'jpeg' %>
 			<% end %>
 			<%= greed.greed_type %>

@@ -14,10 +14,15 @@ Rails.application.routes.draw do
   # get 'products/show'
   # get 'products/new' => 'products#new', as:'new_product'
   # post 'products/new' => 'products#create'
-  resources :products, :except => [:index]
-  get 'greeds/:greed_id/products' => 'products#index', as:'greed_products'
+  resources :products
+  get 'greeds/:greed_id/products' => 'products#user_index', as:'userside_products'
+  get 'greeds/products/:id' => 'products#user_show',as:'userside_product'
   resources :musics
   resources :administrators
+  resources :cart_items, :except => [:create,:edit]
+  post '/product/:product_id/cart_items' => 'cart_items#create', as:'create_cart_item'
+  get '/cart_items/edit' => 'cart_items#edit', as:'edit_cart_items'
+  # post '/cart_items/:id/edit' => 'cart_items#edit', as: 'edit_cart_item'
   # get 'products/edit'
   get 'users/index'
   get 'users/show'
@@ -28,6 +33,7 @@ Rails.application.routes.draw do
   #order
   get 'admin/orders' => 'orders#index', as:'orders'
   get 'admin/orders/:id/edit' => 'orders#edit', as:'edit_order'
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

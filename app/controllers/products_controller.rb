@@ -40,12 +40,6 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      @musics = Music.where(product_id: 0).update_all(:product_id => @product.id)
-      redirect_to product_path(@product.id)
-    elsif
-      @music = Music.new(music_params)
-      @music.save
-      redirect_to new_product_path
     else
       redirect_to new_product_path
     end

@@ -72,7 +72,8 @@ ja:
     attributes:
       models:
         user: "ユーザー"
-        administrators: "管理者"
+        administrator: "管理者"
+        address: "住所"
       user:
         name: "名前"
         password: "パスワード"
@@ -82,7 +83,6 @@ ja:
         first_name: "名　（漢字）"
         last_name_kana: "姓（カナ）"
         first_name_kana: "名（カナ）"
-        postal_code: "郵便番号"
         phone_number: "電話番号"
         greed_id: "あなたの欲タイプ"
         customer_status: "顧客ステータス"
@@ -90,7 +90,11 @@ ja:
         default_address: "送付先住所"
         deleted_at: "退会日時"
         remember_me: "ログイン状態を維持する"
-      administrators:
+      administrator:
         password: "パスワード"
         email: "メールアドレス"
+      address:
+        postal_code: "郵便番号"
+        address: "住所"
+
 

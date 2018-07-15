@@ -4,7 +4,12 @@ class AdministratorsController < ApplicationController
 		@greeds = Greed.all
 	end
 	def index
-		@products = Product.all
+		if params[:cid]
+			@greed = Greed.find(params[:cid])
+			@products = @greed.products.order(params[:sort]).order(id: :desc)
+		else
+			@products = Product.order(params[:sort]).order(id: :desc)
+		end
 	end
 
 	def create

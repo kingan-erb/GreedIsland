@@ -1,0 +1,35 @@
+<h1>Products#index</h1>
+
+
+<div class="body">
+	<div class="eye-catch">
+		<p>アイキャッチ</p>
+	</div>
+	<div class="main(仮)">
+		<% @products.each do |product| %>
+			<div class="product-box">
+				<div class="product-image">
+					<%= attachment_image_tag product,:product_image_name, :fill,100,100 %>
+				</div>
+				<div class="product-text">
+					<!-- とりあえず全部pタグ -->
+					<% case product.inventry_status
+      					when 0 then
+							inventry = '×'
+						when 1..10 then
+							inventry = product.inventry_status
+						when 11..30 then
+							inventry = '△'
+						else
+							inventry = '◯'
+						end %>
+					<p>アーティスト：<%= product.artist_name %></p>
+					<p>シングル/アルバム名：<%= product.product_name %></p>
+					<p>価格：<%= product.price %></p>
+					<p>在庫：<%= inventry %></p>
+				<!-- 仮に設置 -->
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>

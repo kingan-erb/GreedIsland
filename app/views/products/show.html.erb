@@ -1,65 +1,45 @@
+<%= link_to '編集ページへ', edit_product_path(@product.id) %><br>
+<%= link_to '一覧へ', administrators_path %><br>
 
-<%= link_to "編集ページへ", edit_product_path(@product.id) %><br>
-<%= link_to "一覧へ", administrators_path %><br>
+<div class=“box”>
+    <%= attachment_image_tag @product, :product_image_name, :fill, 100, 100, format: 'jpeg' %>
+    <div>シングル名/アルバム名<p><%= @product.product_name %></p></div>
+    <div>アーティスト名<p><%= @product.artist_name %></p></div>
+    <p>値段<span><%= @product.price %></span></p>
+    <p>在庫<span><%= @product.inventry_status %></span></p>
 
-<!-- クラス名は仮でつけています -->
-<div class="body container-fluid">
-	<div class="row">
-		<div class="col-lg-5">
-			<%= attachment_image_tag @product, :product_image_name, :fill,500,500 %>
-		</div>
-		<div class="col-lg-7">
-			<div>シングル名/アルバム名<p><%= @product.product_name %></p></div>
-			<div>アーティスト名<p><%= @product.artist_name %></p></div>
-			<p>値段<span><%= @product.price %></span></p>
-			<p>在庫<span><%= @inventry_symbol %></span></p>
-			<% if @no_inventry == true %>
-				<p>品切れです！!！</p>
-			<% else %>
-				<%= form_for(@cart_item, url:create_cart_item_path(@product.id)) do |f| %>
-					<%= f.label :quantity, '数量' %>
-					<%= f.select :quantity, @inventry_array %>
-					<%= f.submit 'カートに入れる' %>
-				<% end %>
-			<% end %>
-		</div>
-	</div>
-	<div class="row">
-		<h2>登録情報</h2>
-		<div class="col-lg-5">
-			<p>レーベル名</p>
-			<p><%= @product.label_name %></p>
-			<p>ジャンル</p>
-			<p><%= @product.genre_name %></p>
-		</div>
-	</div>
-	<!-- 仮の編集画面へ遷移 -->
-	<div>
-		<%= link_to '仮の編集ページ', edit_product_path(@product.id) %>
-	</div>
+    <div class=“row”>
+        <h2>登録情報</h2>
+        <div class=“col-lg-5”>
+            <p>レーベル名</p>
+            <p><%= @product.label_name %></p>
+            <p>ジャンル</p>
+            <p><%= @product.genre_name %></p>
+        </div>
+    </div>
 </div>
 
-<div class="box">
-	<h2>曲リスト</h2>
-	<p class="notice"><%= notice %></p>
-	<table>
-		<thead>
-			<tr>
-				<th>Disk</th>
-				<th>曲順</th>
-				<th>Music_name</th>
-				<th colspan="3"></th>
-			</tr>
-		</thead>
+<div class=“box”>
+    <h2>曲リスト</h2>
+    <p class=“notice”><%= notice %></p>
+    <table>
+        <thead>
+            <tr>
+                <th>Disk</th>
+                <th>曲順</th>
+                <th>Music_name</th>
+                <th colspan=“3"></th>
+            </tr>
+        </thead>
 
-		<tbody>
-		<% @musics.each do |music| %>
-			<tr>
-				<td><%= music.disk_number %></td>
-				<td><%= music.music_number %></td>
-				<td><%= music.music_name %></td>
-			</tr>
-		<% end %>
-		</tbody>
-	</table>
+        <tbody>
+        <% @musics.each do |music| %>
+            <tr>
+                <td><%= music.disk_number %></td>
+                <td><%= music.music_number %></td>
+                <td><%= music.music_name %></td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
 </div>

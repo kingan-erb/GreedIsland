@@ -1,11 +1,12 @@
 class GreedsController < ApplicationController
-  
+
 	def new
 		@greed = Greed.new
 		@greeds = Greed.all
 	end
+
  	def index
-  		@products = Product.all
+ 		@greeds = Greed.all
   	end
 
   	def create
@@ -31,10 +32,10 @@ class GreedsController < ApplicationController
 		flash[:notice] = "削除されました"
 	end
 
-	 private
+	private
 
-	  def greed_params
+	def greed_params
 	 	params.require(:greed).permit(:greed_type,:greed_image_name)
-	 end
+	end
 
 end

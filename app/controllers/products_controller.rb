@@ -1,8 +1,44 @@
 class ProductsController < ApplicationController
-  def index
-    @greed = Greed.find(params[:greed_id])
 
+    def user_index
+    @greed = Greed.find(params[:greed_id])
     @products = @greed.products
+  end
+
+  def user_show
+    @product = Product.find(params[:id])
+    @musics = Music.where(product_id: @product.id)
+    @cart_item = CartItem.new
+    #在庫数表示
+    case @product.inventry_status
+      when 0 then
+         @inventry_symbol = '×'
+         @no_inventry = true
+      when 1..10 then
+        @inventry_symbol = @product.inventry_status
+      when 11..30 then
+        @inventry_symbol = '△'
+      else
+        @inventry_symbol = '◯'
+      end
+    # 数量選択用
+    @inventry_array = []
+      @product.inventry_status.times do |q| #q=quantity
+        if q < 10
+          @inventry_array << [q + 1, q + 1]
+        else
+          break
+        end
+      end
+  end
+
+  def index
+    if params[:cid]
+      @greed = Greed.find(params[:cid])
+      @products = @greed.products.order(params[:sort]).order(id: :desc)
+    else
+      @products = Product.order(params[:sort]).order(id: :desc)
+    end
   end
 
   def show

@@ -13,9 +13,9 @@ class ApplicationController < ActionController::Base
 	def after_sign_in_path_for(resource)
 	  	case resource
 	  	when User
-	  		greeds_index_path
+	  		greeds_path
 	  	when Administrator
-	  		greeds_index_path
+	  		greeds_path
 	  	end
 	end
 

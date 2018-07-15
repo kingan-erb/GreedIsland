@@ -11,8 +11,35 @@
 		</div>
 		<div class="row order-info">
 			<h3>支払い情報</h3>
-			<p>購入者：<span><%= order.user.last_name + order.user.first_name %></p>
-			<p>送付先</p>
-
+			<p>購入者：<span><%= order.user.last_name + order.user.first_name %></span></p>
+			<p>送付先：<span><%= order.delivery_address %></span></p>
+		</div>
+		<div class="row">
+			<h3>注文商品</h3>
+			<% @order_items.each do |order_item| %>
+				<%= link_to product_path(order_item.product_id) do %>
+					<div class="order-item-info">
+						<div>
+							<%= attachment_image_tag order_item, :o_product_image_name, :fill,100,100,format: 'jpeg' %>
+						</div>
+						<div>
+							<p>シングル/アルバム名</p>
+							<%= order_item.o_product_name %>
+							<p>アーティスト名</p>
+							<%= order_item.o_artist_name %>
+						</div>
+						<div>
+							<p>価格：<span><%= order_item.o_price %></span></p>
+							<% total_price += order_item.o_price %>
+							<p>購入数：<span><%= order_item.o_quantity %></span></p>
+							<% total_quantity += order_item.o_quantity %>
+						</div>
+					</div>
+				<% end %>
+			<% end %>
+			<div class="row calc">
+				<p>購入数：<%= total_quantity %>,<span>合計：<%= total_price %></span></p>
+			</div>
+		</div>
 	</div>
 </div>

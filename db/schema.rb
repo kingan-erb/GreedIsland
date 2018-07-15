@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2018_07_15_035846) do
 
   create_table "musics", force: :cascade do |t|
     t.string "music_name", null: false
-    t.integer "music_number"
+    t.integer "music_number", null: false
     t.integer "disk_number", limit: 4, null: false
     t.integer "product_id", default: 0, null: false
     t.datetime "created_at", null: false

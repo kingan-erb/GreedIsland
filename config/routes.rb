@@ -33,6 +33,8 @@ Rails.application.routes.draw do
   #order
   get 'admin/orders' => 'orders#index', as:'orders'
   get 'admin/orders/:id/edit' => 'orders#edit', as:'edit_order'
+  get 'orders/:id' => 'orders#show', as:'order'
+
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

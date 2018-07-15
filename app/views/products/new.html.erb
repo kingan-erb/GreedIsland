@@ -1,48 +1,34 @@
 
 <%= link_to "一覧へ", administrators_path %><br>
 商品追加
-
-<%= form_for @product,url: products_path do |f| %>
+<% if alert %><p class="alert alert-danger"><%= alert %></p><% end %>
+<%= form_for @product, url: products_path, class: 'form-horizontal' do |f| %>
 	<!-- 仮にbootstrap方式 -->
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-ls-6">
-			<%= f.attachment_field :product_image_name %>
-		</div>
-		<div class="col-ls-6">
-			<!-- 型の指定はまだ -->
-			<p>欲カテゴリ<span class="product-input"><%= f.select :greed_id,[['yoku1',1],['yoku2',2],['yoku3',3],['yoku4',4],['yoku5',5]] %></span></p>
-			<p>アーティスト名<span class="product-input"><%= f.text_field :artist_name %></span></p>
-			<p>シングル/アルバム名<span class="product-input"><%= f.text_field :product_name %></span></p>
-			<p>レーベル名<span class="product-input"><%= f.text_field :label_name %></span></p>
-			<p>ジャンル<span class="product-input"><%= f.text_field :genre_name %></span></p>
-			<p>値段<span class="product-input"><%= f.text_field :price %></span></p>
-			<p>在庫数<span class="product-input"><%= f.text_field :inventry_status %></span></p>
+<div class="box">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-ls-6">
+				<%= f.attachment_field :product_image_name %>
+			</div>
+			<div class="col-ls-6">
+				<!-- 型の指定はまだ -->
+				<p>欲カテゴリ<span class="product-input"><%= f.select :greed_id,[['yoku1',1],['yoku2',2],['yoku3',3],['yoku4',4],['yoku5',5]] %></span></p>
+				<p>アーティスト名<span class="product-input"><%= f.text_field :artist_name %></span></p>
+				<p>シングル/アルバム名<span class="product-input"><%= f.text_field :product_name %></span></p>
+				<p>レーベル名<span class="product-input"><%= f.select :label_name, Product.label_names.keys.to_a, {} %>
+				</span></p>
+				<p>ジャンル<span class="product-input"><%= f.select :genre_name, Product.genre_names.keys.to_a, {} %>
+				</span></p>
+				<p>値段<span class="product-input"><%= f.text_field :price %></span></p>
+				<p>在庫数<span class="product-input"><%= f.text_field :inventry_status %></span></p>
+			</div>
 		</div>
 	</div>
-
-
-<!-- 曲追加 -->
-<%= form_for @music, url: musics_path do |form| %>
-
-<div class="field">
-  <%= form.label :disk_number %>
-  <%= form.select :disk_number,[['Disk1',1],['Disk2',2],['Disk3',3],['Disk4',4]] %>
 </div>
 
-<div class="field">
-  <%= form.label :music_name %>
-  <%= form.text_field :music_name %>
-</div>
 
-<div class="actions">
-  <%= form.submit "Create Music" %>
-</div>
-<% end %>
-
-
-曲リスト
-<p class="notice"><%= notice %></p>
+<div class="box">
+曲追加
 <table>
 	<thead>
 		<tr>
@@ -54,18 +40,18 @@
 	</thead>
 
 	<tbody>
-	<% @musics.each do |music| %>
-		<tr>
-			<td><%= music.disk_number %></td>
-			<td><%= music.music_name %></td>
-			<td><%= link_to "Destroy", music_path(music.id), method: :delete, "data-confirm" => "Are you sure?" %></td>
-		</tr>
-	<% end %>
+		<%= f.nested_fields_for :musics, wrapper_tag: :tr do |m| %>
+			<td><%= m.select :disk_number,[['Disk1',1],['Disk2',2],['Disk3',3],['Disk4',4]], class: 'form-control' %></td>
+			<td><%= m.text_field :music_name, class: 'form-control' %></td>
+			<td><%= m.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %><td>
+		<% end %>
 	</tbody>
 </table>
+<%= f.add_nested_fields_link :musics, 'Add new', class: 'btn btn-primary', role: 'button' %>
+</div>
+
 	<div class="row add-product-field">
 		<%= f.submit '商品追加', class: 'btn btn-primary' %>
 	</div>
-</div>
 <% end %>
-
+</div>

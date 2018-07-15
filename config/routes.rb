@@ -18,12 +18,6 @@ Rails.application.routes.draw do
   get 'greeds/:greed_id/products' => 'products#index', as:'greed_products'
   resources :musics
   resources :administrators
-  resources :greeds
-  
-  resources :cart_items, :except => [:create,:edit]
-  post '/product/:product_id/cart_items' => 'cart_items#create', as:'create_cart_item'
-  get '/cart_items/edit' => 'cart_items#edit', as:'edit_cart_items'
-  # post '/cart_items/:id/edit' => 'cart_items#edit', as: 'edit_cart_item'
   # get 'products/edit'
   get 'users/index'
   get 'users/show'
@@ -34,8 +28,6 @@ Rails.application.routes.draw do
   #order
   get 'admin/orders' => 'orders#index', as:'orders'
   get 'admin/orders/:id/edit' => 'orders#edit', as:'edit_order'
-
-
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

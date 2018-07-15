@@ -1,0 +1,62 @@
+
+<%= link_to "Create Greed",  new_administrator_path %><br>
+<%= link_to "Create Product",  new_product_path %><br>
+
+商品一覧（管理）
+<form name="cid_form">
+	カテゴリー
+    <select name="cid" onchange="dropcid()">
+        <option value=""> - 選択してください - </option>
+        <option value="/administrators?cid=1">金</option>
+        <option value="/administrators?cid=2">癒</option>
+        <option value="/administrators?cid=3" selected>力</option>
+        <option value="/administrators?cid=4">食</option>
+        <option value="/administrators?cid=5">愛</option>
+    </select>
+</form>
+
+<form name="sort_form">
+	並び替え
+    <select name="sort" onchange="dropsort()">
+        <option value=""> - 選択してください - </option>
+        <option value="/administrators?sort=id desc">新しい順番</option>
+        <option value="/administrators?sort=id asc">古い順番</option>
+        <option value="/administrators?sort=inventry_status desc">在庫数の多い順番</option>
+        <option value="/administrators?sort=inventry_status asc">在庫数の少ない順番</option>
+        <option value="/administrators?sort=price asc">価格の安い順番</option>
+        <option value="/administrators?sort=price desc">価格の高い順番</option>
+    </select>
+</form>
+
+<table>
+	<thead>
+		<tr>
+			<th>カテゴリー</th>
+			<th>商品ID</th>
+			<th>ジャケット画像</th>
+			<th>商品名</th>
+			<th>アーティスト</th>
+			<th>価格</th>
+			<th>在庫数</th>
+			<th>売上数</th>
+			<th></th>
+			<th colspan="9"></th>
+		</tr>
+	</thead>
+
+	<tbody>
+	<% @products.each do |product| %>
+		<tr>
+			<td><%= attachment_image_tag product.greed, :greed_image_name, :fill, 40, 40, format: 'jpeg' %></td>
+			<td><%= product.id %></td>
+			<td><%= attachment_image_tag product, :product_image_name, :fill, 40, 40, format: 'jpeg' %></td>
+			<td><%= product.product_name %></td>
+			<td><%= product.artist_name %></td>
+			<td><%= product.price %></td>
+			<td><%= product.inventry_status %></td>
+			<td><%= product.sales_quantity %></td>
+			<td><%= link_to "Show", product_path(product.id) %></td>
+		</tr>
+	<% end %>
+	</tbody>
+</table>

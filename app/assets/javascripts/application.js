@@ -13,4 +13,15 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require jquery
+//= require jquery_ujs
+//= require nested_form_fields
 //= require_tree .
+function dropsort() {
+    var browser = document.sort_form.sort.value;
+    location.href = browser
+}
+function dropcid() {
+    var browser = document.cid_form.cid.value;
+    location.href = browser
+}

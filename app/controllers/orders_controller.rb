@@ -8,12 +8,15 @@ class OrdersController < ApplicationController
   end
 
   def index
+    @orders = Order.all
   end
 
   def show
   end
 
   def edit
+    @order = Order.find(params[:id])
+    # created_atを分解する処理
   end
 
   def update

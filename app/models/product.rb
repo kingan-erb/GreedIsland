@@ -14,4 +14,6 @@ class Product < ApplicationRecord
 	# accept_nested_attributes_for :musics
 	has_many :cart_items
 	belongs_to :greed
+
+	#enum記述予定
 end

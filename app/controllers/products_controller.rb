@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   def index
-    @greed = Greed.find(params[:id])
-    @products = greed.products
+    @greed = Greed.find(params[:greed_id])
+    @products = @greed.products
   end
 
   def show

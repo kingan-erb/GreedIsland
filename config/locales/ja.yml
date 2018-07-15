@@ -1,0 +1,7 @@
+ja:
+  enums:
+    order:
+      delivery_status:
+        prepare: 出荷準備中
+        sent: 発送済み
+        complete: 配達済み

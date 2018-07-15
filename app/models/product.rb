@@ -17,6 +17,14 @@ class Product < ApplicationRecord
 	accepts_nested_attributes_for :musics, allow_destroy: true
 	belongs_to :greed
 
+	def self.search(search)
+		if search
+			Product.where(['product_name LIKE ?',"%#{search}%"])
+		else
+			Product.all
+		end
+	end
+
 
 	def musics
 		return Music.where(product_id: self.id).order(disk_number: :asc).order(music_number: :asc)

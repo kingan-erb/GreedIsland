@@ -12,10 +12,13 @@ class OrdersController < ApplicationController
   end
 
   def show
+    @order = Order.find(params[:id])
+    @order_items = @order.order_items
   end
 
   def edit
     @order = Order.find(params[:id])
+    @order_items = @order.order_items
     # created_atを分解する処理
   end
 

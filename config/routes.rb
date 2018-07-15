@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   resources :products
   resources :musics
   resources :administrators
+  resources :greeds
+  
   resources :cart_items, :except => [:create,:edit]
   post '/product/:product_id/cart_items' => 'cart_items#create', as:'create_cart_item'
   get '/cart_items/edit' => 'cart_items#edit', as:'edit_cart_items'
@@ -27,6 +29,9 @@ Rails.application.routes.draw do
   get 'users/edit'
   get 'greeds/index'
   post 'products/:id/musics' => 'musics#create', as: 'music_new'
+
+  #greed新規登録時
+  # post 'administrators/greeds' => 'greeds#create', as:'greeds'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

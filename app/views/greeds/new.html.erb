@@ -1,8 +1,9 @@
 
 <%= link_to "商品一覧へ", administrators_path %><br>
+<%= link_to '管理者ログアウト',destroy_administrator_session_path, method: :delete %>
 
 欲カテゴリー追加
-<%= form_for @greed, url: administrators_path do |f| %>
+<%= form_for @greed, url: greeds_path do |f| %>
 <div class="field">
   <%= f.label :category %><br />
   <%= f.text_field :greed_type %>
@@ -34,13 +35,13 @@
 	<tbody>
 	<% @greeds.each do |greed| %>
 		<tr>
-			<%= form_for greed, url: administrator_path(greed.id) do |g| %>
+			<%= form_for greed, url: greed_path(greed.id) do |g| %>
 			<td><%= g.text_field :id %></td>
 			<td><%= attachment_image_tag greed, :greed_image_name, :fill, 40, 40, format: 'jpeg' %></td>
 			<td><%= g.attachment_field :greed_image_name %></td>
 			<td><%= g.text_field :greed_type %></td>
 			<td><%= g.submit 'Update Greed' %></td>
-			<td><%= link_to "Destroy", administrator_path(greed.id), method: :delete, "data-confirm" => "Are you sure?" %></td>
+			<td><%= link_to "Destroy", greed_path(greed.id), method: :delete, "data-confirm" => "Are you sure?" %></td>
 			<% end %>
 		</tr>
 	<% end %>

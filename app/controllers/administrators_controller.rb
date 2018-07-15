@@ -1,5 +1,5 @@
 class AdministratorsController < ApplicationController
-	
+
 	def index
 		if params[:cid]
 			@greed = Greed.find(params[:cid])

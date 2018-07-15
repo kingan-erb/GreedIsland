@@ -33,12 +33,14 @@ class ProductsController < ApplicationController
   end
 
   def index
-    if params[:cid]
-      @greed = Greed.find(params[:cid])
-      @products = @greed.products.order(params[:sort]).order(id: :desc)
-    else
-      @products = Product.order(params[:sort]).order(id: :desc)
-    end
+    @products = Product.order(params[:sort]).order(id: :desc)
+    @navi = params[:sort]
+  end
+
+  def category
+    @navi = params[:sort]
+    @greed = Greed.find(params[:id])
+    @products = @greed.products.order(params[:sort]).order(id: :desc)
   end
 
   def show

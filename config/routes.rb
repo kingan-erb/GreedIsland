@@ -14,9 +14,11 @@ Rails.application.routes.draw do
   # get 'products/show'
   # get 'products/new' => 'products#new', as:'new_product'
   # post 'products/new' => 'products#create'
+  resources :greeds
   resources :products
-  get 'greeds/:greed_id/products' => 'products#user_index', as:'userside_products'
+  get 'greeds/:id/products' => 'products#user_index', as:'userside_products'
   get 'greeds/products/:id' => 'products#user_show',as:'userside_product'
+  get 'greeds/products/search' => 'products#user_search_index',as:'search_products'
   resources :musics
   resources :administrators
   resources :cart_items, :except => [:create,:edit]
@@ -27,7 +29,6 @@ Rails.application.routes.draw do
   get 'users/index'
   get 'users/show'
   get 'users/edit'
-  get '/greeds' => 'greeds#index', as:'greeds'
   post 'products/:id/musics' => 'musics#create', as: 'music_new'
 
   #order

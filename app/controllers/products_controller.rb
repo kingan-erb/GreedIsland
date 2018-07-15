@@ -1,8 +1,14 @@
 class ProductsController < ApplicationController
 
-    def user_index
-    @greed = Greed.find(params[:greed_id])
+  def user_index
+    @greed = Greed.find(params[:id])
     @products = @greed.products
+    @search_form_flag = true #ヘッダー分岐
+  end
+
+  def user_search_index
+    @products = Product.search(params[:search])
+    @search_form_flag = true
   end
 
   def user_show
@@ -31,6 +37,7 @@ class ProductsController < ApplicationController
         end
       end
   end
+
 
   def index
     if params[:cid]

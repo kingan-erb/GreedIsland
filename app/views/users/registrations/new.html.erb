@@ -45,7 +45,7 @@
       <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "off", placeholder: "名（カナ）" %>
     </div>
 
-    <%= f.fields_for :addresses do |g| %>
+    <%= fields_for :addresses do |g| %>
       <div class="field">
         <%= g.label :postal_code %><br />
         <%= g.text_field :postal_code, autofocus: true, autocomplete: "off", placeholder: "ハイフン不要" %>

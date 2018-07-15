@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get 'users/edit'
   get '/greeds' => 'greeds#index', as:'greeds'
   post 'products/:id/musics' => 'musics#create', as: 'music_new'
+  get 'greed/:id/products' => 'administrators#category', as: 'category'
 
   #order
   get 'admin/orders' => 'orders#index', as:'orders'

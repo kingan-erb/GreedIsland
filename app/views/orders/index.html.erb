@@ -1,0 +1,29 @@
+
+
+<h1>注文一覧(仮）</h1>
+
+<div class="body">
+	<table>
+		<thead>
+			<tr>
+				<th>注文番号</th>
+				<th>注文ユーザー</th>
+				<th>購入日時</th>
+				<th>金額</th>
+				<th>ステータス</th>
+			</tr>
+		</thead>
+
+		<tbody>
+		<% @orders.each do |order| %>
+			<tr>
+				<td><%= link_to '#{order.id}', edit_order_path(order.id) %></td>
+				<td><%= link_to '#{order.user.last_name}' + '#{order.user.first_name}', user_path(order.user.id) %></td>
+				<td><%= order.created_at %></td>
+				<!-- <td><%= order.total_price %></td> カラム追加予定 -->
+				<td><%= order.delivery_status %></td>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+</div>

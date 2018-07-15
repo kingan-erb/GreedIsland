@@ -1,0 +1,18 @@
+<h1>注文詳細ページ</h1>
+
+<div class="body">
+	<div class="container">
+		<div class="row">
+			<h3>注文日：<%= @order.created_at %></h3> <!--仮に -->
+			<%= form_for(@order) do |f| %>
+				<%= f.select :delivery_status, Order.localed_statuses, {} %>
+				<%= f.submit '配送ステータス変更' %>
+			<% end %>
+		</div>
+		<div class="row order-info">
+			<h3>支払い情報</h3>
+			<p>購入者：<span><%= order.user.last_name + order.user.first_name %></p>
+			<p>送付先</p>
+
+	</div>
+</div>

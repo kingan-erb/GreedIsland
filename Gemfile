@@ -64,6 +64,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # 新規追加
 gem "devise"
-
+gem 'nested_form_fields'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'refile',require: 'refile/rails',github: 'manfe/refile'
 gem 'refile-mini_magick'

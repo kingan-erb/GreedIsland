@@ -45,17 +45,14 @@
       <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "off", placeholder: "名（カナ）" %>
     </div>
 
-    <%= fields_for :addresses do |g| %>
-      <div class="field">
-        <%= g.label :postal_code %><br />
-        <%= g.text_field :postal_code, autofocus: true, autocomplete: "off", placeholder: "ハイフン不要" %>
-      </div>
-
-      <div class="field">
-        <%= g.label :address %><br />
+    <div class="field">
+      <%= f.fields_for :addresses do |g| %>
+        <%= g.label :postal_code, "郵便番号" %><br />
+        <%= g.text_field :postal_code, autofocus: true, autocomplete: "off", placeholder: "ハイフン不要" %><br />
+        <%= g.label :address, "住所" %><br />
         <%= g.text_field :address, autofocus: true, autocomplete: "off" %>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
 
     <div class="field">
       <%= f.label :phone_number %><br />

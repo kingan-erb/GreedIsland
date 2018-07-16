@@ -5,9 +5,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-
+  def new
+      super
+      @user = User.new
+      # 入力用に空のオブジェクトを１つ生成します。
+      @user.addresses.build
+  end
 
   # POST /resource
+  def create
+      super
+      @user = User.new(user_params)
+  end
 
   # GET /resource/edit
   # def edit
@@ -33,7 +42,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-
+  def user_params
+    params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :phone_number, 
+                                  :email, :password, :greed_id, :customer_status, :payment_method, 
+                                  addresses_attributes: [:id, :postal_code, :address])
+  end
 
 
   # If you have extra params to permit, append them to the sanitizer.

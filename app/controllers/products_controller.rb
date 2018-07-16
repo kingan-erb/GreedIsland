@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
 
+
   def user_index
+
     @greed = Greed.find(params[:id])
     @products = @greed.products
     @search_form_flag = true #ヘッダー分岐

@@ -6,16 +6,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
+      super
       @user = User.new
       # 入力用に空のオブジェクトを１つ生成します。
       @user.addresses.build
-      super
   end
 
   # POST /resource
   def create
-      @user = User.new(user_params)
       super
+      @user = User.new(user_params)
   end
 
   # GET /resource/edit
@@ -45,7 +45,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def user_params
-    params.require(:users).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :phone_number, 
+    params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :phone_number, 
                                   :email, :password, :greed_id, :customer_status, :payment_method, 
                                   addresses_attributes: [:id, :postal_code, :address])
   end

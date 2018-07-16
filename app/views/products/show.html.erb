@@ -1,34 +1,30 @@
-<%= link_to '編集ページへ', edit_product_path(@product.id) %><br>
-<%= link_to '一覧へ', administrators_path %><br>
 
-<div class=“box”>
+<%= link_to "編集ページへ", edit_product_path(@product.id) %><br>
+<%= link_to "一覧へ", products_path %><br>
+
+<div class="box">
     <%= attachment_image_tag @product, :product_image_name, :fill, 100, 100, format: 'jpeg' %>
     <div>シングル名/アルバム名<p><%= @product.product_name %></p></div>
     <div>アーティスト名<p><%= @product.artist_name %></p></div>
     <p>値段<span><%= @product.price %></span></p>
     <p>在庫<span><%= @product.inventry_status %></span></p>
 
-    <div class=“row”>
-        <h2>登録情報</h2>
-        <div class=“col-lg-5”>
-            <p>レーベル名</p>
-            <p><%= @product.label_name %></p>
-            <p>ジャンル</p>
-            <p><%= @product.genre_name %></p>
-        </div>
-    </div>
+    <h2>登録情報</h2>
+    <p>レーベル名</p>
+    <p><%= @product.label_name %></p>
+    <p>ジャンル</p>
+    <p><%= @product.genre_name %></p>
 </div>
 
-<div class=“box”>
+<div class="box">
     <h2>曲リスト</h2>
-    <p class=“notice”><%= notice %></p>
     <table>
         <thead>
             <tr>
                 <th>Disk</th>
                 <th>曲順</th>
                 <th>Music_name</th>
-                <th colspan=“3"></th>
+                <th colspan="3"></th>
             </tr>
         </thead>
 

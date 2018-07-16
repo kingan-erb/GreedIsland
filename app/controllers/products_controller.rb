@@ -1,8 +1,16 @@
 class ProductsController < ApplicationController
 
-    def user_index
+
+  def user_index
+
     @greed = Greed.find(params[:id])
     @products = @greed.products
+    @search_form_flag = true #ヘッダー分岐
+  end
+
+  def user_search_index
+    @products = Product.search(params[:search])
+    @search_form_flag = true
   end
 
   def user_show
@@ -32,13 +40,16 @@ class ProductsController < ApplicationController
       end
   end
 
+
   def index
-    if params[:cid]
-      @greed = Greed.find(params[:cid])
-      @products = @greed.products.order(params[:sort]).order(id: :desc)
-    else
-      @products = Product.order(params[:sort]).order(id: :desc)
-    end
+    @products = Product.order(params[:sort]).order(id: :desc)
+    @navi = params[:sort]
+  end
+
+  def category
+    @navi = params[:sort]
+    @greed = Greed.find(params[:id])
+    @products = @greed.products.order(params[:sort]).order(id: :desc)
   end
 
   def show

@@ -1,0 +1,27 @@
+
+<div class="box">
+	<p>マイページ</p>
+	登録内容 <br>
+	氏名
+	<%= @user.last_name %> <%= @user.first_name %> (<%= @user.last_name_kana %> <%= @user.first_name_kana %>)<br>
+	Eメールアドレス
+	<%= @user.email %><br>
+	電話番号
+	<%= @user.phone_number %><br>
+	私の欲
+	<%= @user.greed.greed_type %><br>
+	お支払い方法
+	<%= @user.payment_method %>
+</div>
+<div class="box">
+	<p>登録住所</p>
+	<table class='table'>
+		<% @addresses.each do |address| %>
+	  <tr>
+	    <th><%= address.postal_code %></th>
+	    <th><%= address.address %></th>
+	  </tr>
+	  	<% end %>
+	</table>
+</div>
+

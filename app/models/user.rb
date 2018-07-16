@@ -9,4 +9,12 @@ class User < ApplicationRecord
   # has_many :cart_items
   has_many :orders
   belongs_to :greed
+
+  def self.search(search)
+    if search
+      User.where(['(last_name LIKE ?) OR (first_name LIKE ?)', "%#{search}%","%#{search}%"])
+    else
+      User.all
+    end
+  end
 end

@@ -54,7 +54,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @musics = Music.where(product_id: @product.id).order(disk_number: :asc).order(music_number: :asc)
+    @musics = @product.musics.order(disk_number: :asc).order(music_number: :asc)
   end
 
   def new

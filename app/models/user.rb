@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :addresses
   accepts_nested_attributes_for :addresses
-  # has_many :cart_items
+  has_many :cart_items
   has_many :orders
   belongs_to :greed
 end

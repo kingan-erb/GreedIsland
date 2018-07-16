@@ -1,4 +1,11 @@
 class OrdersController < ApplicationController
+  
+  def new
+    @order = Order.new
+    @cart_items = current_user.cart_items
+  end
+
+
   def create
     @user = current_user.id
     if  @user.save

@@ -33,6 +33,12 @@
           </div>
         <% end %>
 
+        <% if user_signed_in? %>
+          <div class="header-text">
+            <p><%= current_user.first_name %>でログイン中</p>
+          </div>
+        <% end %>
+
         <div id="gnavi" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
           </ul>

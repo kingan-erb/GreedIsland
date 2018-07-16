@@ -1,0 +1,57 @@
+
+<div class="container orders_new">
+	<div class="row">
+		<h2>決済ページ</h2>
+	</div>
+	<div class ="row">
+		<!--合計計算用 -->
+		<% @sum = 0 %>
+		<% @cart_items.each do |cart_item| %>
+			<% product = cart_item.product %>
+			<div class="cart-item-box">
+				<div class="item-info-box">
+					<div class="item-image">
+						<%= attachment_image_tag product, :product_image_name, :fill, 80, 80, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %>
+					</div>
+					<div class="item-detail">
+						<ul>
+							<li><%= product.product_name %></li>
+							<li><%= product.artist_name %></li>
+							<!-- カテゴリ画像挿入予定（エラー起きた） -->
+							<!-- 在庫状況調査 -->
+							<%	case product.inventry_status
+								    when 0 then
+							        	inventry_symbol = '×'
+							        	no_inventry = true
+							        when 1..10 then
+							         	inventry_symbol = product.inventry_status
+							        when 11..30 then
+							         	inventry_symbol = '△'
+							        else
+			         					inventry_symbol = '◯'
+								end %>
+							<li>在庫：<%= inventry_symbol %></li>
+							<li>数量：<%= cart_item.quantity %></li>
+						</ul>
+					</div>
+				</div>
+				<div class="item-price">
+					<p>¥  <%= product.price %></p>
+					<% subtotal = product.price * cart_item.quantity %>
+					<% @sum += subtotal %>
+				</div>
+			</div>
+		<% end %>
+		<div class="">
+			<p>合計：¥ <%= @sum %></p>
+		</div>
+	</div>
+	<div class="row delivery-select">
+		<div class="address-select">
+			<%= current_user.addresses.each do |address| %>
+				<p>〒<%= address.postal_code %></p>
+				<p><%= address.address %></p>
+			<% end %>
+		</div>
+	</div>
+</div>

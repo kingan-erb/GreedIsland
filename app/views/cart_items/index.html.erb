@@ -1,0 +1,74 @@
+<div class="container cart-items-edit">
+	<div class="row">
+		<h2>(ここにアイコン）ショッピングカート</h2>
+	</div>
+	<div class ="row">
+		<!--合計計算用 -->
+		<% @sum = 0 %>
+		<% @cart_items.each do |cart_item| %>
+			<% product = cart_item.product %>
+			<div class="cart-item-box">
+				<div class="item-info-box">
+					<div class="item-image">
+						<%= link_to userside_product_path(product.id) do %>
+							<%= attachment_image_tag product, :product_image_name, :fill, 100, 100, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %>
+						<% end %>
+					</div>
+					<div class="item-detail">
+						<ul>
+							<li><%= product.product_name %></li>
+							<li><%= product.artist_name %></li>
+							<!-- カテゴリ画像挿入予定（エラー起きた） -->
+							<!-- 在庫状況調査 -->
+							<%	case product.inventry_status
+								    when 0 then
+							        	inventry_symbol = '×'
+							        	no_inventry = true
+							        when 1..10 then
+							         	inventry_symbol = product.inventry_status
+							        when 11..30 then
+							         	inventry_symbol = '△'
+							        else
+			         					inventry_symbol = '◯'
+								end %>
+							<li>在庫:<%= inventry_symbol %></li>
+						</ul>
+						<p><%= link_to '削除', cart_item_path(cart_item.id),method: :delete %></p>
+					</div>
+				</div>
+				<div class="item-price">
+					<p>¥  <%= product.price %></p>
+					<% subtotal = product.price * cart_item.quantity %>
+					<% @sum += subtotal %>
+				</div>
+				<div class="item-quantity">
+					<% if no_inventry == true %>
+						<p>ー</p>
+					<% else %>
+						<% inventry_array = []
+						product.inventry_status.times do |q|
+							if q < 10
+								inventry_array << [q + 1, q + 1]
+							else
+								break
+							end
+						end %>
+						<%= form_for(cart_item, url:cart_item_path(cart_item.id)) do |f| %>
+							<%= f.label :quantity, '数量' %>
+							<%= f.select :quantity, inventry_array %>
+							<%= f.submit '更新' %>
+						<% end %>
+						<!-- 一旦分けて表示 -->
+						<p>数量：<%= cart_item.quantity %></p>
+					<% end %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+	<div class="row total_price">
+		<div>合計金額：<%= @sum %></div>
+	</div>
+	<div class="row add-product-field">
+		<%= link_to '決済にすすむ', new_order_path, class: 'btn btn-primary' %>
+	</div>
+</div>

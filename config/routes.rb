@@ -27,9 +27,12 @@ Rails.application.routes.draw do
   get 'greeds/products/:id' => 'products#user_show',as:'userside_product'
   resources :musics
   resources :administrators
-  resources :cart_items, :except => [:create,:edit]
+  #cart_items#showが#editより上にあるとedit_cartに流れずshowに流れた。
+  #resourcesの自動ルーティングに順序を合わせるのがベターっぽい
+  # get '/cart_items' => 'cart_items#index', as:'cart_items'
+  # get '/cart_items/buy' => 'cart_items#show', as:'buy_cart_items'
+  resources :cart_items, :except => [:create,:edit,:show]
   post '/product/:product_id/cart_items' => 'cart_items#create', as:'create_cart_item'
-  get '/cart_items/edit' => 'cart_items#edit', as:'edit_cart_items'
   # post '/cart_items/:id/edit' => 'cart_items#edit', as: 'edit_cart_item'
   # get 'products/edit'
   get 'users/index'
@@ -40,6 +43,8 @@ Rails.application.routes.draw do
 
   #order
   get 'admin/orders' => 'orders#index', as:'orders'
+  #決済ページ
+  get 'buy_confirm' => 'orders#new', as:'new_order'
   get 'admin/orders/:id/edit' => 'orders#edit', as:'edit_order'
   get 'orders/:id' => 'orders#show', as:'order'
 

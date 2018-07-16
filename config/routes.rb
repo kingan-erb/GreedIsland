@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   get 'users/show'
   get 'users/edit'
   post 'products/:id/musics' => 'musics#create', as: 'music_new'
-  get 'greed/:id/products' => 'administrators#category', as: 'category'
+  get 'greed/:id/products' => 'products#category', as: 'category'
 
   #order
   get 'admin/orders' => 'orders#index', as:'orders'

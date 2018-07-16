@@ -17,8 +17,8 @@ Rails.application.routes.draw do
   resources :greeds
   resources :products
   get 'greeds/:id/products' => 'products#user_index', as:'userside_products'
+  get 'greeds/products/search' => 'products#user_search',as:'search_products'
   get 'greeds/products/:id' => 'products#user_show',as:'userside_product'
-  get 'greeds/products/search' => 'products#user_search_index',as:'search_products'
   resources :musics
   resources :administrators
   resources :cart_items, :except => [:create,:edit]

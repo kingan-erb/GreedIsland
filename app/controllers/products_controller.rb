@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
     @search_form_flag = true #ヘッダー分岐
   end
 
-  def user_search_index
+  def user_search
     @products = Product.search(params[:search])
     @search_form_flag = true
   end

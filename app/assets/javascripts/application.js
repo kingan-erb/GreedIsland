@@ -17,6 +17,7 @@
 //= require jquery_ujs
 //= require nested_form_fields
 //= require_tree .
+<<<<<<< HEAD
 function dropsort() {
     var browser = document.sort_form.sort.value;
     location.href = browser
@@ -25,3 +26,5 @@ function dropcid() {
     var browser = document.cid_form.cid.value;
     location.href = browser
 }
+=======
+>>>>>>> f_modified_product

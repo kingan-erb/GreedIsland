@@ -10,7 +10,7 @@ class CartItemsController < ApplicationController
         @cart_item = CartItem.new(quantity_params)
         @cart_item.product_id = added_product.id
         @cart_item.user_id = current_user.id
-        if @cart_item.save!
+        if @cart_item.save
           redirect_to cart_items_path
         else
           flash[:notice] = '処理に失敗しました。'

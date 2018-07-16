@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   # get 'products/new' => 'products#new', as:'new_product'
   # post 'products/new' => 'products#create'
   resources :greeds
+  resources :users
   resources :products
   get 'greeds/:id/products' => 'products#user_index', as:'userside_products'
   get 'greeds/products/search' => 'products#user_search',as:'search_products'
@@ -37,7 +38,8 @@ Rails.application.routes.draw do
   get 'admin/orders/:id/edit' => 'orders#edit', as:'edit_order'
   get 'orders/:id' => 'orders#show', as:'order'
 
-
+  #admin/user
+  get 'admin/users' => 'users#admin_index', as:'admin_users'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

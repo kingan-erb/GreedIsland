@@ -20,12 +20,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def after_sign_out_path_for(resource)
-	  	case resource
-	  	when User
 	  		new_user_session_path
-	  	when Administrator
-	  		new_administrator_session_path
-	  	end
 	end
 
 end

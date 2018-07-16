@@ -1,0 +1,47 @@
+<h2>Users</h2>
+<a class="glyphicon glyphicon-log-out" rel="nofollow" data-method="delete" href="/users/sign_out"> logout</a>
+検索
+<%= form_tag admin_users_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :last_name => nil, :first_name => nil %>
+  </p>
+<% end %>
+
+<form name="sort_form">
+  並び替え
+    <select name="sort" onchange="dropsort()">
+        <option value="/admin/users"> すべて </option>
+        <option value="/admin/users?sort=id desc"<% if @navi == 'id desc' %>selected <% end %>>新しい順番</option>
+        <option value="/admin/users?sort=id asc"<% if @navi == 'id asc' %>selected <% end %>>古い順番</option>
+        <option value="/admin/users?sort=last_name asc"<% if @navi == 'last_name asc' %>selected <% end %>>50音順</option>
+    </select>
+</form>
+
+
+<table class='table'>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>登録日時</th>
+      <th>氏名</th>
+      <th>欲</th>
+      <th></th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <% @users.each do |user| %>
+  <tbody class="<% if user.deleted_at.present? %>unsubscribe<% end %>">
+    <tr>
+      <td><%= user.id %></td>
+      <td class="create"><%= user.created_at %></td>
+      <td><%= link_to user_path(user.id) do %><%= user.last_name %> <%= user.first_name %><% end %></td>
+      <td><%= attachment_image_tag user.greed, :greed_image_name, :fill, 30, 30, format: 'jpeg' %></td>
+      <td><%= link_to "Edit", products_path, class: "btn-sm btn-success" %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+<% if @users.empty? %> 該当するユーザーは、見つかりませんでした。<% end %>
+

@@ -16,7 +16,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
       super
       @user = User.new(user_params)
-      @user.save
   end
 
   # GET /resource/edit
@@ -44,9 +43,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def user_params
-    params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :phone_number,
-                                  :email, :password, :greed_id, :customer_status, :payment_method,
-                                  addresses_attributes: [:id, :postal_code, :address, :user_id])
+    params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :phone_number, 
+                                  :email, :password, :greed_id, :customer_status, :payment_method, 
+                                  addresses_attributes: [:id, :postal_code, :address])
   end
 
 

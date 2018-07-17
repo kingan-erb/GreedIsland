@@ -82,9 +82,11 @@ ActiveRecord::Schema.define(version: 2018_07_15_035846) do
     t.integer "payment_method"
     t.date "delivery_date"
     t.integer "delivery_time"
+    t.integer "postal_code"
     t.string "delivery_address"
     t.integer "delivery_status"
     t.integer "user_id"
+    t.integer "total_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

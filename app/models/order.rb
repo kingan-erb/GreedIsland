@@ -17,12 +17,12 @@ class Order < ApplicationRecord
 		end
 	end
 
-	class << self
-		def localed_delivery_times
-			delivery_times.keys.map do |s|
-				[ApplicationController.helpers.t("order.delivery_status.#{s}"),s]
-			end
-		end
-	end
+	# class << self
+	# 	def localed_delivery_times
+	# 		delivery_times.keys.map do |s|
+	# 			[ApplicationController.helpers.t("order.delivery_status.#{s}"),s]
+	# 		end
+	# 	end
+	# end
 
 end

@@ -42,8 +42,8 @@ Rails.application.routes.draw do
   get 'greed/:id/products' => 'products#category', as: 'category'
 
   #order
-  resources :order, :only => [:create]
   get 'admin/orders' => 'orders#index', as:'orders'
+  post 'admin/orders' => 'orders#create' #adminの範疇ではないがurlをindexに合わせる
   #決済ページ
   get 'buy_confirm' => 'orders#new', as:'new_order'
   get 'admin/orders/:id/edit' => 'orders#edit', as:'edit_order'

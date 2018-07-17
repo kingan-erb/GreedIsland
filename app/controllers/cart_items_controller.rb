@@ -54,6 +54,7 @@ class CartItemsController < ApplicationController
     @cart_items.each do |cart_item|
       if cart_item.quantity > cart_item.product.inventry_status
         cart_item.quantity = cart_item.product.inventry_status
+        cart_item.quantity.save
         flash[:quantity_notice] = "カート内の数量が変更されました"
       end
     end
@@ -69,16 +70,13 @@ class CartItemsController < ApplicationController
   	@cart_item = CartItem.find(params[:id])
     last_quantity = @cart_item.quantity
 
-    CartItem.transaction do
-      @cart_item.update!(quantity_params)
-      modified_quantity = last_quantity - @cart_item.quantity
-      @cart_item.product.inventry_status += modified_quantity #決済時の反映に変更予定
-      @cart_item.product.update!
-    end
+    if @cart_item.update!(quantity_params)
+      # modified_quantity = last_quantity - @cart_item.quantity
       redirect_to cart_items_path
-    rescue => e
+    else
       flash[:notice] = '処理に失敗しました。'
       redirect_to cart_items_path
+    end
   end
 
   def destroy

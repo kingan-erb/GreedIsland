@@ -17,14 +17,29 @@ class AddressesController < ApplicationController
 
   def destroy
     @address = Address.find(params[:id])
-    @address.destroy
-    redirect_to admin_user_index_path
-    flash[:notice] = "削除されました"
+    @user = @address.user
+    @address1 = Address.find_by(user_id: @user.id)
+    if @user.default_address == 2 && @address.id == @address1.id
+       @user.update(:default_address => @user.default_address - 1)
+       @address.destroy
+       redirect_to admin_user_path(@user.id)
+       flash[:notice] = "削除されました"
+    elsif
+      @user.default_address == 3
+      @user.update(:default_address => @user.default_address - 1)
+      @address.destroy
+      redirect_to admin_user_path(@user.id)
+      flash[:notice] = "削除されました"
+    else
+      @address.destroy
+      redirect_to admin_user_path(@user.id)
+      flash[:notice] = "削除されました"
+    end
   end
 
   protected
 
   def address_params
-    params.require(:address).permit(:postal_code, :address)
+    params.require(:address).permit(:postal_code, :address, :user_id)
   end
 end

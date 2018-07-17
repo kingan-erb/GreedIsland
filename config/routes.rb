@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   get 'greed/:id/products' => 'products#category', as: 'category'
 
   #order
+  resources :order, :only => [:create]
   get 'admin/orders' => 'orders#index', as:'orders'
   #決済ページ
   get 'buy_confirm' => 'orders#new', as:'new_order'

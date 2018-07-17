@@ -8,8 +8,8 @@
 		<h2>(ここにアイコン）ショッピングカート</h2>
 	</div>
 	<div class="quantity_change_notice">
-		<% if @quantity_change_flag == true %>
-			<p>カート内の数量が変更されました</p>
+		<% if flash[:quantity_notice] %>
+			<%= flash[:quantity_notice] %>
 		<% end %>
 	</div>
 	<div class ="row">

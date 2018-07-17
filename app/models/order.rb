@@ -6,6 +6,7 @@ class Order < ApplicationRecord
 	enum payment_method:{代引き:1,銀行振込:2}
 	enum delivery_time:{am:1,pm:2,night:3}
 	enum delivery_status:{prepare:1,sent:2,complete:3}
+	# enum delivery_address:{default:1,second:2,third:3}
 
 	#enum日本語表示のためのクラスメソッド
 	class << self

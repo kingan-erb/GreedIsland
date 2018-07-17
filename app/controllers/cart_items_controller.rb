@@ -54,7 +54,7 @@ class CartItemsController < ApplicationController
     @cart_items.each do |cart_item|
       if cart_item.quantity > cart_item.product.inventry_status
         cart_item.quantity = cart_item.product.inventry_status
-        @quantity_change_flag = true
+        flash[:quantity_notice] = "カート内の数量が変更されました"
       end
     end
   end

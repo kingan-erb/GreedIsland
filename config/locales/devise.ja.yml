@@ -16,6 +16,7 @@ ja:
       timeout: "一定時間が経過したため、再度ログインが必要です"
       unauthenticated: "ログインまたは登録が必要です。"
       unconfirmed: "本登録を行ってください。"
+      deleted_account: あなたのアカウントは退会されています。
     mailer:
       confirmation_instructions:
         subject: "アカウントの登録方法"

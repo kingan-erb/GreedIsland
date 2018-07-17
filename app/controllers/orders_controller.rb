@@ -79,7 +79,7 @@ class OrdersController < ApplicationController
         # binding.pry
         product.inventry_status -= cart_item.quantity
         product.sales_quantity += cart_item.quantity
-        product.save
+        product.save!
         #orderのtotal_price用
         total_price += product.price * cart_item.quantity
         cart_item.destroy!

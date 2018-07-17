@@ -1,12 +1,11 @@
 <h1>欲の選択</h1>
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
 
-<div class="">
+<div class="box">
 	<% @greeds.each do |greed| %>
 		<div class="greed">
-			<%= link_to userside_product_path(greed.id) do %>
+			<%= link_to userside_products_path(greed.id) do %>
 				<%= attachment_image_tag greed, :greed_image_name, :fill, 40, 40, format: 'jpeg' %>
-			<% end %>
+			<% end %><br>
 			<%= greed.greed_type %>
 		</div>
 	<% end %>

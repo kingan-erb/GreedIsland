@@ -1,7 +1,8 @@
 
 <div class="box">
+	<%= link_to "一覧へ", admin_user_index_path, class: "btn-sm" %>
 	<%= link_to "編集へ", edit_admin_user_path(@user.id), class: "btn-sm" %>
-	<h4>アカウント情報</h4>
+	<h4>顧客情報詳細</h4>
 	<table class='table'>
 	<p>登録内容</p>
 	  	<tr>
@@ -34,8 +35,9 @@
 	  	<td><% if @user.default_address == no %>選択中<% end %></td>
 	    <td><%= address.postal_code %></td>
 	    <td><%= address.address %></td>
+	    <td><%= link_to "削除", address_destroy_path(address.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn-sm btn-danger" %></td>
 	  </tr>
 	  	<% end %>
 	</table>
 </div>
-<%= link_to "退会", user_path(@user.id), method: :delete, "data-confirm" => "本当に退会しますか？", class: "btn-sm btn-danger" %>
+

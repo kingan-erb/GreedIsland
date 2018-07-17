@@ -4,8 +4,7 @@
 		<p>ありがとうございやす！</p>
 	</div>
 	<div class ="order_information">
-		<%= link_to "注文No.:", orders_path(params[:id]) %>
-		<%= link_to "マイページへ戻る", root_path %>
+		<%= link_to "注文No.:#{@order.id}", orders_path(params[:id]) %>
 	</div>
 	<div>
 		<table>

@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
     #   redirect_to new_order_path
     # end
     
-    # Order.transaction do
+    Order.transaction do
       require "date"
       @order.delivery_status = 1
       @order.order_datetime = DateTime.now
@@ -76,20 +76,22 @@ class OrdersController < ApplicationController
         order_item.product_id = product.id
         order_item.save!
         #在庫・売り上げ
+        # binding.pry
         product.inventry_status -= cart_item.quantity
         product.sales_quantity += cart_item.quantity
         product.save!
         #orderのtotal_price用
         total_price += product.price * cart_item.quantity
+        cart_item.destroy!
       end
       @order.total_price = total_price
       @order.save!
-      # @cart_items.destroy_all!
-    # end
-    #   redirect_to thanks_order_path(@order.id)
-    # rescue => e
-    #   flash[:notice] = "処理に失敗しました"
-    #   redirect_to new_order_path
+      # @cart_items.destroy_all! #処理に失敗したので、一旦cart_item.destroyで代替
+    end
+      redirect_to thanks_order_path(@order.id)
+    rescue => e
+      flash[:notice] = "処理に失敗しました"
+      redirect_to new_order_path
   end
 
 

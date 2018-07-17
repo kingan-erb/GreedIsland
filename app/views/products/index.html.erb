@@ -19,18 +19,18 @@
 	並び替え
     <select name="sort" onchange="dropsort()">
         <option value=""> - 選択してください - </option>
-        <option value="/administrators?sort=id desc"<% if @navi == 'id desc' %>selected <% end %>>新しい順番</option>
-        <option value="/administrators?sort=id asc"<% if @navi == 'id asc' %>selected <% end %>>古い順番</option>
-        <option value="/administrators?sort=inventry_status desc"
+        <option value="/products?sort=id desc"<% if @navi == 'id desc' %>selected <% end %>>新しい順番</option>
+        <option value="/products?sort=id asc"<% if @navi == 'id asc' %>selected <% end %>>古い順番</option>
+        <option value="/products?sort=inventry_status desc"
         	<% if @navi == 'inventry_status desc' %>selected <% end %>>在庫数の多い順番</option>
-        <option value="/administrators?sort=inventry_status asc"
+        <option value="/products?sort=inventry_status asc"
         	<% if @navi == 'inventry_status asc' %>selected <% end %>>在庫数の少ない順番</option>
-        <option value="/administrators?sort=sales_quantity desc"
+        <option value="/products?sort=sales_quantity desc"
         	<% if @navi == 'sales_quantity desc' %>selected <% end %>>売り上げの多い順番</option>
-        <option value="/administrators?sort=sales_quantity asc"
+        <option value="/products?sort=sales_quantity asc"
         	<% if @navi == 'sales_quantity asc' %>selected <% end %>>売り上げの少ない順番</option>
-        <option value="/administrators?sort=price asc"<% if @navi == 'price asc' %>selected <% end %>>価格の安い順番</option>
-        <option value="/administrators?sort=price desc"<% if @navi == 'price desc' %>selected <% end %>>価格の高い順番</option>
+        <option value="/products?sort=price asc"<% if @navi == 'price asc' %>selected <% end %>>価格の安い順番</option>
+        <option value="/products?sort=price desc"<% if @navi == 'price desc' %>selected <% end %>>価格の高い順番</option>
     </select>
 </form>
 

@@ -1,5 +1,6 @@
 class AddressesController < ApplicationController
-
+  def index
+  end
 
   def create
     @user = User.find(params[:id])
@@ -17,7 +18,7 @@ class AddressesController < ApplicationController
   def destroy
     @address = Address.find(params[:id])
     @address.destroy
-    redirect_to administrators_path
+    redirect_to admin_user_index_path
     flash[:notice] = "削除されました"
   end
 

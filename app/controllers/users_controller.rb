@@ -32,6 +32,7 @@ class UsersController < ApplicationController
 	def admin_show
 		@user = User.find(params[:id])
 		@addresses = @user.addresses
+		@range = @user.addresses.length
 	end
 	def admin_edit
 		@user = User.find(params[:id])
@@ -45,10 +46,16 @@ class UsersController < ApplicationController
 		   redirect_to admin_user_path(@user.id)
 		   flash[:notice] = "更新されました"
 		else
-		   redirect_to greeds_path
+		   redirect_to admin_user_index_path_path
 		   flash[:alert] = "エラーが発生しました"
 		end
 	end
+	def address_update
+		@user = User.find(params[:id])
+		@user.update(:default_address => params[:sort])
+		redirect_to admin_user_path(@user.id)
+	end
+
   	private
 
 	def user_params

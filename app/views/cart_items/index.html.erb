@@ -1,6 +1,16 @@
 <div class="container cart-items-edit">
+	<div class="notice">
+		<% if flash[:notice] %>
+			<%= flash[:notice] %>
+		<% end %>
+	</div>
 	<div class="row">
 		<h2>(ここにアイコン）ショッピングカート</h2>
+	</div>
+	<div class="quantity_change_notice">
+		<% if @quantity_change_flag == true %>
+			<p>カート内の数量が変更されました</p>
+		<% end %>
 	</div>
 	<div class ="row">
 		<!--合計計算用 -->

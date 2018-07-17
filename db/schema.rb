@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2018_07_15_035846) do
 
   create_table "musics", force: :cascade do |t|
     t.string "music_name", null: false
-    t.integer "music_number", null: false
+    t.integer "music_number"
     t.integer "disk_number", limit: 4, null: false
     t.integer "product_id", default: 0, null: false
     t.datetime "created_at", null: false
@@ -78,22 +78,21 @@ ActiveRecord::Schema.define(version: 2018_07_15_035846) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.datetime "order_date", null: false
-    t.integer "payment_method", null: false
-    t.datetime "delivery_date", null: false
-    t.integer "delivery_time", null: false
-    t.string "delivery_address", null: false
-    t.integer "delivery_status", null: false
-    t.integer "user_id", null: false
+    t.datetime "order_datetime"
+    t.integer "payment_method"
+    t.date "delivery_date"
+    t.integer "delivery_time"
+    t.string "delivery_address"
+    t.integer "delivery_status"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "total_price", null: false
   end
 
   create_table "products", force: :cascade do |t|
     t.string "artist_name", null: false
     t.string "product_name", null: false
-    t.string "product_image_name_id", null: false
+    t.string "product_image_name_id"
     t.integer "price", null: false
     t.integer "label_name", null: false
     t.integer "genre_name", null: false

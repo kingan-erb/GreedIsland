@@ -1,7 +1,18 @@
+<%= javascript_include_tag "order.js" %>
 
-<div class="container orders_new">
+<div class="container-fluid orders_new">
+	<div class="notice">
+		<% if flash[:notice] %>
+			<%= flash[:notice] %>
+		<% end %>
+	</div>
 	<div class="row">
 		<h2>決済ページ</h2>
+	</div>
+	<div class="quantity_change_notice">
+		<% if @quantity_change_flag == true %>
+			<p>カート内の数量が変更されました</p>
+		<% end %>
 	</div>
 	<div class ="row">
 		<!--合計計算用 -->
@@ -46,12 +57,25 @@
 			<p>合計：¥ <%= @sum %></p>
 		</div>
 	</div>
-	<div class="row delivery-select">
-		<div class="address-select">
-			<%= current_user.addresses.each do |address| %>
-				<p>〒<%= address.postal_code %></p>
-				<p><%= address.address %></p>
-			<% end %>
+	<div class="row">
+		<div class="col-ls-6 address-select">
+			<div class="address-select">
+				<%= current_user.addresses.each do |address| %>
+					<p>〒<%= address.postal_code %></p>
+					<p><%= address.address %></p>
+				<% end %>
+			</div>
+		</div>
+		<div class="col-ls-6 delivery-select">
+			<%= form_for(@order) do |f| %>
+				<%= f.label :payment_method,'支払い方法'%><br />
+	      		<%= f.radio_button :payment_method, 1 %>代引き
+	      		<%= f.radio_button :payment_method, 2 %>銀行振込
+	      		<%= f.label :delivery_date,'希望配達日' %>
+	      		<%= f.text_field :delivery_date ,class: "datepicker",autocomplete: 'off'%>
+	      		<%= f.label :delivery_time, '希望配達時間' %>
+	      		<%= f.select :delivery_time, Order.localed_delivery_times,{} %>
+	      	<% end %>
 		</div>
 	</div>
 </div>

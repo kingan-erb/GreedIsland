@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   get 'buy_confirm' => 'orders#new', as:'new_order'
   get 'admin/orders/:id/edit' => 'orders#edit', as:'edit_order'
   get 'orders/:id' => 'orders#show', as:'order'
+  get 'order/thanks/:id' => 'orders#thanks', as:'thanks_order'
 
   #admin/user
   get 'admin/users' => 'users#admin_index', as:'admin_users'

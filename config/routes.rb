@@ -10,11 +10,7 @@ Rails.application.routes.draw do
     passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
-  # #devise ログアウト用にURL上書き
-  # devise_scope :user do
-  #   get "sign_in", :to => "users/sessions#new"
-  #   get "sign_out", :to => "users/sessions#destroy"
-  # end
+  
   # get 'products/index',as:'products'
   # get 'products/show'
   # get 'products/new' => 'products#new', as:'new_product'

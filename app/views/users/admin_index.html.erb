@@ -17,7 +17,7 @@
         <option value="/admin/users?sort=last_name_kana asc"<% if @navi == 'last_name asc' %>selected <% end %>>50音順</option>
     </select>
 </form>
-
+<h4 class="total">総ユーザー数 <%= @total %> 人</h4>
 
 <table class='table'>
   <thead>
@@ -27,7 +27,6 @@
       <th>氏名</th>
       <th>欲</th>
       <th></th>
-      <th colspan="5"></th>
     </tr>
   </thead>
 

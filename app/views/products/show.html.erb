@@ -3,22 +3,39 @@
 <%= link_to "一覧へ", products_path %><br>
 
 <div class="box">
-    <%= attachment_image_tag @product, :product_image_name, :fill, 100, 100, format: 'jpeg' %>
-    <div>シングル名/アルバム名<p><%= @product.product_name %></p></div>
-    <div>アーティスト名<p><%= @product.artist_name %></p></div>
-    <p>値段<span><%= @product.price %></span></p>
-    <p>在庫<span><%= @product.inventry_status %></span></p>
-
-    <h2>登録情報</h2>
-    <p>レーベル名</p>
-    <p><%= @product.label_name %></p>
-    <p>ジャンル</p>
-    <p><%= @product.genre_name %></p>
+    <h4>登録情報</h4>
+    <table class='table'>
+      <tr><th><%= attachment_image_tag @product, :product_image_name, :fill, 100, 100, format: 'jpeg' %></th></tr>
+      <tr>
+        <th>シングル名/アルバム名</th>
+        <td><%= @product.product_name %></td>
+      </tr>
+      <tr>
+        <th>アーティスト名</th>
+        <td><%= @product.artist_name %></td>
+      </tr>
+      <tr>
+        <th>値段</th>
+        <td><%= @product.price %></td>
+      </tr>
+      <tr>
+        <th>在庫</th>
+        <td><%= @product.inventry_status %></td>
+      </tr>
+      <tr>
+        <th>レーベル名</th>
+        <td><%= @product.label_name %></td>
+      </tr>
+      <tr>
+        <th>ジャンル</th>
+        <td><%= @product.genre_name %></td>
+      </tr>
+    </table>
 </div>
 
 <div class="box">
-    <h2>曲リスト</h2>
-    <table>
+    <h4>曲リスト</h4>
+    <table class="table">
         <thead>
             <tr>
                 <th>Disk</th>

@@ -5,3 +5,7 @@ ja:
         prepare: 出荷準備中
         sent: 発送済み
         complete: 配達済み
+      delivery_times:
+        am: 午前中
+        pm: 午後
+        night: 夜間

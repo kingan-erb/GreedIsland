@@ -10,11 +10,7 @@ Rails.application.routes.draw do
     passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
-  # #devise ログアウト用にURL上書き
-  # devise_scope :user do
-  #   get "sign_in", :to => "users/sessions#new"
-  #   get "sign_out", :to => "users/sessions#destroy"
-  # end
+  
   # get 'products/index',as:'products'
   # get 'products/show'
   # get 'products/new' => 'products#new', as:'new_product'
@@ -41,10 +37,12 @@ Rails.application.routes.draw do
 
   #order
   get 'admin/orders' => 'orders#index', as:'orders'
+  post 'admin/orders' => 'orders#create' #adminの範疇ではないがurlをindexに合わせる
   #決済ページ
   get 'buy_confirm' => 'orders#new', as:'new_order'
   get 'admin/orders/:id/edit' => 'orders#edit', as:'edit_order'
   get 'orders/:id' => 'orders#show', as:'order'
+  get 'order/thanks/:id' => 'orders#thanks', as:'thanks_order'
 
   #admin/user
   get 'admin/users' => 'users#admin_index', as:'admin_user_index'

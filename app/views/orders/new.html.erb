@@ -1,7 +1,19 @@
+<%= javascript_include_tag "order.js" %>
 
-<div class="container orders_new">
+<div class="container-fluid orders_new">
+	<div class="notice">
+		<% if flash[:notice] %>
+			<%= flash[:notice] %>
+		<% end %>
+	</div>
 	<div class="row">
 		<h2>決済ページ</h2>
+		<%= link_to 'カートに戻る',cart_items_path %>
+	</div>
+	<div class="quantity_change_notice">
+		<% if flash[:quantity_notice] %>
+			<%= flash[:quantity_notice] %>
+		<% end %>
 	</div>
 	<div class ="row">
 		<!--合計計算用 -->
@@ -46,12 +58,47 @@
 			<p>合計：¥ <%= @sum %></p>
 		</div>
 	</div>
-	<div class="row delivery-select">
-		<div class="address-select">
-			<%= current_user.addresses.each do |address| %>
-				<p>〒<%= address.postal_code %></p>
-				<p><%= address.address %></p>
-			<% end %>
+	<div class="row">
+		<%= form_for(@order) do |f| %>
+			<div class="col-ls-6 address-select">
+				<!-- address.idにdelivery_addressが対応 -->
+				<div class="address-box">
+					<!-- flexboxで横並びに -->
+					<div>
+						<p>〒<%= @postal_array[0] %></p>
+						<p><%= @address_array[0] %></p>
+					</div>
+					<div><%= f.radio_button :delivery_address,@address_array[0] %></div>
+				</div>
+				<% if @postal_array[1].present? %>
+				<div class="address-box">
+					<div>
+						<p>〒<%= @postal_array[1] %></p>
+						<p><%= @address_array[1] %></p>
+					</div>
+					<div><%= f.radio_button :delivery_address,@address_array[1] %></div>
+				</div>
+				<% end %>
+				<% if @postal_array[2].present? %>
+				<div class="address-box">
+					<div>
+						<p>〒<%= @postal_array[2] %></p>
+						<p><%= @address_array[2] %></p>
+					</div>
+					<div><%= f.radio_button :delivery_address,@address_array[2] %></div>
+				</div>
+				<% end %>
+			</div>
+			<div class="col-ls-6 delivery-select">
+				<%= f.label :payment_method,'支払い方法'%>
+	      		<%= f.radio_button :payment_method,1 %>
+	      		<%= f.radio_button :payment_method,2 %>
+	      		<%= f.label :delivery_date,'希望配達日' %>
+	      		<%= f.text_field :delivery_date ,class: "datepicker",autocomplete: 'off'%>
+	      		<%= f.label :delivery_time, '希望配達時間' %>
+	      		<%= f.select :delivery_time, Order.delivery_times.keys.to_a,{} %>
+	      		<%= f.submit '購入を確定する' %>
+	      	<% end %>
 		</div>
 	</div>
 </div>

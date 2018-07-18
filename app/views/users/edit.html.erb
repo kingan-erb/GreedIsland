@@ -1,14 +1,70 @@
 
+<div class="box1">
+	<%= link_to "詳細へ", user_path(@user.id), class: "btn-sm" %>
 
-<div class="box">
-	<p>アカウント編集ページ</p>
+	<h4>アカウント編集</h4>
+	<%= link_to "パスワード変更はこちら", greeds_path, class: "btn-sm" %>
+	<table class='table'>
+	<%= form_for @user, url: user_path(@user.id), class: 'form-horizontal' do |f| %>
+	  	<tr>
+	    	<th><%= f.label :last_name, "お名前" %></th>
+	    	<th>姓<%= f.text_field :last_name %> 名<%= f.text_field :first_name %></th>
+	  	</tr>
+	  	<tr>
+	    	<th><%= f.label :last_name, "フリガナ" %></th>
+	    	<th>セイ<%= f.text_field :last_name_kana %> メイ<%= f.text_field :first_name_kana %></th>
+	  	</tr>
+	  	<tr>
+	    	<th><%= f.label :email %></th>
+	    	<th><%= f.email_field :email %></th>
+	  	</tr>
+	  	<tr>
+	   	 	<th><%= f.label :phone_number %></th>
+	    	<th><%= f.telephone_field :phone_number %></th>
+	  	</tr>
+	  	<tr>
+	    	<th><%= f.label :greed_id %></th>
+	    	<th><%= f.select :greed_id,[['金',1],['癒',2],['力',3],['食',4],['愛',5]] %></th>
+	  	</tr>
+	  	<tr>
+	    	<th><%= f.label :payment_method %></th>
+	    	<th><%= f.radio_button :payment_method, 1 %>代引き<%= f.radio_button :payment_method, 2 %>銀行振込</th>
+	  	</tr>
+	</table>
+
+	<p>住所の編集</p>
+	<table>
+	  	<%= f.nested_fields_for :addresses, wrapper_tag: :tr do |m| %>
+	  		<th>住所</th>
+	    	<th><%= m.text_field :postal_code, class: 'form-control' %></th>
+	    	<th><%= m.text_field :address, class: 'form-control' %></th>
+	  	<% end %>
+	</table>
+	<div>
+	<%= f.submit "Update User" %>
+	<% end %>
+	</div>
 </div>
+<% if @user.addresses.length != 3 %>
+<div class="box1">
+	住所新規追加
+	<%= form_for @addressnew, url: address_new_path do |form| %>
+
+	<div class="field">
+	  <%= form.label :postal_code, "郵便番号" %>
+	  <%= form.text_field :postal_code %>
+	 </div>
+
+	<div class="field">
+	  <%= form.label :address, "住所" %>
+	  <%= form.text_field :address %>
+	</div>
+
+	<div class="actions">
+	  <%= form.submit "住所登録" %>
+	</div>
+<% end %>
+</div>
+<% end %>
 
 
-email
-password
-name
-phone
-greed
-paymentmethod
-adresses

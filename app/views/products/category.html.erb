@@ -38,7 +38,7 @@
     </select>
 </form>
 
-<table>
+<table class="table">
 	<thead>
 		<tr>
 			<th>カテゴリー</th>
@@ -70,3 +70,4 @@
 	<% end %>
 	</tbody>
 </table>
+<% if @products.empty? %> 該当する商品は、見つかりませんでした。<% end %>

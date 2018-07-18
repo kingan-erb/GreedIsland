@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :greeds
   resources :users
   resources :products
+  resources :addresses, :except => [:create,:edit,:show]
   get 'greeds/:id/products' => 'products#user_index', as:'userside_products'
   get 'greeds/products/search' => 'products#user_search',as:'search_products'
   get 'greeds/products/:id' => 'products#user_show',as:'userside_product'
@@ -50,6 +51,9 @@ Rails.application.routes.draw do
   patch 'admin/user/:id' => 'users#admin_update'
   put 'admin/user/:id' => 'users#admin_update'
   post 'user/:id/address/new' => 'addresses#create', as: 'address_new'
-  delete 'address/:id' => 'address#destroy', as: 'address_destroy'
+  get 'users/:id/addresses' => 'users#address_update'
+  get 'service' => 'users#service', as:'service'
+  get 'privacy' => 'users#privacy', as:'privacy'
+  get 'contact' => 'users#contact', as:'contact'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

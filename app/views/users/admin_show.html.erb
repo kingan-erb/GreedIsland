@@ -3,11 +3,13 @@
 	<%= link_to "一覧へ", admin_user_index_path, class: "btn-sm" %>
 	<%= link_to "編集へ", edit_admin_user_path(@user.id), class: "btn-sm" %>
 	<h4>顧客情報詳細</h4>
+	<% if @user.deleted_at.present? %><h4>退会済み</h4><% end %>
 	<table class='table'>
 	<p>登録内容</p>
 	  	<tr>
 	    	<th>お名前</th>
-	    	<th><%= @user.last_name %> <%= @user.first_name %> (<%= @user.last_name_kana %> <%= @user.first_name_kana %>)</th>
+	    	<th><sup><%= @user.last_name_kana %> <%= @user.first_name_kana %></sup><br>
+	    		<%= @user.last_name %> <%= @user.first_name %> </th>
 	  	</tr>
 	  	<tr>
 	    	<th>メールアドレス</th>
@@ -26,18 +28,56 @@
 	    	<th><% if @user.payment_method == 1 %>代引き<% else %>銀行振込<% end %></th>
 	  	</tr>
 	</table>
-
+</div>
+<br><br><br>
+<div class="box">
 	<p>登録住所</p>
+	<% if @range != 1 %>
+	<form name="sort_form">
+	  お届け先
+	    <select name="sort" onchange="dropsort()">
+	        <option value=""> --変更-- </option>
+	        <% if @user.default_address != 1 %><option value="/users/<%= @user.id%>/addresses?sort=1">1番</option><% end %>
+	        <% if @user.default_address != 2 %><option value="/users/<%= @user.id%>/addresses?sort=2">2番</option><% end %>
+	        <% if @user.default_address != 3 && @range == 3 %><option value="/users/<%= @user.id%>/addresses?sort=3">3番</option><% end %>
+	    </select>
+	</form>
+	<% end %>
+
 	<table class='table'>
-		<% nos = 1..@user.addresses.length %>
+		<% nos = 1..@range %>
 		<% @addresses.zip(nos).each do |address, no| %>
 	  <tr>
-	  	<td><% if @user.default_address == no %>選択中<% end %></td>
+	  	<td><% if @user.default_address == no %><div class="red"><%= no %>番を選択中</div><% else %><%= no %>番<% end %></td>
 	    <td><%= address.postal_code %></td>
 	    <td><%= address.address %></td>
-	    <td><%= link_to "削除", address_destroy_path(address.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn-sm btn-danger" %></td>
+	    <td><% if @range != 1 && @user.default_address != no %><%= link_to "削除", address_path(address.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn-sm" %><% end %></td>
 	  </tr>
 	  	<% end %>
 	</table>
 </div>
+<%= link_to "削除", user_path(@user.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn-sm" %>
+
+<div class="box2">
+	<h4>購入履歴</h4>
+	<table class='table'>
+		<tr>
+			<th>番号</th>
+			<th>購入日</th>
+			<th>ステータス</th>
+			<th>詳細へ</th>
+		</tr>
+		<tr>
+			<td>画像</td>
+			<td>商品名</td>
+			<td>個数</td>
+			<td>金額</td>
+		</tr>
+	</table>
+</div>
+
+
+
+
+
 

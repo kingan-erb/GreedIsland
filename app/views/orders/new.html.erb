@@ -15,90 +15,91 @@
 			<%= flash[:quantity_notice] %>
 		<% end %>
 	</div>
-	<div class ="row">
-		<!--合計計算用 -->
-		<% @sum = 0 %>
-		<% @cart_items.each do |cart_item| %>
-			<% product = cart_item.product %>
-			<div class="cart-item-box">
-				<div class="item-info-box">
-					<div class="item-image">
-						<%= attachment_image_tag product, :product_image_name, :fill, 80, 80, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %>
+	<div class="buy-form">
+		<% if @sum == 0 %>
+		<div class="buy-noitem">
+			<h2>現在カート内に購入可能な商品は入っていません。</h2>
+		</div>
+		<% else %>
+		<div class ="row">
+			<% @cart_items.each do |cart_item| %>
+				<!-- 在庫０なら決済ページに表示しない -->
+	      		<% if cart_item.quantity != 0 %>
+					<% product = cart_item.product %>
+					<div class="cart-item-box">
+						<div class="item-info-box">
+							<div class="item-image">
+								<%= attachment_image_tag product, :product_image_name, :fill, 80, 80, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %>
+							</div>
+							<div class="item-detail">
+								<ul>
+									<li><%= product.product_name %></li>
+									<li><%= product.artist_name %></li>
+									<!-- カテゴリ画像挿入予定（エラー起きた） -->
+									<!-- 在庫状況調査 -->
+									<%	case product.inventry_status
+										    when 0 then
+									        	inventry_symbol = '×'
+									        	no_inventry = true
+									        when 1..10 then
+									         	inventry_symbol = product.inventry_status
+									        when 11..30 then
+									         	inventry_symbol = '△'
+									        else
+					         					inventry_symbol = '◯'
+										end %>
+									<li>在庫：<%= inventry_symbol %></li>
+									<li>数量：<%= cart_item.quantity %></li>
+								</ul>
+							</div>
+						</div>
+						<div class="item-price">
+							<p>¥  <%= product.price %></p>
+						</div>
 					</div>
-					<div class="item-detail">
-						<ul>
-							<li><%= product.product_name %></li>
-							<li><%= product.artist_name %></li>
-							<!-- カテゴリ画像挿入予定（エラー起きた） -->
-							<!-- 在庫状況調査 -->
-							<%	case product.inventry_status
-								    when 0 then
-							        	inventry_symbol = '×'
-							        	no_inventry = true
-							        when 1..10 then
-							         	inventry_symbol = product.inventry_status
-							        when 11..30 then
-							         	inventry_symbol = '△'
-							        else
-			         					inventry_symbol = '◯'
-								end %>
-							<li>在庫：<%= inventry_symbol %></li>
-							<li>数量：<%= cart_item.quantity %></li>
-						</ul>
-					</div>
-				</div>
-				<div class="item-price">
-					<p>¥  <%= product.price %></p>
-					<% subtotal = product.price * cart_item.quantity %>
-					<% @sum += subtotal %>
-				</div>
+				<% end %>
+			<% end %>
+			<div class="">
+				<p>合計：¥ <%= @sum %></p>
 			</div>
+		</div>
+		<div class="row">
+			<%= form_for(@order) do |f| %>
+				<div class="col-ls-6 address-select">
+					<!-- 住所ラジオボタン -->
+					 <% array_num = 0 %>
+					 <% @address_array.each do |address| %>
+					 	<div class="address-box">
+							<div>
+								<p>〒<%= @postal_array[array_num] %></p>
+								<p><%= @address_array[array_num] %></p>
+							</div>
+						<% if array_num == @default_button_num %>
+							<div><%= f.radio_button :delivery_address,@address_array[array_num], :checked => true %></div>
+						<% else %>
+							<div><%= f.radio_button :delivery_address,@address_array[array_num] %></div>
+						<% end %>
+						</div>
+					<% array_num += 1 %>
+					<% end %>
+				</div>
+				<div class="col-ls-6 delivery-select">
+					<%= f.label :payment_method,'支払い方法'%>
+					<% if current_user.payment_method == 1 %>
+			      		<%= f.radio_button :payment_method, 1, :checked => true %>代引き
+			      		<%= f.radio_button :payment_method, 2 %>銀行振込
+			      	<% else %>
+			      		<%= f.radio_button :payment_method, 1 %>代引き
+			      		<%= f.radio_button :payment_method, 2, :checked => true %>銀行振込
+			      	<% end %>
+		      		<%= f.label :delivery_date,'希望配達日' %>
+		      		<%= f.text_field :delivery_date ,class: "datepicker",autocomplete: 'off'%>
+		      		<%= f.label :delivery_time, '希望配達時間' %>
+		      		<%= f.select :delivery_time, Order.delivery_times.keys.to_a,{} %>
+		      		<%= f.submit '購入を確定する' %>
+		      	</div>
+		   	<% end %>
+		</div>
 		<% end %>
-		<div class="">
-			<p>合計：¥ <%= @sum %></p>
-		</div>
-	</div>
-	<div class="row">
-		<%= form_for(@order) do |f| %>
-			<div class="col-ls-6 address-select">
-				<!-- address.idにdelivery_addressが対応 -->
-				<div class="address-box">
-					<!-- flexboxで横並びに -->
-					<div>
-						<p>〒<%= @postal_array[0] %></p>
-						<p><%= @address_array[0] %></p>
-					</div>
-					<div><%= f.radio_button :delivery_address,@address_array[0] %></div>
-				</div>
-				<% if @postal_array[1].present? %>
-				<div class="address-box">
-					<div>
-						<p>〒<%= @postal_array[1] %></p>
-						<p><%= @address_array[1] %></p>
-					</div>
-					<div><%= f.radio_button :delivery_address,@address_array[1] %></div>
-				</div>
-				<% end %>
-				<% if @postal_array[2].present? %>
-				<div class="address-box">
-					<div>
-						<p>〒<%= @postal_array[2] %></p>
-						<p><%= @address_array[2] %></p>
-					</div>
-					<div><%= f.radio_button :delivery_address,@address_array[2] %></div>
-				</div>
-				<% end %>
-			</div>
-			<div class="col-ls-6 delivery-select">
-				<%= f.label :payment_method,'支払い方法'%>
-	      		<%= f.radio_button :payment_method,1 %>
-	      		<%= f.radio_button :payment_method,2 %>
-	      		<%= f.label :delivery_date,'希望配達日' %>
-	      		<%= f.text_field :delivery_date ,class: "datepicker",autocomplete: 'off'%>
-	      		<%= f.label :delivery_time, '希望配達時間' %>
-	      		<%= f.select :delivery_time, Order.delivery_times.keys.to_a,{} %>
-	      		<%= f.submit '購入を確定する' %>
-	      	<% end %>
-		</div>
 	</div>
 </div>

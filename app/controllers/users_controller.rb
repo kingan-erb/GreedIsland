@@ -70,6 +70,14 @@ class UsersController < ApplicationController
 		@user.update(:default_address => params[:sort])
 		redirect_to admin_user_path(@user.id)
 	end
+	def service
+	end
+
+	def privacy
+	end
+
+	def contact
+	end
 
   	private
 

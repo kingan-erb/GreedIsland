@@ -54,5 +54,8 @@ Rails.application.routes.draw do
   put 'admin/user/:id' => 'users#admin_update'
   post 'user/:id/address/new' => 'addresses#create', as: 'address_new'
   get 'users/:id/addresses' => 'users#address_update'
+  get 'service' => 'users#service', as:'service'
+  get 'privacy' => 'users#privacy', as:'privacy'
+  get 'contact' => 'users#contact', as:'contact'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

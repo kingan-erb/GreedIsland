@@ -45,7 +45,7 @@
 	<% end %>
 	</div>
 </div>
-<% if @user.addresses.length != 3 %>
+<% if @user.addresses.length < 3 %>
 <div class="box1">
 	住所新規追加
 	<%= form_for @addressnew, url: address_new_path do |form| %>

@@ -55,3 +55,21 @@
 	</table>
 </div>
 <%= link_to "退会", user_path(@user.id), method: :delete, "data-confirm" => "本当に退会しますか？", class: "btn-sm" %>
+
+<div class="box2">
+	<h4>購入履歴</h4>
+	<table class='table'>
+		<tr>
+			<th>番号</th>
+			<th>購入日</th>
+			<th>ステータス</th>
+			<th>詳細へ</th>
+		</tr>
+		<tr>
+			<td>画像</td>
+			<td>商品名</td>
+			<td>個数</td>
+			<td>金額</td>
+		</tr>
+	</table>
+</div>

@@ -3,10 +3,12 @@ class CartItemsController < ApplicationController
   def create
     if user_signed_in?
       added_product = Product.find(params[:product_id])
-      exiting_product = current_user.cart_items.find_by(product_id: added_product.id)
+      exiting_item = current_user.cart_items.find_by(product_id: added_product.id)
 
-      if exiting_product.nil?
-        #カート内に今追加した商品がない場合
+      #ifがすごいのでなんとかしたい
+
+      if exiting_item.nil?
+      #カート内に今追加した商品がない場合
         # CartItem.transaction do
           @cart_item = CartItem.new(quantity_params)
           @cart_item.product_id = added_product.id
@@ -26,14 +28,26 @@ class CartItemsController < ApplicationController
         #   flash[:notice] = '処理に失敗しました。'
         #   redirect_to product_path(added_product.id)
       else
-        #すでに同じ商品がカートに追加されていた場合
+      #すでに同じ商品がカートに追加されていた場合
         added_item = CartItem.new(quantity_params)
-        exiting_product.quantity += added_item.quantity
-        if exiting_product.save
-          redirect_to cart_items_path
+        exiting_item.quantity += added_item.quantity
+        #在庫オーバーするかどうかチェック
+        if exiting_item.quantity > exiting_item.product.inventry_status
+          exiting_item.quantity = exiting_item.product.inventry_status
+          if exiting_item.save
+            flash[:notice] = '在庫切れです。これ以上追加できません。'
+            redirect_to cart_items_path
+          else
+            flash[:notice] = '処理に失敗しました。'
+            redirect_to product_path(added_product.id)
+          end
         else
-          flash[:notice] = '処理に失敗しました。'
-          redirect_to product_path(added_product.id)
+          if exiting_item.save
+            redirect_to cart_items_path
+          else
+            flash[:notice] = '処理に失敗しました。'
+            redirect_to product_path(added_product.id)
+          end
         end
       end
     else
@@ -54,8 +68,9 @@ class CartItemsController < ApplicationController
     @cart_items.each do |cart_item|
       if cart_item.quantity > cart_item.product.inventry_status
         cart_item.quantity = cart_item.product.inventry_status
-        cart_item.quantity.save
-        flash[:quantity_notice] = "カート内の数量が変更されました"
+        if cart_item.save #ここが抜けてた
+          flash[:quantity_notice] = "カート内の数量が変更されました"
+        end
       end
     end
   end

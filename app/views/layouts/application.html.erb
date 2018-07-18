@@ -19,9 +19,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="">欲望.com</a>
+          <div class= "navbar-brand">
+            <% if user_signed_in? %>
+              <%= link_to '欲望.com', userside_products_path(current_user.greed.id) %>
+            <% else %>
+              <%= link_to '欲望.com', greeds_path %>
+            <% end %>
+          </div>
         </div>
-
         <% if @search_form_flag == true %>
           <div class="search_form">
             <%= form_tag search_products_path, :method => 'get' do %> <%#　projects_pathはモデル名で読みかえること %>
@@ -63,6 +68,8 @@
             <% end %>
           </ul>
       </div>
+    </div>
+
     </nav>
     <%= yield %>
   </body>

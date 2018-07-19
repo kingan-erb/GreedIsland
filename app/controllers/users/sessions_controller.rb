@@ -6,8 +6,6 @@ class Users::SessionsController < Devise::SessionsController
   # GET /resource/sign_in
   # def new
   #   super
-  #   session[:keep_signed_in] = true
-  #   redirect_to greeds_path
   # end
 
   # POST /resource/sign_in
@@ -18,8 +16,6 @@ class Users::SessionsController < Devise::SessionsController
   # DELETE /resource/sign_out
   # def destroy
   #   super
-  #   session[:keep_signed_out] = true
-  #   redirect_to new_user_session_path
   # end
 
   # protected

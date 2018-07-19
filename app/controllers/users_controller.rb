@@ -70,6 +70,23 @@ class UsersController < ApplicationController
 		@user.update(:default_address => params[:sort])
 		redirect_to admin_user_path(@user.id)
 	end
+
+	def password_edit
+		@user = User.find(current_user.id)
+	end
+
+	def password_update
+	    @user = User.find(current_user.id)
+	    if @user.update_with_password(user_params)
+	      # Sign in the user by passing validation in case their password changed
+	      bypass_sign_in(@user)
+	      flash[:notice] = "パスワードを変更しました"
+	      redirect_to user_path
+	    else
+	      flash[:notice] = "パスワードが正しく設定されていません"
+	      redirect_to password_edit_path
+	    end
+	end
 	def service
 	end
 
@@ -83,7 +100,7 @@ class UsersController < ApplicationController
 
 	def user_params
 	params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :phone_number,
-	                             :email, :password, :password_confirmation, :greed_id, :customer_status, :payment_method,
+	                             :email, :password, :password_confirmation, :current_password, :greed_id, :customer_status, :payment_method,
 	                             :default_address,
 	                             addresses_attributes: [:id, :postal_code, :address, :user_id, :_destroy])
 	end

@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+	PER = 2
+
 	def index
 	end
 
@@ -40,7 +43,7 @@ class UsersController < ApplicationController
 	end
 
 	def admin_index
-		@users = User.search(params[:search]).order(params[:sort]).order(id: :desc)
+		@users = User.search(params[:search]).order(params[:sort]).order(id: :desc).page(params[:page]).per(PER)
 		@navi = params[:sort]
 		@total = User.where(deleted_at: nil).length
 	end

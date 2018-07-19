@@ -20,22 +20,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/edit
   # def edit
   #   super
-  #   @user = User.find(current_user.id)
   # end
 
   # PUT /resource
   # def update
   #   super
-  #   @user = User.find(current_user.id)
-  #   @user.update(user_params)
-  #   flash[:notice] = "パスワードを変更しま"
-  #   redirect_to new_user_session_path
   # end
 
   # DELETE /resource
-  def destroy
-    super
-  end
+  # def destroy
+  #   super
+  # end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign

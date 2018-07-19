@@ -93,7 +93,9 @@ ja:
         remember_me: "ログイン状態を維持する"
       administrator:
         password: "パスワード"
+        password_confirmation: "パスワード確認"
         email: "メールアドレス"
+        remember_me: "ログイン状態を維持する"
       address:
         postal_code: "郵便番号"
         address: "住所"

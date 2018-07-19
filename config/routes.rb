@@ -37,8 +37,16 @@ Rails.application.routes.draw do
   get 'greed/:id/products' => 'products#category', as: 'category'
 
   #order
+  resources :users do
+    resources :orders, only: [:show, :edit]
+  end
   get 'admin/orders' => 'orders#index', as:'orders'
   post 'admin/orders' => 'orders#create' #adminの範疇ではないがurlをindexに合わせる
+  # get 'users/:id/orders/:id' => 'orders#user_show', as: 'user_order_show'
+  # get 'users/:id/orders/:id/edit' => 'orders#user_edit', as: 'user_order_edit'
+  get 'admin/users/:user_id/orders/:id' => 'orders#admin_show', as: 'show_admin_order'
+  get 'admin/users/:user_id/orders/:id/edit' => 'orders#admin_edit', as: 'edit_admin_order'
+  patch 'admin/users/:id/orders/:id' => 'orders#admin_update', as: 'update_admin_order'
   #決済ページ
   get 'buy_confirm' => 'orders#new', as:'new_order'
   get 'admin/orders/:id/edit' => 'orders#edit', as:'edit_order'
@@ -51,7 +59,7 @@ Rails.application.routes.draw do
   get 'admin/user/:id' => 'users#admin_show', as:'admin_user'
   patch 'admin/user/:id' => 'users#admin_update'
   put 'admin/user/:id' => 'users#admin_update'
-  post 'user/:id/address/new' => 'addresses#create', as: 'address_new'
+  post 'users/:id/address/new' => 'addresses#create', as: 'address_new'
   get 'users/:id/addresses' => 'users#address_update'
   get 'users/:id/password/new' => 'users#password_edit', as: 'password_edit'
   patch 'users/:id/password' => 'users#password_update'

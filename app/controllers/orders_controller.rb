@@ -110,7 +110,8 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_items = @order.order_items
+    @user = User.find(@order.user_id)
+    @order_items = OrderItem.where(id: @order.id)
   end
 
   def edit

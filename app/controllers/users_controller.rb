@@ -70,6 +70,22 @@ class UsersController < ApplicationController
 		@user.update(:default_address => params[:sort])
 		redirect_to admin_user_path(@user.id)
 	end
+
+	def password_edit
+		@user = User.find(current_user.id)
+	end
+
+	def password_update
+	    @user = current_user
+	    if @user.update(user_params)
+	      # Sign in the user by passing validation in case their password changed
+	      bypass_sign_in(@user)
+	      flash[:notice] = "パスワードを変更しました"
+	      redirect_to user_path
+	    else
+	      render "edit"
+	    end
+	end
 	def service
 	end
 

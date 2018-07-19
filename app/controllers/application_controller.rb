@@ -6,13 +6,14 @@ class ApplicationController < ActionController::Base
   	protected
 
   	def configure_permitted_parameters
-    	# devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :first_name_kana, :last_name_kana, :postcal_code,
-    	# 												   :address, :phone_number, :payment_method, :greed_id])
     	devise_parameter_sanitizer.permit(:sign_up) do |user_params|
     		user_params.permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :phone_number, 
                                  :email, :password, :password_confirmation, :greed_id, :customer_status, :payment_method,
                                  addresses_attributes: [:id, :postal_code, :address])
         end
+      # password変更用の設定
+      update_attrs = [:password, :password_confirmation, :current_password]
+      devise_parameter_sanitizer.permit :account_update, keys: update_attrs
   	end
 
 	def after_sign_in_path_for(resource)

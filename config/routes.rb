@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'greeds#index'
 
   devise_for :administrators, controllers: {
     sessions:      'administrators/sessions',
@@ -10,7 +11,7 @@ Rails.application.routes.draw do
     passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
-  
+
   # get 'products/index',as:'products'
   # get 'products/show'
   # get 'products/new' => 'products#new', as:'new_product'
@@ -52,6 +53,8 @@ Rails.application.routes.draw do
   put 'admin/user/:id' => 'users#admin_update'
   post 'user/:id/address/new' => 'addresses#create', as: 'address_new'
   get 'users/:id/addresses' => 'users#address_update'
+  get 'users/:id/password/new' => 'users#password_edit', as: 'password_edit'
+  patch 'users/:id/password' => 'users#password_update'
   get 'service' => 'users#service', as:'service'
   get 'privacy' => 'users#privacy', as:'privacy'
   get 'contact' => 'users#contact', as:'contact'

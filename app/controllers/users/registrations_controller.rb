@@ -18,14 +18,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/edit
-  def edit
-    super
-  end
+  # def edit
+  #   super
+  #   @user = User.find(current_user.id)
+  # end
 
   # PUT /resource
-  def update
-    super
-  end
+  # def update
+  #   super
+  #   @user = User.find(current_user.id)
+  #   @user.update(user_params)
+  #   flash[:notice] = "パスワードを変更しま"
+  #   redirect_to new_user_session_path
+  # end
 
   # DELETE /resource
   def destroy

@@ -68,6 +68,7 @@ class UsersController < ApplicationController
 		   flash[:alert] = "エラーが発生しました"
 		end
 	end
+
 	def address_update
 		@user = User.find(params[:id])
 		@user.update(:default_address => params[:sort])

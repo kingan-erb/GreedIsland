@@ -1,24 +1,28 @@
-<h1>注文詳細ページ</h1>
+<h1>注文詳細ページ　※管理者用 <span>編集</span></h1>
 
 <div class="body">
 	<div class="container">
 		<div class="row">
-			<h3>注文日：<%= order.created_at %></h3> <!--仮に -->
+			<h3>注文日：<%= @order.created_at %></h3>
 			<% if administrator_signed_in? %>
-				<%= form_for(order) do |f| %>
-					<%= f.select :delivery_status, Order.localed_statuses, {} %>
+				<%= form_for @order, url: update_admin_order_path do |f| %>
+					<%= f.select :delivery_status, Order.delivery_statuses, {} %>
 					<%= f.submit '配送ステータス変更' %>
 				<% end %>
 			<% end %>
 		</div>
 		<div class="row order-info">
 			<h3>支払い情報</h3>
-			<p>購入者：<span><%= order.user.last_name + order.user.first_name %></span></p>
-			<p>送付先：<span><%= order.delivery_address %></span></p>
+			<p>購入者：<span><%= @user.last_name + @user.first_name %></span></p>
+			<p>送付先：<span><%= @order.delivery_address %></span></p>
 		</div>
 		<div class="row">
 			<h3>注文商品</h3>
-			<% order_items.each do |order_item| %>
+			<% item_price = 0 %>
+			<% buy_quantity = 0 %>
+			<% total_price = 0 %>
+			<% total_quantity = 0 %>
+			<% @order_items.each do |order_item| %>
 				<%= link_to product_path(order_item.product_id) do %>
 					<div class="order-item-info">
 						<div>
@@ -32,9 +36,11 @@
 						</div>
 						<div>
 							<p>価格：<span><%= order_item.o_price %></span></p>
-							<% total_price += order_item.o_price %>
+							<% item_price = order_item.o_price %>
 							<p>購入数：<span><%= order_item.o_quantity %></span></p>
-							<% total_quantity += order_item.o_quantity %>
+							<% buy_quantity = order_item.o_quantity %>
+							<% total_quantity += buy_quantity %>
+							<% total_price += item_price * buy_quantity %>
 						</div>
 					</div>
 				<% end %>

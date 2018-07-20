@@ -75,6 +75,7 @@ ja:
         user: "ユーザー"
         administrator: "管理者"
         address: "住所"
+        order: "注文"
       user:
         name: "名前"
         password: "パスワード"

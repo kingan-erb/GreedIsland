@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-
+  PER = 20
   def new
     @order = Order.new
     @cart_items = current_user.cart_items
@@ -105,7 +105,15 @@ class OrdersController < ApplicationController
 
 
   def index
-    @orders = Order.all
+    @navi = params[:sort]
+    @status = params[:status]
+    if @status.present?
+      @orders = Order.where(delivery_status: @status).order(params[:sort]).order(id: :desc).page(params[:page]).per(PER)
+    else
+      @orders = Order.order(params[:sort]).order(id: :desc).page(params[:page]).per(PER)
+    end
+    @total = @orders.length
+
   end
 
   def show

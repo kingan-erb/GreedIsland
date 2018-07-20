@@ -59,6 +59,9 @@ before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :ed
 		@user = User.find(current_user.id)
 		@addresses = @user.addresses
 		@range = @user.addresses.length
+		@orders = @user.orders
+		# @orders = Order.where(user_id: current_user.id) # 特定のユーザーに紐づくorders
+		# @order_items = OrderItem.find(order_id:) # 特定のオーダーに紐づくitems
 	end
 	#マイページ編集
 	def edit

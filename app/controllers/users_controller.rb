@@ -77,6 +77,23 @@ before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :ed
 		   flash[:alert] = "エラーが発生しました"
 		end
 	end
+	#パスワード変更
+	def password_edit
+		@user = User.find(current_user.id)
+	end
+	#パスワード更新
+	def password_update
+	    @user = User.find(current_user.id)
+	    if @user.update_with_password(user_params)
+	      # Sign in the user by passing validation in case their password changed
+	      bypass_sign_in(@user)
+	      flash[:notice] = "パスワードを変更しました"
+	      redirect_to user_path
+	    else
+	      flash[:notice] = "パスワードが正しく設定されていません"
+	      redirect_to password_edit_path
+	    end
+	end
 
 ##  管理者  ##
 	#ページング

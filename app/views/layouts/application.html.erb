@@ -56,7 +56,7 @@
               <li><%= link_to 'トップ', greeds_path, class: "" %></li>
               <li><%= link_to '商品一覧', products_path, class: "" %></li>
               <li><%= link_to '顧客一覧', admin_user_index_path, class: "" %></li>
-              <li><%= link_to '注文一覧', greeds_path, class: "" %></li>
+              <li><%= link_to '注文一覧', orders_path, class: "" %></li>
               <li><%= link_to 'ログアウト', destroy_administrator_session_path, method: :delete,
                    "data-confirm" => "本当にログアウトしますか？", class: "" %></li>
             <% else %>

@@ -1,29 +1,46 @@
 
+<h2>注文一覧</h2>
 
-<h1>注文一覧(仮）</h1>
+<form name="sort_form">
+  並び替え
+    <select name="sort" onchange="dropsort()">
+        <option value="/admin/orders"> すべて </option>
+        <option value="/admin/orders?sort=id desc"<% if @navi == 'id desc' %>selected <% end %>>新しい順番</option>
+        <option value="/admin/orders?sort=id asc"<% if @navi == 'id asc' %>selected <% end %>>古い順番</option>
+        <option value="/admin/orders?status=1"<% if @status == '1' %>selected <% end %>>出荷準備中</option>
+        <option value="/admin/orders?status=2"<% if @status == '2' %>selected <% end %>>配送中</option>
+        <option value="/admin/orders?status=3"<% if @status == '3' %>selected <% end %>>配達完了</option>
+    </select>
+</form>
+<h4 class="total">総注文数 <%= @total %> 件</h4>
 
-<div class="body">
-	<table>
-		<thead>
-			<tr>
-				<th>注文番号</th>
-				<th>注文ユーザー</th>
-				<th>購入日時</th>
-				<th>金額</th>
-				<th>ステータス</th>
-			</tr>
-		</thead>
+<table class='table'>
+  <thead>
+    <tr>
+      <th>注文番号</th>
+      <th>氏名</th>
+      <th>My欲</th>
+      <th>購入日時</th>
+      <th>金額</th>
+      <th>ステータス</th>
+      <th></th>
+    </tr>
+  </thead>
 
-		<tbody>
-		<% @orders.each do |order| %>
-			<tr>
-				<td><%= link_to '#{order.id}', edit_order_path(order.id) %></td>
-				<td><%= link_to '#{order.user.last_name}' + '#{order.user.first_name}', user_path(order.user.id) %></td>
-				<td><%= order.created_at %></td>
-				<!-- <td><%= order.total_price %></td> カラム追加予定 -->
-				<td><%= order.delivery_status %></td>
-			</tr>
-		<% end %>
-		</tbody>
-	</table>
-</div>
+  <% @orders.each do |order| %>
+  <tbody>
+    <tr>
+      <td><%= order.id %></td>
+      <td><%= order.user.last_name %></td>
+      <td><%= attachment_image_tag order.user.greed, :greed_image_name, :fill, 30, 30, format: 'jpeg' %></td>
+      <td><%= order.order_datetime.to_s(:db) %></td>
+      <td><%= order.total_price %></td>
+      <td><%= order.delivery_status %></td>
+      <td><%= link_to "Show", greeds_path, class: "btn-sm" %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+<% if @orders.empty? %> 該当するオーダーは、見つかりませんでした。<% end %>
+<%= paginate @orders %>
+<%= @orders.total_count %>件中<%= @orders.offset_value %>〜<%= @orders.offset_value + @orders.length %>件を表示しています。

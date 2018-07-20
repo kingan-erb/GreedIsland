@@ -61,23 +61,26 @@
 	<table class='table'>
 		<tr>
 			<th>注文番号</th>
-			<th>画像</th>
-			<th>商品名</th>
+			<th>商品画像</th>
+			<th>購入金額</th>
 			<th>購入日</th>
 			<th>ステータス</th>
 			<th></th>
 		</tr>
-		<!-- 購入日付ごとの購入履歴詳細ループ　※作成途中です -->
-		<% @order_items.each do |order_item| %>
-			<% order_item.created_at.each do |item| %>
-			<tr>
-				<td></td>
-				<td>画像</td>
-				<td>商品名</td>
-				<td>購入日</td>
-				<td>ステータス</td>
-				<td>詳細へ</td>
-			</tr>
+		<!-- ユーザーごとの購入履歴詳細ループ　※作成途中です -->
+		<% @orders.each do |order| %>
+			<% order.order_items.each_with_index do |order_item, j| %>
+				<tr>
+					<% if j < 1 %>
+					    <td> <%= order.id %> </td>
+					    <td> <%= attachment_image_tag order_item, :o_product_image_name, :fill, 30, 30,format: 'jpeg' %>  •••</td>
+						<td> <%= order_item.o_product_name %> </td>
+						<td> <%= order.total_price %></td>
+						<td> <%= order.order_datetime.strftime('%Y年%m月%d日') %></td>
+						<td> <%= order.delivery_status %></td>
+						<td> <%= link_to "詳細", user_order_path(order.user_id, order.id) %> </td>
+					<% end %>
+				</tr>
 			<% end %>
 		<% end %>
 	</table>

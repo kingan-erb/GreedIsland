@@ -6,8 +6,9 @@ class UsersController < ApplicationController
 		@user = User.find(current_user.id)
 		@addresses = @user.addresses
 		@range = @user.addresses.length
-		@order = Order.where(user_id: current_user.id)
-		@order_items = OrderItem.where(order_id: @order.id)
+		@orders = @user.orders
+		# @orders = Order.where(user_id: current_user.id) # 特定のユーザーに紐づくorders
+		# @order_items = OrderItem.find(order_id:) # 特定のオーダーに紐づくitems
 	end
 
 	def edit

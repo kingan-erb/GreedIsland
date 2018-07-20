@@ -60,16 +60,25 @@
 	<h4>購入履歴</h4>
 	<table class='table'>
 		<tr>
-			<th>番号</th>
+			<th>注文番号</th>
+			<th>画像</th>
+			<th>商品名</th>
 			<th>購入日</th>
 			<th>ステータス</th>
-			<th>詳細へ</th>
+			<th></th>
 		</tr>
-		<tr>
-			<td>画像</td>
-			<td>商品名</td>
-			<td>個数</td>
-			<td>金額</td>
-		</tr>
+		<!-- 購入日付ごとの購入履歴詳細ループ　※作成途中です -->
+		<% @order_items.each do |order_item| %>
+			<% order_item.created_at.each do |item| %>
+			<tr>
+				<td></td>
+				<td>画像</td>
+				<td>商品名</td>
+				<td>購入日</td>
+				<td>ステータス</td>
+				<td>詳細へ</td>
+			</tr>
+			<% end %>
+		<% end %>
 	</table>
 </div>

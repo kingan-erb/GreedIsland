@@ -41,7 +41,7 @@
 			<td><%= g.attachment_field :greed_image_name %></td>
 			<td><%= g.text_field :greed_type %></td>
 			<td><%= g.submit 'Update Greed' %></td>
-			<td><%= link_to "Destroy", greed_path(greed.id), method: :delete, "data-confirm" => "Are you sure?" %></td>
+			<td><%= link_to "Destroy", greed_path(greed.id), method: :delete, "data-confirm" => "本当に削除しますか?" %></td>
 			<% end %>
 		</tr>
 	<% end %>

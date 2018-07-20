@@ -1,8 +1,0 @@
-	<div class="row add-music">
-		<%= form_for(@music, url:admin_musics_new_path) do |g| %>
-			<%= g.select :disk_number, [['Disk1',1],['Disk2',2],['Disk3',3],['Disk4',4]] %>
-			<%= g.text_field :music_name %>
-			<%= g.submit '曲追加' %>
-		<% end %>
-		<%= @music.product_id %>
-	</div>

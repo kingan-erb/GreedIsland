@@ -23,7 +23,6 @@ Rails.application.routes.draw do
   get 'greeds/:id/products' => 'products#user_index', as:'userside_products'
   get 'greeds/products/search' => 'products#user_search',as:'search_products'
   get 'greeds/products/:id' => 'products#user_show',as:'userside_product'
-  resources :musics
   resources :administrators
   #cart_items#showが#editより上にあるとedit_cartに流れずshowに流れた。
   #resourcesの自動ルーティングに順序を合わせるのがベターっぽい

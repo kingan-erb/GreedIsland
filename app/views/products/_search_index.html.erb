@@ -28,4 +28,5 @@
 			</div>
 		<% end %>
 	</div>
-	
+<%= paginate @products %>
+<%= @products.total_count %>件中<%= @products.offset_value %>〜<%= @products.offset_value + @products.length %>件を表示しています。

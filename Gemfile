@@ -75,5 +75,8 @@ gem 'refile-mini_magick'
 gem 'enum_help'
 gem 'bootstrap-sass'
 gem 'kaminari'
-
+#ダミーデータ
+gem 'faker'
+#日本語のデータ
+gem 'gimei'
 

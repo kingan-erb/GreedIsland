@@ -44,4 +44,5 @@
 </table>
 <% if @users.empty? %> 該当するユーザーは、見つかりませんでした。<% end %>
 <%= paginate @users %>
+<%= @users.total_count %>件中<%= @users.offset_value %>〜<%= @users.offset_value + @users.length %>件を表示しています。
 

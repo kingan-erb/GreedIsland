@@ -4,12 +4,6 @@
 	<div class="container">
 		<div class="row">
 			<h3>注文日：<%= @order.created_at %></h3>
-			<% if administrator_signed_in? %>
-				<%= form_for(@order) do |f| %>
-					<%= f.select :delivery_status, Order.localed_statuses, {} %>
-					<%= f.submit '配送ステータス変更' %>
-				<% end %>
-			<% end %>
 		</div>
 		<div class="row order-info">
 			<h3>支払い情報</h3>

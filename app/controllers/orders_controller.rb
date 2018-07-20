@@ -125,19 +125,32 @@ class OrdersController < ApplicationController
   def edit
     @order = Order.find(params[:id])
     @order_items = @order.order_items
-    # created_atを分解する処理
   end
 
   def update
+
   end
 
   def thanks
     @order = Order.find(params[:id])
   end
 
+  def admin_show
+    @order = Order.find(params[:id])
+    @user = User.find(@order.user_id)
+    @order_items = @order.order_items
+  end
+
+  def admin_update
+    @order = Order.find_by(user_id: @user.user_id, id: params[:id])
+    @order.update(order_params)
+    flash[:notice] = "配達状況を変更しました"
+    redirect_to show_admin_order_path
+    end
+
   private
     def order_params
-      params.require(:order).permit(:payment_method,:delivery_address,:delivery_date,:delivery_time)
+      params.require(:order).permit(:payment_method,:delivery_address,:delivery_date,:delivery_time, :delivery_status, :user_id)
     end
 
 end

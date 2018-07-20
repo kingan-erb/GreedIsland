@@ -1,6 +1,6 @@
 ja:
   enums:
-    order:
+    orders:
       delivery_status:
         prepare: 出荷準備中
         sent: 発送済み

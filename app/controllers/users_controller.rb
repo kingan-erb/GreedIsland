@@ -131,6 +131,7 @@ before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :ed
 		end
 	end
 
+
   	private
 
 	def user_params

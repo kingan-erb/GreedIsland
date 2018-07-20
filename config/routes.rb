@@ -37,7 +37,7 @@ Rails.application.routes.draw do
 
   #order
   resources :users do
-    resources :orders, only: [:show, :edit]
+    resources :orders, only: [:show]
   end
   get 'admin/orders' => 'orders#index', as:'orders'
   post 'admin/orders' => 'orders#create' #adminの範疇ではないがurlをindexに合わせる
@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   # get 'users/:id/orders/:id/edit' => 'orders#user_edit', as: 'user_order_edit'
   get 'admin/users/:user_id/orders/:id' => 'orders#admin_show', as: 'show_admin_order'
   get 'admin/users/:user_id/orders/:id/edit' => 'orders#admin_edit', as: 'edit_admin_order'
-  patch 'admin/users/:id/orders/:id' => 'orders#admin_update', as: 'update_admin_order'
+  patch 'admin/users/:user_id/orders/:id' => 'orders#admin_update', as: 'update_admin_order'
   #決済ページ
   get 'buy_confirm' => 'orders#new', as:'new_order'
   get 'admin/orders/:id/edit' => 'orders#edit', as:'edit_order'

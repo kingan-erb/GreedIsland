@@ -111,7 +111,7 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @user = User.find(@order.user_id)
-    @order_items = OrderItem.where(id: @order.id)
+    @order_items = OrderItem.where(order_id: @order.id)
   end
 
   def edit

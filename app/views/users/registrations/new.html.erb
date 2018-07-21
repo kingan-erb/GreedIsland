@@ -48,7 +48,7 @@
     <div class="field">
       <%= f.fields_for :addresses do |g| %>
         <%= g.label :postal_code, "郵便番号" %><br />
-        <%= g.text_field :postal_code, autofocus: true, autocomplete: "off", placeholder: "ハイフン不要" %><br />
+        <%= g.number_field :postal_code, autofocus: true, autocomplete: "off", placeholder: "ハイフン不要" %><br />
         <%= g.label :address, "住所" %><br />
         <%= g.text_field :address, autofocus: true, autocomplete: "off" %>
       <% end %>
@@ -56,7 +56,7 @@
 
     <div class="field">
       <%= f.label :phone_number %><br />
-      <%= f.telephone_field :phone_number, autofocus: true, autocomplete: "off", placeholder: "ハイフン不要", maxlength: 11 %>
+      <%= f.number_field :phone_number, autofocus: true, autocomplete: "off", placeholder: "ハイフン不要", maxlength: 11 %>
     </div>
 
     <div class="field">

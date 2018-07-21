@@ -20,7 +20,7 @@
 	  	</tr>
 	  	<tr>
 	   	 	<th><%= f.label :phone_number %></th>
-	    	<th><%= f.telephone_field :phone_number %></th>
+	    	<th><%= f.number_field :phone_number %></th>
 	  	</tr>
 	  	<tr>
 	    	<th><%= f.label :greed_id %></th>
@@ -38,7 +38,7 @@
 	<table>
 		<tr>
 	  		<th>住所</th>
-	    	<th><%= m.text_field :postal_code, class: 'form-control' %></th>
+	    	<th><%= m.number_field :postal_code, class: 'form-control' %></th>
 	    	<th><%= m.text_field :address, class: 'form-control' %></th>
 	    </tr>
 	</table>
@@ -56,7 +56,7 @@
 
 	<div class="field">
 	  <%= form.label :postal_code, "郵便番号" %>
-	  <%= form.text_field :postal_code %>
+	  <%= form.number_field :postal_code %>
 	 </div>
 
 	<div class="field">

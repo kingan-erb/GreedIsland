@@ -1,5 +1,9 @@
 class OrdersController < ApplicationController
-  PER = 20
+before_action :authenticate_administrator!, only: [:index, :admin_show, :edit, :admin_update]
+before_action :ensure_correct_user
+##  ユーザー  ##
+  USER_PER = 20
+  #注文確認
   def new
     @order = Order.new
     @cart_items = current_user.cart_items
@@ -28,7 +32,7 @@ class OrdersController < ApplicationController
     end
   end
 
-
+  #注文確定
   def create
     @order = Order.new(order_params)
     @order.user_id = current_user.id
@@ -102,55 +106,69 @@ class OrdersController < ApplicationController
       flash[:notice] = "処理に失敗しました"
       redirect_to new_order_path
   end
-
-
-  def index
-    @navi = params[:sort]
-    @status = params[:status]
-    if @status.present?
-      @orders = Order.where(delivery_status: @status).order(params[:sort]).order(id: :desc).page(params[:page]).per(PER)
-    else
-      @orders = Order.order(params[:sort]).order(id: :desc).page(params[:page]).per(PER)
-    end
-    @total = @orders.length
-
+  #Thanksページ
+  def thanks
+    @order = Order.find(params[:id])
   end
-
+  #注文詳細
   def show
     @order = Order.find(params[:id])
     @user = User.find(@order.user_id)
     @order_items = OrderItem.where(order_id: @order.id)
   end
 
-  def edit
-    @order = Order.find(params[:id])
-    @order_items = @order.order_items
+##  管理者  ##
+  ADMIN_PER = 20
+  #注文一覧
+  def index
+    @navi = params[:sort]
+    @status = params[:status]
+    if @status.present?
+      @orders = Order.where(delivery_status: @status).order(params[:sort]).order(id: :desc).page(params[:page]).per(ADMIN_PER)
+    else
+      @orders = Order.order(params[:sort]).order(id: :desc).page(params[:page]).per(ADMIN_PER)
+    end
+    @total = @orders.length
   end
-
-  def update
-
-  end
-
-  def thanks
-    @order = Order.find(params[:id])
-  end
-
+  #注文詳細
   def admin_show
     @order = Order.find(params[:id])
     @user = User.find(@order.user_id)
     @order_items = @order.order_items
   end
-
+  #ステータス変更
+  def edit
+    @order = Order.find(params[:id])
+    @order_items = @order.order_items
+  end
+  #ステータス更新
   def admin_update
     @order = Order.find_by(user_id: @user.user_id, id: params[:id])
     @order.update(order_params)
     flash[:notice] = "配達状況を変更しました"
     redirect_to show_admin_order_path
     end
+  #
+  def update
+  end
 
   private
     def order_params
       params.require(:order).permit(:payment_method,:delivery_address,:delivery_date,:delivery_time, :delivery_status, :user_id)
+    end
+
+    def ensure_correct_user
+      if administrator_signed_in?
+      elsif user_signed_in?
+        @user = User.find_by(id: params[:id])
+        if  current_user.id != @user.id
+            redirect_to user_path(current_user.id)
+            flash[:notice] = "権限がありません"
+        end
+      else
+        redirect_to greeds_path
+        flash[:notice] = "権限がありません"
+      end
     end
 
 end

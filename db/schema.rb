@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2018_07_13_031906) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "postal_code", limit: 7, null: false
+    t.string "postal_code", limit: 7, null: false
     t.string "address", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(version: 2018_07_13_031906) do
     t.string "first_name", null: false
     t.string "last_name_kana", null: false
     t.string "first_name_kana", null: false
-    t.integer "phone_number", null: false
+    t.string "phone_number", null: false
     t.integer "greed_id", null: false
     t.integer "customer_status", limit: 1, default: 0, null: false
     t.integer "payment_method", limit: 1, default: 0, null: false

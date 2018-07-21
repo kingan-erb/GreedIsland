@@ -1,5 +1,7 @@
 class CartItemsController < ApplicationController
-
+before_action :ensure_correct_user, except: [:show, :index]
+##  ユーザー  ##
+  #カートに追加
   def create
     if user_signed_in?
       added_product = Product.find(params[:product_id])
@@ -55,13 +57,13 @@ class CartItemsController < ApplicationController
     end
   end
 
-
+  #
   def show
   	# @user = User.find(params[:id]) #一旦コメントアウト。ルーティングにも追加の必要あり。
     # @cart_items = @user.cart_items
     @cart_items = current_user.cart_items
   end
-
+  #カート内表示
   def index
     @cart_items = current_user.cart_items #Userログインまでコメントアウト
     #在庫数を超えた数量がカートに入っていないかチェック(ビュー側でこの処理をしてjavascriptで書き換えられたら理想？)
@@ -80,7 +82,7 @@ class CartItemsController < ApplicationController
   # def edit
   # 	@cart_items = current_user.cart_items #Userログインまでコメントアウト
   # end
-
+  #カート内商品数量変更
   def update
   	@cart_item = CartItem.find(params[:id])
     last_quantity = @cart_item.quantity
@@ -93,7 +95,7 @@ class CartItemsController < ApplicationController
       redirect_to cart_items_path
     end
   end
-
+  #カート内商品削除
   def destroy
     cart_item = CartItem.find(params[:id])
     if cart_item.destroy
@@ -111,4 +113,17 @@ class CartItemsController < ApplicationController
     params.require(:cart_item).permit(:quantity)
   end
 
+  def ensure_correct_user
+    if administrator_signed_in?
+    elsif user_signed_in?
+      @user = User.find_by(id: params[:id])
+      if  current_user.id != @user.id
+        redirect_to user_path(current_user.id)
+        flash[:notice] = "権限がありません"
+      end
+    else
+          redirect_to greeds_path
+          flash[:notice] = "権限がありません"
+    end
+  end
 end

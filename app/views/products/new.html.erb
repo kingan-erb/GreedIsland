@@ -1,7 +1,6 @@
 
 <%= link_to "一覧へ", products_path %><br>
 商品追加
-<% if alert %><p class="alert alert-danger"><%= alert %></p><% end %>
 <%= form_for @product, url: products_path, class: 'form-horizontal' do |f| %>
 	<!-- 仮にbootstrap方式 -->
 <div class="box">

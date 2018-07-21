@@ -39,26 +39,24 @@
 </div>
 
 <div class="box">
-	<h2>曲リスト</h2>
-	<p class="notice"><%= notice %></p>
-	<table>
-		<thead>
-			<tr>
-				<th>Disk</th>
-				<th>曲順</th>
-				<th>Music_name</th>
-				<th colspan="3"></th>
-			</tr>
-		</thead>
-
-		<tbody>
-		<% @musics.each do |music| %>
-			<tr>
-				<td><%= music.disk_number %></td>
-				<td><%= music.music_number %></td>
-				<td><%= music.music_name %></td>
-			</tr>
+	<div class="music-box-wrap">
+		<!-- とりあえずビューで記述 -->
+		<% done_music_num = 0 %>
+		<% for i in 1..@max_disknum do %>
+			<div class="music-box">
+				<p>Disk<%= i %></p>
+				<% count = 0 %>
+				<% music_count = 0 %>
+					<% @musics.each do |music| %>
+						<!-- 条件 -->
+						<% count += 1 %>
+						<% next if count <= done_music_num %>
+						<% break if done_music_num + @music_num_array[i-1] < count %>
+						<% music_count += 1 %>
+						<p><%= music_count %>.<span><%= music.music_name %></span></p>
+					<% end %>
+				<% done_music_num += @music_num_array[i-1] %>
+			</div>
 		<% end %>
-		</tbody>
-	</table>
+	</div>
 </div>

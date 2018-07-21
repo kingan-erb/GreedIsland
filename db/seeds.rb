@@ -54,6 +54,20 @@ end
 					price: price,
 					inventry_status: inventry_status,
 					)
+	order_datetime = Faker::Date.backward(30)
+	payment_method = rand(1..2)
+	delivery_date = Faker::Date.forward(3)
+	delivery_time = rand(1..3)
+	Order.create!(order_datetime: order_datetime,
+					payment_method: payment_method,
+					delivery_date: delivery_date,
+					delivery_time: delivery_time,
+					postal_code: postal_code,
+					delivery_address: address.kanji,
+					delivery_status: delivery_time,
+					user_id: "#{n+1}",
+					total_price: price,
+					)
 end
 500.times do |n|
 	music_name = Faker::Music.album

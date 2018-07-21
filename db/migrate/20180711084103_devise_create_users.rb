@@ -37,7 +37,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :last_name_kana, :null => false
       t.string :first_name_kana, :null => false
       t.integer :postal_code, :null => false
-      t.integer :phone_number, :null => false
+      t.string :phone_number, :null => false
       t.integer :greed_id, :null => false, :index => true
       t.integer :customer_status, :null => false
       t.integer :payment_method, :null => false

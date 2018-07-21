@@ -10,6 +10,19 @@ class User < ApplicationRecord
   has_many :orders
   belongs_to :greed
 
+  validates :email, presence: true
+  validates :last_name, presence: true
+  validates :first_name, presence: true
+  validates :last_name_kana, presence: true
+  validates :first_name_kana, presence: true
+  validates :last_name_kana, presence: true
+  validates :phone_number, presence: true
+  validates :last_name_kana, presence: true
+  validates :greed_id, presence: true
+  validates :customer_status, presence: true
+  validates :payment_method, presence: true
+  validates :default_address, presence: true
+
 
   def self.search(search)
     if search

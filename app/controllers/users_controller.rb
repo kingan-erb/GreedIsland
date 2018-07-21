@@ -117,6 +117,7 @@ before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :ed
 		@user = User.find(params[:id])
 		@addresses = @user.addresses
 		@range = @user.addresses.length
+		@orders = @user.orders
 	end
 	#顧客情報編集
 	def admin_edit

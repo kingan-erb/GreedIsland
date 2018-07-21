@@ -35,8 +35,14 @@
       <td><%= attachment_image_tag order.user.greed, :greed_image_name, :fill, 30, 30, format: 'jpeg' %></td>
       <td><%= order.order_datetime.to_s(:db) %></td>
       <td><%= order.total_price %></td>
-      <td><%= order.delivery_status %></td>
-      <td><%= link_to "Show", greeds_path, class: "btn-sm" %></td>
+      <% if order.delivery_status == 1 %>
+         <td><%= "出荷準備中" %></td>
+      <% elsif order.delivery_status == 2 %>
+         <td><%= "配送中" %></td>
+      <% else %>
+         <td><%= "配達済み" %></td>
+      <% end %>
+      <td><%= link_to "詳細へ", show_admin_order_path(order.user_id, order.id), class: "btn-sm" %></td>
     </tr>
   </tbody>
   <% end %>

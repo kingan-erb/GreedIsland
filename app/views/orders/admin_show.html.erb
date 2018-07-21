@@ -5,8 +5,25 @@
 		<div class="row">
 			<h3>注文日：<%= @order.created_at %></h3>
 			<% if administrator_signed_in? %>
+				<p class="delivery-status">現在の配送ステータス：
+					<% if @order.delivery_status == 1 %>
+						<td><%= "出荷準備中" %></td>
+					<% elsif @order.delivery_status == 2 %>
+						<td><%= "配送中" %></td>
+					<% else %>
+						<td><%= "配達済み" %></td>
+					<% end %>
+				</p>
 				<%= form_for @order, url: update_admin_order_path do |f| %>
-					<%= f.select :delivery_status, Order.delivery_statuses, {} %>
+				    <%= f.label :delivery_status, "出荷準備中" %>
+					<%= f.radio_button :delivery_status, 1 %><br>
+
+					<%= f.label :delivery_status, "配送中" %>
+					<%= f.radio_button :delivery_status, 2 %><br>
+
+					<%= f.label :delivery_status, "配達済み" %>
+					<%= f.radio_button :delivery_status, 3 %><br>
+
 					<%= f.submit '配送ステータス変更' %>
 				<% end %>
 			<% end %>

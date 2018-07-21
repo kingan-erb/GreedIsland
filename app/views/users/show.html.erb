@@ -74,10 +74,15 @@
 					<% if j < 1 %>
 					    <td> <%= order.id %> </td>
 					    <td> <%= attachment_image_tag order_item, :o_product_image_name, :fill, 30, 30,format: 'jpeg' %>  •••</td>
-						<td> <%= order_item.o_product_name %> </td>
 						<td> <%= order.total_price %></td>
 						<td> <%= order.order_datetime.strftime('%Y年%m月%d日') %></td>
-						<td> <%= order.delivery_status %></td>
+						<% if order.delivery_status == 1 %>
+							<td><%= "出荷準備中" %></td>
+						<% elsif order.delivery_status == 2 %>
+							<td><%= "配送中" %></td>
+						<% else %>
+							<td><%= "配達済み" %></td>
+						<% end %>
 						<td> <%= link_to "詳細", user_order_path(order.user_id, order.id) %> </td>
 					<% end %>
 				</tr>

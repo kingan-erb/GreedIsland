@@ -6,7 +6,7 @@ class Order < ApplicationRecord
 	# enum payment_method:{cash:1,bank:2}
 
 	enum delivery_time:{am:1,pm:2,night:3}
-	enum delivery_status:{出荷準備中:1,配送中:2,配達完了:3}
+	# enum delivery_status:{出荷準備中:１,配送中:２,配達完了:３}
 	# enum delivery_address:{default:1,second:2,third:3}
 
 	#enum日本語表示のためのクラスメソッド

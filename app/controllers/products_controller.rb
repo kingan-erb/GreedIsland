@@ -10,24 +10,37 @@ before_action :authenticate_administrator!, except: [:user_index, :user_search, 
     @navi = params[:sort]
     @search_form_flag = true #ヘッダー分岐
   end
+
   #商品名検索
   def user_search
     @products = Product.search(params[:search]).page(params[:page]).per(USER_PER)
     @search_form_flag = true
   end
+
   #商品詳細
   def user_show
     @product = Product.find(params[:id])
     @musics = Music.where(product_id: @product.id).order(disk_number: :asc).order(music_number: :asc)
-    # 曲順
+    @cart_item = CartItem.new
+    # 曲順管理用、ディスク数とそれぞれの曲数を取得
     @max_disknum = @musics.maximum(:disk_number)
     @music_num_array = []
     for i in 1..@max_disknum do
       music_num = @musics.where(disk_number: i).count
       @music_num_array << music_num
     end
-
-    @cart_item = CartItem.new
+    #配列に格納
+    done_music_num = 0
+    for i in 1..@max_disknum do
+      count = 0
+      music_count = 0
+        @musics.each do |music|
+          count += 1
+          next if count <= done_music_num
+          break if done_music_num + @music_num_array[i-1] < count
+          music_count += 1
+        end
+        done_music_num += @music_num_array[i-1]
     #在庫数表示
     case @product.inventry_status
       when 0 then
@@ -50,6 +63,7 @@ before_action :authenticate_administrator!, except: [:user_index, :user_search, 
         end
       end
   end
+
 
 ##  管理者  ##
   ADMIN_PER = 20

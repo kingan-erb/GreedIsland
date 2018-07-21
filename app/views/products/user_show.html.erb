@@ -46,13 +46,14 @@
 			<div class="music-box">
 				<p>Disk<%= i %></p>
 				<% count = 0 %>
-				<% music_num = 0 %>
+				<% music_count = 0 %>
 					<% @musics.each do |music| %>
+						<!-- 条件 -->
 						<% count += 1 %>
 						<% next if count <= done_music_num %>
 						<% break if done_music_num + @music_num_array[i-1] < count %>
-						<% music_num += 1 %>
-						<p><%= music_num %>.<span><%= music.music_name %></span></p>
+						<% music_count += 1 %>
+						<p><%= music_count %>.<span><%= music.music_name %></span></p>
 					<% end %>
 				<% done_music_num += @music_num_array[i-1] %>
 			</div>

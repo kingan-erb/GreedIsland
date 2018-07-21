@@ -1,9 +1,31 @@
-
-<h1><%= @greed.greed_type %></h1>
-
-<div class="body">
+<div class="product-body">
 	<div class="eye-catch">
-		<p>アイキャッチ</p>
 	</div>
-	<%= render 'products/search_index' %>
+	<div class="container product-index">
+		<div class="sort-box">
+			<form name="sort_form">
+    			<select name="sort" onchange="dropsort()">
+					<option value="/greeds/<%= @greed.id %>/products"> - 選択してください - </option>
+					<option value="/greeds/<%= @greed.id %>/products?sort=sales_quantity desc" <% if @navi == 'sales_quantity desc' %> selected <% end %>>人気順</option>
+					<option value="/greeds/<%= @greed.id %>/products?sort=id desc" <% if @navi == 'id desc' %> selected <% end %>>新着順</option>
+					<option value="/greeds/<%= @greed.id %>/products?sort=price asc" <% if @navi == 'price asc' %> selected <% end %>>価格の安い順</option>
+        			<option value="/greeds/<%= @greed.id %>/products?sort=price desc"<% if @navi == 'price desc'%> selected <% end %>>価格の高い順</option>
+        		</select>
+        	</form>
+        </div>
+		<% @products.each do |product| %>
+			<div class="product-box">
+				<div class="product-image">
+					<%= link_to userside_product_path(product.id) do %>
+						<%= attachment_image_tag product,:product_image_name, :fill,200,200 %>
+					<% end %>
+				</div>
+				<div class="product-text">
+					<p><%= product.artist_name %></p>
+					<p><%= product.product_name %></p>
+					<p>¥ <%= product.price %></p>
+				</div>
+			</div>
+		<% end %>
+	</div>
 </div>

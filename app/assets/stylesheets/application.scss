@@ -97,23 +97,54 @@ footer {
 	background-image: url('gold.jpg');
 	margin-bottom: 50px;
 }
+// .product-body{
+// 	background-color: #EFEFEF;
+// }
+// .product-box{
+// 	background-color: white;
+// 	width: 260px;
+// 	height: 300px;
+// 	padding: 5px;
+// 	margin: 10px;
+// }
+// .product-image{
+// 	width: 200px;
+// 	height: 200px;
+// 	border: 1px solid #EFEFEF;
+// }
+
+// 案２
+// .product-box{
+// 	background-color: white;
+// 	width: 260px;
+// 	height: 300px;
+// 	padding: 5px;
+// 	border: 1px solid #EFEFEF;
+// }
+// .product-image{
+// 	width: 250px;
+// 	height: 250px;
+	
+// }
+//案3
 .product-body{
 	background-color: #EFEFEF;
 }
-.product-box{
+.temporary-product-box{
 	background-color: white;
-	width: 210px;
+	width: 260px;
+	height: 260px;
 	padding: 5px;
-	margin: 10px;
+	margin: 40px;
 }
 .product-image{
-	width: 200px;
-	height: 200px;
-	border: 1px solid #EFEFEF;
+	width: 250px;
+	height: 250px;
 }
-
-
-
-
+.product-text{
+	margin: 40px;
+	margin-top:20px;
+	margin-bottom: 80px;
+}
 
 

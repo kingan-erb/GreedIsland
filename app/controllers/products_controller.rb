@@ -18,7 +18,15 @@ before_action :authenticate_administrator!, except: [:user_index, :user_search, 
   #商品詳細
   def user_show
     @product = Product.find(params[:id])
-    @musics = Music.where(product_id: @product.id)
+    @musics = Music.where(product_id: @product.id).order(disk_number: :asc).order(music_number: :asc)
+    # 曲順
+    @max_disknum = @musics.maximum(:disk_number)
+    @music_num_array = []
+    for i in 1..@max_disknum do
+      music_num = @musics.where(disk_number: i).count
+      @music_num_array << music_num
+    end
+
     @cart_item = CartItem.new
     #在庫数表示
     case @product.inventry_status

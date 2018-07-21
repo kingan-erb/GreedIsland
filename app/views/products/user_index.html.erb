@@ -1,7 +1,7 @@
 <div class="product-body">
 	<div class="eye-catch">
 	</div>
-	<div class="container product-index">
+	<div class="container">
 		<div class="sort-box">
 			<form name="sort_form">
     			<select name="sort" onchange="dropsort()">
@@ -13,19 +13,26 @@
         		</select>
         	</form>
         </div>
+        <div class="product-index">
 		<% @products.each do |product| %>
 			<div class="product-box">
+				<div class="temporary-product-box">
 				<div class="product-image">
 					<%= link_to userside_product_path(product.id) do %>
-						<%= attachment_image_tag product,:product_image_name, :fill,200,200 %>
+						<%= attachment_image_tag product,:product_image_name, :fill,250,250 %>
 					<% end %>
 				</div>
 				<div class="product-text">
 					<p><%= product.artist_name %></p>
 					<p><%= product.product_name %></p>
 					<p>¥ <%= product.price %></p>
+					<% if product.inventry_status == 0 %>
+						<p>在庫切れ</p>
+					<% end %>
+				</div>
 				</div>
 			</div>
 		<% end %>
+		</div>
 	</div>
 </div>

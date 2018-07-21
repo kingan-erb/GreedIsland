@@ -142,7 +142,7 @@ class OrdersController < ApplicationController
   end
 
   def admin_update
-    @order = Order.find_by(user_id: @user.user_id, id: params[:id])
+    @order = Order.find(params[:id])
     @order.update(order_params)
     flash[:notice] = "配達状況を変更しました"
     redirect_to show_admin_order_path

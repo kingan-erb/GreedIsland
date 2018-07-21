@@ -5,6 +5,7 @@ before_action :authenticate_administrator!, except: [:index]
 	#トップページ
  	def index
  		@greeds = Greed.all
+ 		@greed_flag = true#ヘッダー、フッター非表示
   	end
 
 ##  管理者  ##

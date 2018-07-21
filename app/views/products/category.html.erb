@@ -1,12 +1,11 @@
 
-<%= link_to "Create Greed",  new_greed_path %><br>
-<%= link_to "Create Product",  new_product_path %><br>
+<%= link_to "カテゴリー追加",  new_greed_path %><br>
 
 商品一覧（管理）
 <form name="cid_form">
 	カテゴリー
     <select name="cid" onchange="dropcid()">
-        <option value="/administrators"> すべて </option>
+        <option value="/products"> すべて </option>
         <option value="/greed/1/products"<% if 1 == @greed.id %>selected <% end %>>金</option>
         <option value="/greed/2/products"<% if 2 == @greed.id %>selected <% end %>>癒</option>
         <option value="/greed/3/products"<% if 3 == @greed.id %>selected <% end %>>力</option>

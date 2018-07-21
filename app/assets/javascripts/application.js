@@ -26,3 +26,8 @@ function dropcid() {
     var browser = document.cid_form.cid.value;
     location.href = browser
 }
+$( document ).ready(function() {
+    $('.alert').fadeOut(3000);
+});
+
+

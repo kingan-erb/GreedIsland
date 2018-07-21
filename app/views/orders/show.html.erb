@@ -3,7 +3,7 @@
 <div class="body">
 	<div class="container">
 		<div class="row">
-			<h3>注文日：<%= @order.created_at %></h3>
+			<h3>注文日：<%= @order.order_datetime.strftime('%Y年%m月%d日') %></h3>
 		</div>
 		<div class="row order-info">
 			<h3>支払い情報</h3>

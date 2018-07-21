@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 before_action :authenticate_administrator!, only: [:index, :admin_show, :edit, :admin_update]
-before_action :ensure_correct_user
+# before_action :ensure_correct_user
 ##  ユーザー  ##
   USER_PER = 20
   #注文確認

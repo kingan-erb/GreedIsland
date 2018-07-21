@@ -29,18 +29,6 @@ before_action :authenticate_administrator!, except: [:user_index, :user_search, 
       music_num = @musics.where(disk_number: i).count
       @music_num_array << music_num
     end
-    #配列に格納
-    done_music_num = 0
-    for i in 1..@max_disknum do
-      count = 0
-      music_count = 0
-        @musics.each do |music|
-          count += 1
-          next if count <= done_music_num
-          break if done_music_num + @music_num_array[i-1] < count
-          music_count += 1
-        end
-        done_music_num += @music_num_array[i-1]
     #在庫数表示
     case @product.inventry_status
       when 0 then

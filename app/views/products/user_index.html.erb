@@ -1,7 +1,10 @@
+<%= stylesheet_link_tag "products", :media => "all" %>
+
+
 <div class="product-body">
 	<div class="eye-catch">
 	</div>
-	<div class="container">
+	<div class="container-fluid">
 		<div class="sort-box">
 			<form name="sort_form">
     			<select name="sort" onchange="dropsort()">
@@ -13,27 +16,35 @@
         		</select>
         	</form>
         </div>
-        <div class="product-index">
+        <div class="row">
+        <div class="sidebar col-lg-2">
+        </div>
+        <div class="product-index col-lg-10">
 		<% @products.each do |product| %>
 			<div class="product-box">
 				<div class="temporary-product-box">
 				<div class="product-image">
 					<%= link_to userside_product_path(product.id) do %>
-						<%= attachment_image_tag product,:product_image_name, :fill,250,250 %>
+						<%= attachment_image_tag product,:product_image_name, :fill,230,230 %>
 					<% end %>
 				</div>
-				<div class="product-text">
-					<p><%= product.artist_name %></p>
-					<p><%= product.product_name %></p>
-					<p>¥ <%= product.price %></p>
-					<% if product.inventry_status == 0 %>
-						<p>在庫切れ</p>
-					<% end %>
+				<div class="product-text-box">
+					<div class="product-name">
+						<p><%= product.artist_name %></p>
+						<p><%= product.product_name %></p>
+					</div>
+					<div class="product-price_stock">
+						<p class="product-price">¥ <%= product.price %></p>
+						<% if product.inventry_status == 0 %>
+						<p class="product-stock">在庫切れ</p>
+						<% end %>
+					</div>
 				</div>
 				</div>
 			</div>
 		<% end %>
 		</div>
+	</div>
 	</div>
 	<div class="paginate">
 		<%= paginate @products %>

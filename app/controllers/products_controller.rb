@@ -80,10 +80,10 @@ before_action :authenticate_administrator!, except: [:user_index, :user_search, 
   def admin_create
     @product = Product.new(product_params)
     if @product.save
-       redirect_to product_path(@product.id)
+       redirect_to admin_show_product_path(@product.id)
     else
        flash[:alert] = "エラーが発生しました"
-       redirect_to new_product_path
+       redirect_to admin_new_product_path
     end
   end
   #商品編集
@@ -95,10 +95,10 @@ before_action :authenticate_administrator!, except: [:user_index, :user_search, 
   def admin_update
     @product = Product.find(params[:id])
     if @product.update(product_params)
-       redirect_to edit_product_path(@product.id)
+       redirect_to admin_edit_product_path(@product.id)
        flash[:notice] = "更新されました"
     else
-       redirect_to edit_product_path(@product.id)
+       redirect_to admin_edit_product_path(@product.id)
        flash[:alert] = "エラーが発生しました"
     end
   end
@@ -106,10 +106,10 @@ before_action :authenticate_administrator!, except: [:user_index, :user_search, 
   def admin_destroy
     @product = Product.find(params[:id])
     if @product.destroy
-      redirect_to products_path
+      redirect_to admin_products_path
       flash[:notice] = "削除されました"
     else
-      redirect_to product_path(@product.id)
+      redirect_to admin_show_product_path(@product.id)
       flash[:alert] = "エラーが発生しました"
     end
   end

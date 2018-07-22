@@ -14,7 +14,12 @@ class ApplicationController < ActionController::Base
   	end
 
 	def after_sign_in_path_for(resource)
-	  	greeds_path
+		case resource
+		when User
+        	greeds_path
+      	when Administrator
+       		admin_products_path
+      	end
 	end
 
 	def after_sign_out_path_for(resource)

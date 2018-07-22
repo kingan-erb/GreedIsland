@@ -5,12 +5,12 @@
 <form name="cid_form">
 	カテゴリー
     <select name="cid" onchange="dropcid()">
-        <option value="/products"> すべて </option>
-        <option value="/greed/1/products"<% if 1 == @greed.id %>selected <% end %>>金</option>
-        <option value="/greed/2/products"<% if 2 == @greed.id %>selected <% end %>>癒</option>
-        <option value="/greed/3/products"<% if 3 == @greed.id %>selected <% end %>>力</option>
-        <option value="/greed/4/products"<% if 4 == @greed.id %>selected <% end %>>食</option>
-        <option value="/greed/5/products"<% if 5 == @greed.id %>selected <% end %>>愛</option>
+        <option value="/admin/products"> すべて </option>
+        <option value="/admin/greed/1/products"<% if 1 == @greed.id %>selected <% end %>>金</option>
+        <option value="/admin/greed/2/products"<% if 2 == @greed.id %>selected <% end %>>癒</option>
+        <option value="/admin/greed/3/products"<% if 3 == @greed.id %>selected <% end %>>力</option>
+        <option value="/admin/greed/4/products"<% if 4 == @greed.id %>selected <% end %>>食</option>
+        <option value="/admin/greed/5/products"<% if 5 == @greed.id %>selected <% end %>>愛</option>
     </select>
 </form>
 
@@ -18,21 +18,21 @@
 	並び替え
     <select name="sort" onchange="dropsort()">
         <option value=""> - 選択してください - </option>
-        <option value="/greed/<%= @greed.id%>/products?sort=id desc"
+        <option value="/admin/greed/<%= @greed.id%>/products?sort=id desc"
         	<% if @navi == 'id desc' %>selected <% end %>>新しい順番</option>
-        <option value="/greed/<%= @greed.id%>/products?sort=id asc"
+        <option value="/admin/greed/<%= @greed.id%>/products?sort=id asc"
         	<% if @navi == 'id asc' %>selected <% end %>>古い順番</option>
-        <option value="/greed/<%= @greed.id%>/products?sort=inventry_status desc"
+        <option value="/admin/greed/<%= @greed.id%>/products?sort=inventry_status desc"
         	<% if @navi == 'inventry_status desc' %>selected <% end %>>在庫数の多い順番</option>
-        <option value="/greed/<%= @greed.id%>/products?sort=inventry_status asc"
+        <option value="/admin/greed/<%= @greed.id%>/products?sort=inventry_status asc"
         	<% if @navi == 'inventry_status asc' %>selected <% end %>>在庫数の少ない順番</option>
-        <option value="/greed/<%= @greed.id%>/products?sort=sales_quantity desc"
+        <option value="/admin/greed/<%= @greed.id%>/products?sort=sales_quantity desc"
         	<% if @navi == 'sales_quantity desc' %>selected <% end %>>売り上げの多い順番</option>
-        <option value="/greed/<%= @greed.id%>/products?sort=sales_quantity asc"
+        <option value="/admin/greed/<%= @greed.id%>/products?sort=sales_quantity asc"
         	<% if @navi == 'sales_quantity asc' %>selected <% end %>>売り上げの少ない順番</option>
-        <option value="/greed/<%= @greed.id%>/products?sort=price asc"
+        <option value="/admin/greed/<%= @greed.id%>/products?sort=price asc"
         	<% if @navi == 'price asc' %>selected <% end %>>価格の安い順番</option>
-        <option value="/greed/<%= @greed.id%>/products?sort=price desc"
+        <option value="/admin/greed/<%= @greed.id%>/products?sort=price desc"
         	<% if @navi == 'price desc' %>selected <% end %>>価格の高い順番</option>
     </select>
 </form>

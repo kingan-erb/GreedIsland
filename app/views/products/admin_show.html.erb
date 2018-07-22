@@ -1,7 +1,7 @@
 
-<%= link_to "編集ページへ", edit_product_path(@product.id) %><br>
-<%= link_to "一覧へ", products_path %><br>
-<%= link_to "ユーザー詳細へ", userside_product_path(@product.id) %><br>
+<%= link_to "編集ページへ", admin_edit_product_path(@product.id) %><br>
+<%= link_to "ユーザー側詳細へ", product_path(@product.id) %><br>
+
 <div class="box">
     <h4>登録情報</h4>
     <table class='table'>

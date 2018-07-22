@@ -3,7 +3,7 @@
 <div class="box">
 	<% @greeds.each do |greed| %>
 		<div class="greed-img">
-			<%= link_to userside_products_path(greed.id) do %>
+			<%= link_to products_path(greed.id) do %>
 				<%= attachment_image_tag greed, :greed_image_name, :fill, 100, 100, format: 'jpeg' %><% end %><br>
 		</div>
 		<span class="caption">

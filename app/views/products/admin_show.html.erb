@@ -1,0 +1,58 @@
+
+<%= link_to "編集ページへ", edit_product_path(@product.id) %><br>
+<%= link_to "一覧へ", products_path %><br>
+<%= link_to "ユーザー詳細へ", userside_product_path(@product.id) %><br>
+<div class="box">
+    <h4>登録情報</h4>
+    <table class='table'>
+      <tr><th><%= attachment_image_tag @product, :product_image_name, :fill, 100, 100, format: 'jpeg' %></th></tr>
+      <tr>
+        <th>シングル名/アルバム名</th>
+        <td><%= @product.product_name %></td>
+      </tr>
+      <tr>
+        <th>アーティスト名</th>
+        <td><%= @product.artist_name %></td>
+      </tr>
+      <tr>
+        <th>値段</th>
+        <td><%= @product.price %></td>
+      </tr>
+      <tr>
+        <th>在庫</th>
+        <td><%= @product.inventry_status %></td>
+      </tr>
+      <tr>
+        <th>レーベル名</th>
+        <td><%= @product.label_name %></td>
+      </tr>
+      <tr>
+        <th>ジャンル</th>
+        <td><%= @product.genre_name %></td>
+      </tr>
+    </table>
+</div>
+
+<div class="box">
+    <h4>曲リスト</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Disk</th>
+                <th>曲順</th>
+                <th>Music_name</th>
+                <th colspan="3"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+        <% @musics.each do |music| %>
+            <tr>
+                <td><%= music.disk_number %></td>
+                <td><%= music.music_number %></td>
+                <td><%= music.music_name %></td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+</div>

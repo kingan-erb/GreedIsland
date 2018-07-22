@@ -22,7 +22,7 @@
           </button>
           <div class= "navbar-brand">
             <% if user_signed_in? %>
-              <%= link_to '欲望.com', userside_products_path(current_user.greed.id) %>
+              <%= link_to '欲望.com', products_path(current_user.greed.id) %>
             <% else %>
               <%= link_to '欲望.com', greeds_path %>
             <% end %>

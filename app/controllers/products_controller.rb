@@ -4,7 +4,7 @@ before_action :authenticate_administrator!, except: [:user_index, :user_search, 
 ##　ユーザー　##
   USER_PER = 12
   #カテゴリー別商品一覧
-  def user_index
+  def index
     @greed = Greed.find(params[:id])
     @products = @greed.products.order(params[:sort]).order(sales_quantity: :desc).page(params[:page]).per(USER_PER)
     @navi = params[:sort]
@@ -12,13 +12,13 @@ before_action :authenticate_administrator!, except: [:user_index, :user_search, 
   end
 
   #商品名検索
-  def user_search
+  def search
     @products = Product.search(params[:search]).page(params[:page]).per(USER_PER)
     @search_form_flag = true
   end
 
   #商品詳細
-  def user_show
+  def show
     @product = Product.find(params[:id])
     @musics = Music.where(product_id: @product.id).order(disk_number: :asc).order(music_number: :asc)
     @cart_item = CartItem.new
@@ -56,28 +56,28 @@ before_action :authenticate_administrator!, except: [:user_index, :user_search, 
 ##  管理者  ##
   ADMIN_PER = 20
   #商品一覧
-  def index
+  def admin_index
     @products = Product.order(params[:sort]).order(id: :desc).page(params[:page]).per(ADMIN_PER)
     @navi = params[:sort]
   end
   #カテゴリー別商品一覧
-  def category
+  def admin_category
     @navi = params[:sort]
     @greed = Greed.find(params[:id])
     @products = @greed.products.order(params[:sort]).order(id: :desc).page(params[:page]).per(ADMIN_PER)
   end
   #商品詳細
-  def show
+  def admin_show
     @product = Product.find(params[:id])
     @musics = @product.musics.order(disk_number: :asc).order(music_number: :asc)
   end
   #商品作成ページ
-  def new
+  def admin_new
     @product = Product.new
     @product.musics.build
   end
   #商品作成
-  def create
+  def admin_create
     @product = Product.new(product_params)
     if @product.save
        redirect_to product_path(@product.id)
@@ -87,12 +87,12 @@ before_action :authenticate_administrator!, except: [:user_index, :user_search, 
     end
   end
   #商品編集
-  def edit
+  def admin_edit
     @music =Music.new
     @product = Product.find(params[:id])
   end
   #商品更新
-  def update
+  def admin_update
     @product = Product.find(params[:id])
     if @product.update(product_params)
        redirect_to edit_product_path(@product.id)
@@ -103,7 +103,7 @@ before_action :authenticate_administrator!, except: [:user_index, :user_search, 
     end
   end
   #商品削除
-  def destroy
+  def admin_destroy
     @product = Product.find(params[:id])
     if @product.destroy
       redirect_to products_path

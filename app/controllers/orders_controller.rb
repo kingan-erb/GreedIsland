@@ -120,7 +120,7 @@ before_action :authenticate_administrator!, only: [:index, :admin_show, :edit, :
 ##  管理者  ##
   ADMIN_PER = 20
   #注文一覧
-  def index
+  def admin_index
     @navi = params[:sort]
     @status = params[:status]
     if @status.present?
@@ -134,11 +134,6 @@ before_action :authenticate_administrator!, only: [:index, :admin_show, :edit, :
   def admin_show
     @order = Order.find(params[:id])
     @user = User.find(@order.user_id)
-    @order_items = @order.order_items
-  end
-  #ステータス変更
-  def edit
-    @order = Order.find(params[:id])
     @order_items = @order.order_items
   end
   #ステータス更新

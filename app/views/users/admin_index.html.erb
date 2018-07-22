@@ -1,7 +1,7 @@
 <h2>Users</h2>
 
 検索
-<%= form_tag admin_user_index_path, :method => 'get' do %>
+<%= form_tag admin_users_path, :method => 'get' do %>
   <p>
     <%= text_field_tag :search, params[:search] %>
     <%= submit_tag "Search", :last_name => nil, :first_name => nil %>
@@ -35,9 +35,9 @@
     <tr>
       <td><%= user.id %></td>
       <td class="create"><%= user.created_at.to_s(:db) %></td>
-      <td><%= link_to admin_user_path(user.id) do %><%= user.last_name %> <%= user.first_name %><% end %></td>
+      <td><%= link_to admin_show_user_path(user.id) do %><%= user.last_name %> <%= user.first_name %><% end %></td>
       <td><%= attachment_image_tag user.greed, :greed_image_name, :fill, 30, 30, format: 'jpeg' %></td>
-      <td><% if user.deleted_at.nil? %><%= link_to "Edit", edit_admin_user_path(user.id), class: "btn-sm btn-success" %><% end %></td>
+      <td><% if user.deleted_at.nil? %><%= link_to "Edit", admin_edit_user_path(user.id), class: "btn-sm btn-success" %><% end %></td>
     </tr>
   </tbody>
   <% end %>

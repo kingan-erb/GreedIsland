@@ -1,6 +1,8 @@
 
 
-<%= link_to "一覧へ", userside_products_path(@product.greed_id) %><br>
+
+<%= link_to "一覧へ", products_path(@product.greed_id) %><br>
+
 <!-- クラス名は仮でつけています -->
 <div class="body container-fluid">
 	<div class="row">
@@ -34,7 +36,7 @@
 	</div>
 	<!-- 仮の編集画面へ遷移 -->
 	<div>
-		<%= link_to '仮の編集ページ', edit_product_path(@product.id) %>
+		<%= link_to '仮の編集ページ', admin_edit_product_path(@product.id) %>
 	</div>
 </div>
 

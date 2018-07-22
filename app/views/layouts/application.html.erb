@@ -54,10 +54,10 @@
               <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete,
                    "data-confirm" => "本当にログアウトしますか？", class: "" %></li>
             <% elsif administrator_signed_in? %>
-              <li><%= link_to '商品追加', new_product_path, class: "" %></li>
-              <li><%= link_to '商品一覧', products_path, class: "" %></li>
-              <li><%= link_to '顧客一覧', admin_user_index_path, class: "" %></li>
-              <li><%= link_to '注文一覧', orders_path, class: "" %></li>
+              <li><%= link_to '商品追加', admin_new_product_path, class: "" %></li>
+              <li><%= link_to '商品一覧', admin_products_path, class: "" %></li>
+              <li><%= link_to '顧客一覧', admin_users_path, class: "" %></li>
+              <li><%= link_to '注文一覧', admin_orders_path, class: "" %></li>
               <li><%= link_to 'ログアウト', destroy_administrator_session_path, method: :delete,
                    "data-confirm" => "本当にログアウトしますか？", class: "" %></li>
             <% else %>

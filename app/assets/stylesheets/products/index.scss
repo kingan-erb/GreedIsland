@@ -1,0 +1,74 @@
+
+// カテゴリ別商品一覧（仮にここに）
+.eye-catch{
+	width: 100%;
+	height: 350px;
+	background-image: url(/assets/gold.jpg);
+	margin-bottom: 50px;
+}
+a:hover img{
+	opacity: 0.7;
+}
+.product-index-header{
+	text-align: center;
+	padding-top: 40px;
+	padding-bottom: 30px;
+}
+.product-index-header h3{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+
+// サイドバーなし3列
+.product-index{
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+.product-box{
+	background-color: white;
+	position: relative;
+	width: 270px;
+	height: 405px;
+	margin: 65px;
+	margin-top: 20px;
+	margin-bottom: 60px;
+	border-bottom: 1px solid #EFEFEF; //不要？？
+}
+.product-image{
+	width: 270px;
+	height: 270px;
+	border: 1px solid #EFEFEF;
+}
+.product-text{
+	margin: 40px;
+	margin-top:20px;
+	margin-bottom: 80px;
+}
+.product-image{
+	margin-bottom: 20px;
+}
+.product-text-box{
+	// padding: 5px;
+	// padding-left: 15px;
+}
+.product-price_stock{
+	display: flex;
+}
+.product-price{
+	position: absolute;
+	bottom: 10px;
+	text-align: center;
+	font-size: 13px;
+	color: gray;
+}
+.product-stock{
+	position: absolute;
+	bottom: 10px;
+	left: 70px;
+	font-size: 14px;
+	color: red;
+}
+
+

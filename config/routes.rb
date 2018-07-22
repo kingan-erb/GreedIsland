@@ -20,12 +20,12 @@ Rails.application.routes.draw do
   #ユーザー
   resources :users
   get 'users/:id/addresses' => 'users#address_update'
-  post 'users/:id/address/new' => 'addresses#create', as: 'new_address'
+  post 'users/:id/address/new' => 'addresses#create'
   get 'users/:id/password/new' => 'users#password_edit', as: 'edit_password'
   patch 'users/:id/password' => 'users#password_update'
-  get 'service' => 'users#service', as:'show_service'
-  get 'privacy' => 'users#privacy', as:'show_privacy'
-  get 'contact' => 'users#contact', as:'show_contact'
+  get 'service' => 'users#service', as:'service'
+  get 'privacy' => 'users#privacy', as:'privacy'
+  get 'contact' => 'users#contact', as:'contact'
   #管理者
   get 'admin/users' => 'users#admin_index', as:'admin_users'
   get 'admin/user/:id/edit' => 'users#admin_edit', as:'admin_edit_user'

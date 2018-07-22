@@ -1,0 +1,80 @@
+<%= stylesheet_link_tag 'products/admin_index' %>
+<main>
+	<h3>商品一覧</h3>
+	<div class="sort-box">
+		<div class="sort">
+			<form name="cid_form">
+				カテゴリー
+			    <select name="cid" onchange="dropcid()">
+			        <option value="/admin/products"> すべて </option>
+			        <option value="/admin/greed/1/products">金</option>
+			        <option value="/admin/greed/2/products">癒</option>
+			        <option value="/admin/greed/3/products">力</option>
+			        <option value="/admin/greed/4/products">食</option>
+			        <option value="/admin/greed/5/products">愛</option>
+			    </select>
+			</form>
+		</div>
+		<div class="sort">
+			<form name="sort_form">
+				並び替え
+			    <select name="sort" onchange="dropsort()">
+			        <option value=""> - 選択してください - </option>
+			        <option value="/admin/products?sort=id desc"<% if @navi == 'id desc' %>selected <% end %>>新しい順番</option>
+			        <option value="/admin/products?sort=id asc"<% if @navi == 'id asc' %>selected <% end %>>古い順番</option>
+			        <option value="/admin/products?sort=inventry_status desc"
+			        	<% if @navi == 'inventry_status desc' %>selected <% end %>>在庫数の多い順番</option>
+			        <option value="/admin/products?sort=inventry_status asc"
+			        	<% if @navi == 'inventry_status asc' %>selected <% end %>>在庫数の少ない順番</option>
+			        <option value="/admin/products?sort=sales_quantity desc"
+			        	<% if @navi == 'sales_quantity desc' %>selected <% end %>>売り上げの多い順番</option>
+			        <option value="/admin/products?sort=sales_quantity asc"
+			        	<% if @navi == 'sales_quantity asc' %>selected <% end %>>売り上げの少ない順番</option>
+			        <option value="/admin/products?sort=price asc"<% if @navi == 'price asc' %>selected <% end %>>価格の安い順番</option>
+			        <option value="/admin/products?sort=price desc"<% if @navi == 'price desc' %>selected <% end %>>価格の高い順番</option>
+			    </select>
+			</form>
+		</div>
+	</div>
+
+
+
+	<table class='table'>
+		<thead>
+			<tr>
+				<th>カテゴリー</th>
+				<th>商品ID</th>
+				<th>ジャケット画像</th>
+				<th>商品名</th>
+				<th>アーティスト</th>
+				<th>価格</th>
+				<th>在庫数</th>
+				<th>売上数</th>
+				<th colspan="8"></th>
+			</tr>
+		</thead>
+
+		<tbody>
+		<% @products.each do |product| %>
+			<tr>
+				<td><%= attachment_image_tag product.greed, :greed_image_name, :fill, 40, 40, format: 'jpeg' %></td>
+				<td><%= product.id %></td>
+				<td><%= attachment_image_tag product, :product_image_name, :fill, 40, 40, format: 'jpeg' %></td>
+				<td><%= link_to admin_show_product_path(product.id) do %><%= product.product_name %><% end %></td>
+				<td><%= product.artist_name %></td>
+				<td><%= product.price %></td>
+				<td><%= product.inventry_status %></td>
+				<td><%= product.sales_quantity %></td>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+	<% if @products.empty? %> 該当する商品は、見つかりませんでした。<% end %>
+	<div class="paginate">
+		<%= paginate @products %>
+		<div class="item-total">
+			<%= @products.total_count %>件中<%= @products.offset_value %>〜<%= @products.offset_value + @products.length %>件を表示しています。
+		</div>
+	</div>
+</main>
+

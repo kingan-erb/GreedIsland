@@ -20,17 +20,17 @@ Rails.application.routes.draw do
   #ユーザー
   resources :users
   get 'users/:id/addresses' => 'users#address_update'
-  post 'users/:id/address/new' => 'addresses#create', as: 'new_address'
+  post 'users/:id/address/new' => 'addresses#create'
   get 'users/:id/password/new' => 'users#password_edit', as: 'edit_password'
   patch 'users/:id/password' => 'users#password_update'
-  get 'service' => 'users#service', as:'show_service'
-  get 'privacy' => 'users#privacy', as:'show_privacy'
-  get 'contact' => 'users#contact', as:'show_contact'
+  get 'service' => 'users#service', as:'service'
+  get 'privacy' => 'users#privacy', as:'privacy'
+  get 'contact' => 'users#contact', as:'contact'
   #管理者
   get 'admin/users' => 'users#admin_index', as:'admin_users'
-  get 'admin/user/:id/edit' => 'users#admin_edit', as:'admin_edit_user'
-  get 'admin/user/:id' => 'users#admin_show', as:'admin_show_user'
-  patch 'admin/user/:id' => 'users#admin_update'
+  get 'admin/users/:id/edit' => 'users#admin_edit', as:'admin_edit_user'
+  get 'admin/users/:id' => 'users#admin_show', as:'admin_show_user'
+  patch 'admin/users/:id' => 'users#admin_update'
 
 #products
   #ユーザー
@@ -40,10 +40,10 @@ Rails.application.routes.draw do
   #管理者
   get 'admin/products' => 'products#admin_index', as: 'admin_products'
   get 'admin/greed/:id/products' => 'products#admin_category', as: 'admin_show_category'
-  get 'admin/products/:id' => 'products#admin_show', as: 'admin_show_products'
-  get 'admin/products/new' => 'products#admin_new', as: 'admin_new_products'
-  post 'admin/products' => 'products#admin_create', as: 'admin_create_products'
-  get 'admin/products/:id/edit' => 'products#admin_edit', as: 'admin_edit_products'
+  get 'admin/products/new' => 'products#admin_new', as: 'admin_new_product'
+  post 'admin/products' => 'products#admin_create', as: 'admin_create_product'
+  get 'admin/products/:id' => 'products#admin_show', as: 'admin_show_product'
+  get 'admin/products/:id/edit' => 'products#admin_edit', as: 'admin_edit_product'
   patch 'admin/products/:id' => 'products#admin_update'
   delete 'admin/products/:id' => 'products#admin_destroy'
   post 'admin/products/:id/musics' => 'musics#create', as: 'admin_new_music'

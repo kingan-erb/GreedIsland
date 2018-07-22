@@ -1,11 +1,14 @@
 
-商品追加
-<%= form_for @product, url: products_path, class: 'form-horizontal' do |f| %>
+<%= link_to "詳細へ", admin_show_product_path(@product.id) %><br>
+
+商品編集
+<%= form_for @product, class: 'form-horizontal' do |f| %>
 	<!-- 仮にbootstrap方式 -->
 <div class="box">
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-ls-6">
+				<%= attachment_image_tag @product, :product_image_name, :fill, 100, 100, format: 'jpeg' %>
+				<div class="col-ls-6">
 				<%= f.label :product_image_name, "画像" %><br />
 				<%= f.attachment_field :product_image_name %>
 			</div>
@@ -32,30 +35,54 @@
 
 
 <div class="box">
-曲追加
+曲編集
 <table>
 	<thead>
 		<tr>
 			<th>Disk</th>
+			<th>曲順</th>
 			<th>Music_name</th>
 			<th></th>
-			<th colspan="3"></th>
+			<th colspan="4"></th>
 		</tr>
 	</thead>
 
 	<tbody>
 		<%= f.nested_fields_for :musics, wrapper_tag: :tr do |m| %>
 			<td><%= m.select :disk_number,[['Disk1',1],['Disk2',2],['Disk3',3],['Disk4',4]], class: 'form-control' %></td>
+			<td><%= m.text_field :music_number, class: 'No' %></td>
 			<td><%= m.text_field :music_name, class: 'form-control' %></td>
 			<td><%= m.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %><td>
 		<% end %>
 	</tbody>
 </table>
-<%= f.add_nested_fields_link :musics, 'Add new', class: 'btn btn-primary', role: 'button' %>
 </div>
 
+<div class="box">
 	<div class="row add-product-field">
-		<%= f.submit '商品追加', class: 'btn btn-primary' %>
+		<%= f.submit '更新', class: 'btn btn-primary' %>
+		<%= link_to "Destroy", admin_show_product_path(@product.id), method: :delete, "data-confirm" => "Are you sure?" %>
 	</div>
 <% end %>
+<br>
+
+曲追加
+<%= form_for @music, url: admin_new_music_path do |form| %>
+
+<div class="field">
+  <%= form.label :disk_number %>
+  <%= form.select :disk_number,[['Disk1',1],['Disk2',2],['Disk3',3],['Disk4',4]] %>
 </div>
+
+<div class="field">
+  <%= form.label :music_name %>
+  <%= form.text_field :music_name %>
+</div>
+
+<div class="actions">
+  <%= form.submit "Create Music" %>
+</div>
+<% end %>
+</div>
+
+

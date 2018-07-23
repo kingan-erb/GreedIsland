@@ -1,0 +1,77 @@
+.main {
+	background: url(/images/greed_image.jpg) no-repeat;
+	background-size: cover;
+	background-position: center center;
+
+	a {
+		text-decoration: none;
+	}
+}
+
+.for-background {
+	background: rgba(255,255,255,0.5)
+}
+
+.container-wrapper {
+	width: 100%;
+	height: 1152px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.containers {
+	text-align: center;
+	width: 600px;
+	margin: 0 auto;
+	background: rgba(255,255,255,0.8);
+}
+
+.first-container, .second-container {
+	width: 400px;
+	margin: 0 auto;
+	padding: 0 50px;
+	text-align: left;
+
+	.field, .actions, p {
+		padding-bottom: 20px;
+		width:220px;
+		margin: 0 auto;
+	}
+
+	.form-title {
+		width: 250px;
+		margin: 0 auto;
+		padding: 20px 0;
+		display: flex;
+		justify-content: space-around;
+
+		.sign-up, .sign-in {
+			padding: 10px 20px;
+		}
+
+		.active{
+		  color: #000;
+		  border-bottom: solid 2px;
+		}
+
+		.sign-in{
+		  color: #000;
+		}
+	}
+
+	.postal-code {
+		padding-bottom: 20px;
+	}
+
+	span {
+		color: red;
+	}
+
+	.actions {
+		text-align: center;
+	}
+}
+
+.first-container {
+	margin-bottom: 20px;
+}

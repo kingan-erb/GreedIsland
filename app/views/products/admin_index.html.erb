@@ -1,5 +1,5 @@
 
-<%= stylesheet_link_tag 'products/admin_index' %>
+<%= stylesheet_link_tag 'products/admin_index', :media => "all" %>
 <main>
 	<h3>商品一覧</h3>
 	<div class="sort-box">
@@ -46,8 +46,8 @@
 				<th>カテゴリー</th>
 				<th>商品ID</th>
 				<th>ジャケット画像</th>
-				<th>商品名</th>
-				<th>アーティスト</th>
+				<th class="product-name">商品名</th>
+				<th class="product-name">アーティスト</th>
 				<th>価格</th>
 				<th>在庫数</th>
 				<th>売上数</th>
@@ -61,8 +61,8 @@
 				<td><%= attachment_image_tag product.greed, :greed_image_name, :fill, 40, 40, format: 'jpeg' %></td>
 				<td><%= product.id %></td>
 				<td><%= attachment_image_tag product, :product_image_name, :fill, 40, 40, format: 'jpeg' %></td>
-				<td><%= link_to admin_show_product_path(product.id) do %><%= product.product_name %><% end %></td>
-				<td><%= product.artist_name %></td>
+				<td class="product-name"><%= link_to admin_show_product_path(product.id), class: 'product-link' do %><%= product.product_name %><% end %></td>
+				<td class="product-name"><%= product.artist_name %></td>
 				<td><%= product.price %></td>
 				<td><%= product.inventry_status %></td>
 				<td><%= product.sales_quantity %></td>

@@ -1,62 +1,67 @@
 
+<%= stylesheet_link_tag "products/show", :media => "all" %>
+
 <%= link_to "一覧へ", products_path(@product.greed_id) %><br>
-
 <!-- クラス名は仮でつけています -->
-<div class="body container-fluid">
+<div class="body container">
 	<div class="row">
-		<div class="col-lg-5">
-			<%= attachment_image_tag @product, :product_image_name, :fill,200,200 %>
-		</div>
-		<div class="col-lg-7">
-			<div>シングル名/アルバム名<p><%= @product.product_name %></p></div>
-			<div>アーティスト名<p><%= @product.artist_name %></p></div>
-			<p>値段<span><%= @product.price %></span></p>
-			<p>在庫<span><%= @inventry_symbol %></span></p>
-			<% if @no_inventry == true %>
-				<p>品切れです！!！</p>
-			<% else %>
-				<%= form_for(@cart_item, url:create_cart_item_path(@product.id)) do |f| %>
-					<%= f.label :quantity, '数量' %>
-					<%= f.select :quantity, @inventry_array %>
-					<%= f.submit 'カートに入れる' %>
-				<% end %>
-			<% end %>
-		</div>
-	</div>
-	<div class="row">
-		<h2>登録情報</h2>
-		<div class="col-lg-5">
-			<p>レーベル名</p>
-			<p><%= @product.label_name %></p>
-			<p>ジャンル</p>
-			<p><%= @product.genre_name %></p>
-		</div>
-	</div>
-	<!-- 仮の編集画面へ遷移 -->
-	<div>
-		<%= link_to '仮の編集ページ', admin_edit_product_path(@product.id) %>
-	</div>
-</div>
-
-<div class="box">
-	<div class="music-box-wrap">
-		<!-- とりあえずビューで記述 -->
-		<% done_music_num = 0 %>
-		<% for i in 1..@max_disknum do %>
-			<div class="music-box">
-				<p>Disk<%= i %></p>
-				<% count = 0 %>
-				<% music_count = 0 %>
-					<% @musics.each do |music| %>
-						<!-- 条件 -->
-						<% count += 1 %>
-						<% next if count <= done_music_num %>
-						<% break if done_music_num + @music_num_array[i-1] < count %>
-						<% music_count += 1 %>
-						<p><%= music_count %>.<span><%= music.music_name %></span></p>
-					<% end %>
-				<% done_music_num += @music_num_array[i-1] %>
+		<div class="col-xs-4 image-box">
+			<div class="image-line">
+				<div class="image">
+					<%= attachment_image_tag @product, :product_image_name, :fill,240,240 %>
+				</div>
 			</div>
-		<% end %>
+		</div>
+		<div class="col-xs-8 product-info">
+			<div class="info-main">
+				<p class="product-name"><%= @product.product_name %></p>
+				<p class="product-artist"><%= @product.artist_name %></p>
+			</div>
+			<div class="info-sub">
+				<div class="info-for-sell">
+					<p class="price-box">価格：<span class="price">¥  <%= @product.price.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse %></span></p>
+					<p>在庫：<span class="inventry"> <%= @inventry_symbol %></span></p>
+				</div>
+				<% if @no_inventry == true %>
+					<p>現在お取り扱いできません</p>
+				<% else %>
+					<%= form_for(@cart_item, url:create_cart_item_path(@product.id)) do |f| %>
+						<%= f.label :quantity, '数量' %>
+						<%= f.select :quantity, @inventry_array %>
+						<%= f.submit 'カートに入れる', class: "create-cart" %>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="music-info">
+			<div class="col-xs-4 label-box">
+				<p>レーベル /<span class="music-label"><%= @product.label_name %></span></p>
+				<p>ジャンル /<span class="music-label"><%= @product.genre_name %></span></p>
+			</div>
+			<div class="col-xs-8 music-box">
+					<!-- とりあえずビューで記述 -->
+					<% done_music_num = 0 %>
+					<% for i in 1..@max_disknum do %>
+						<div class="disk-box">
+							<p class="disk-name">Disk<%= i %></p>
+							<% count = 0 %>
+							<% music_count = 0 %>
+								<div class="music-list">
+								<% @musics.each do |music| %>
+									<!-- 条件 -->
+									<% count += 1 %>
+									<% next if count <= done_music_num %>
+									<% break if done_music_num + @music_num_array[i-1] < count %>
+									<% music_count += 1 %>
+									<p class="music"><%= music_count %>.<span><%= music.music_name %></span></p>
+								<% end %>
+								</div>
+							<% done_music_num += @music_num_array[i-1] %>
+						</div>
+					<% end %>
+			</div>
+		</div>
 	</div>
 </div>

@@ -1,0 +1,59 @@
+.container-wrapper {
+	width: 100%;
+	height: 1152px;
+	margin: 0 auto;
+	text-align: center;
+	padding-top: 100px;
+}
+
+.containers {
+	text-align: center;
+	width: 600px;
+	margin: 0 auto;
+}
+
+.first-container, {
+	width: 400px;
+	margin: 0 auto;
+	padding: 0 50px;
+	text-align: left;
+	margin-bottom: 10px;
+
+	.field, .actions, p {
+		padding-bottom: 20px;
+		width:220px;
+		margin: 0 auto;
+	}
+
+	.postal-code {
+		padding-bottom: 20px;
+	}
+
+	span {
+		color: red;
+	}
+	.form-title {
+		width: 250px;
+		margin: 0 auto;
+		padding: 20px 0;
+		display: flex;
+		justify-content: space-around;
+
+		.sign-up, .sign-in {
+			padding: 10px 20px;
+		}
+
+		.sign-up{
+		  color: #000;
+		}
+
+		.active{
+		  color: #000;
+		  border-bottom: solid 2px;
+		}
+	}
+
+	.actions {
+		text-align: center;
+	}
+}

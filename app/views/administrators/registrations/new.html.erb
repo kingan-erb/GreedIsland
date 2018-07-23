@@ -1,29 +1,44 @@
-<h2>管理者用新規登録画面</h2>
+<!-- 読み込むscssファイル -->
+<%= stylesheet_link_tag "administrators/registrations/new", :media => "all" %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<main class="main">
   <%= devise_error_messages! %>
+  <div class="container-wrapper">
+    <h2>管理者用 新規登録画面</h2>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <div class="containers">
+        <section class="first-container">
+          <div class="form-title">
+            <div class="sign-up active">
+              新規登録
+            </div>
+            <div class="sign-in">
+              <%= link_to "ログイン", new_administrator_session_path %>
+            </div>
+          </div>
+          <div class="field">
+            <%= f.label :email  %><span> ※</span><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", size: "30" %>
+          </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <div class="field">
+            <%= f.label :password %><span> ※</span>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> 文字以上)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "off", size: "30" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "off" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "新規登録" %>
+          </div>
+        </section>
+      </div>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> 文字以上)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "新規登録" %>
-  </div>
-<% end %>
-
-<%= render "administrators/shared/links" %>
+</main>

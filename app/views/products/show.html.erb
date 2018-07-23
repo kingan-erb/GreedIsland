@@ -19,7 +19,7 @@
 			</div>
 			<div class="info-sub">
 				<div class="info-for-sell">
-					<p class="price-box">価格<span class="price">¥  <%= @product.price.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse %></span></p>
+					<p class="price-box">価格：<span class="price">¥  <%= @product.price.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse %></span></p>
 					<p>在庫：<span class="inventry"> <%= @inventry_symbol %></span></p>
 				</div>
 				<% if @no_inventry == true %>

@@ -1,70 +1,57 @@
 
-<%= link_to "カテゴリー追加",  new_greed_path %><br>
+<%= stylesheet_link_tag "products/index", :media => "all" %>
 
-商品一覧（管理）
-<form name="cid_form">
-	カテゴリー
-    <select name="cid" onchange="dropcid()">
-        <option value="/products"> すべて </option>
-        <option value="/greed/1/products">金</option>
-        <option value="/greed/2/products">癒</option>
-        <option value="/greed/3/products">力</option>
-        <option value="/greed/4/products">食</option>
-        <option value="/greed/5/products">愛</option>
-    </select>
-</form>
+<div class="product-body">
+	<div class="eye-catch">
+	</div>
+	<div class="container-fluid">
 
-<form name="sort_form">
-	並び替え
-    <select name="sort" onchange="dropsort()">
-        <option value=""> - 選択してください - </option>
-        <option value="/products?sort=id desc"<% if @navi == 'id desc' %>selected <% end %>>新しい順番</option>
-        <option value="/products?sort=id asc"<% if @navi == 'id asc' %>selected <% end %>>古い順番</option>
-        <option value="/products?sort=inventry_status desc"
-        	<% if @navi == 'inventry_status desc' %>selected <% end %>>在庫数の多い順番</option>
-        <option value="/products?sort=inventry_status asc"
-        	<% if @navi == 'inventry_status asc' %>selected <% end %>>在庫数の少ない順番</option>
-        <option value="/products?sort=sales_quantity desc"
-        	<% if @navi == 'sales_quantity desc' %>selected <% end %>>売り上げの多い順番</option>
-        <option value="/products?sort=sales_quantity asc"
-        	<% if @navi == 'sales_quantity asc' %>selected <% end %>>売り上げの少ない順番</option>
-        <option value="/products?sort=price asc"<% if @navi == 'price asc' %>selected <% end %>>価格の安い順番</option>
-        <option value="/products?sort=price desc"<% if @navi == 'price desc' %>selected <% end %>>価格の高い順番</option>
-    </select>
-</form>
+		<div class="sort-box">
+			<form name="sort_form">
+    			<select name="sort" onchange="dropsort()">
+					<option value="/greeds/<%= @greed.id %>/products"> - 選択してください - </option>
+					<option value="/greeds/<%= @greed.id %>/products?sort=sales_quantity desc" <% if @navi == 'sales_quantity desc' %> selected <% end %>>人気順</option>
+					<option value="/greeds/<%= @greed.id %>/products?sort=id desc" <% if @navi == 'id desc' %> selected <% end %>>新着順</option>
+					<option value="/greeds/<%= @greed.id %>/products?sort=price asc" <% if @navi == 'price asc' %> selected <% end %>>価格の安い順</option>
+        			<option value="/greeds/<%= @greed.id %>/products?sort=price desc"<% if @navi == 'price desc'%> selected <% end %>>価格の高い順</option>
+        		</select>
+        	</form>
+        </div>
 
-<table class='table'>
-	<thead>
-		<tr>
-			<th>カテゴリー</th>
-			<th>商品ID</th>
-			<th>ジャケット画像</th>
-			<th>商品名</th>
-			<th>アーティスト</th>
-			<th>価格</th>
-			<th>在庫数</th>
-			<th>売上数</th>
-			<th></th>
-			<th colspan="9"></th>
-		</tr>
-	</thead>
-
-	<tbody>
-	<% @products.each do |product| %>
-		<tr>
-			<td><%= attachment_image_tag product.greed, :greed_image_name, :fill, 40, 40, format: 'jpeg' %></td>
-			<td><%= product.id %></td>
-			<td><%= attachment_image_tag product, :product_image_name, :fill, 40, 40, format: 'jpeg' %></td>
-			<td><%= product.product_name %></td>
-			<td><%= product.artist_name %></td>
-			<td><%= product.price %></td>
-			<td><%= product.inventry_status %></td>
-			<td><%= product.sales_quantity %></td>
-			<td><%= link_to "Show", product_path(product.id) %></td>
-		</tr>
-	<% end %>
-	</tbody>
-</table>
-<% if @products.empty? %> 該当する商品は、見つかりませんでした。<% end %>
-<%= paginate @products %>
-<%= @products.total_count %>件中<%= @products.offset_value %>〜<%= @products.offset_value + @products.length %>件を表示しています。
+        <div class="row">
+        	<div class="product-index-header">
+        		<h3>Greeds</h3>
+        	</div>
+        </div>
+       	<div class="row">
+	        <div class="product-index">
+			<% @products.each do |product| %>
+				<div class="product-box">
+					<div class="product-image-box">
+						<div class="product-image">
+							<%= link_to product_path(product.id) do %>
+								<%= attachment_image_tag product,:product_image_name, :fill,270,270 %>
+							<% end %>
+						</div>
+					</div>
+					<div class="product-text-box">
+						<div class="product-name">
+							<p><%= product.artist_name %></p>
+							<p><%= product.product_name %></p>
+						</div>
+						<div class="product-price_stock">
+							<p class="product-price">¥ <%= product.price %></p>
+							<% if product.inventry_status == 0 %>
+							<p class="product-stock">在庫切れ</p>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			<% end %>
+			</div>
+		</div>
+	</div>
+	<div class="paginate">
+		<%= paginate @products %>
+	</div>
+</div>

@@ -10,12 +10,18 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
  */
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 .clearfix::after {
   content: "";
@@ -26,52 +32,27 @@
 /*ヘッダー*/
 .navbar{
 	background-color: #280b28;
+	margin: 0;
+}
+.nav {
+	float: right;
 }
 .header-text{
 	color: white;
 }
 
-.box {
-	float: left;
-	width: 33%;
+/*ページネーション*/
+.paginate {
+	margin-bottom: 10px;
 }
-td,th {
-	text-align: center;
+.pagination {
+	margin: 0 auto;
 }
-th {
-	padding: 0px 5px;
-}
-.No {
-	width: 30px;
-}
-.create {
-	width: 20%;
-}
-.unsubscribe {
-	background-color: #D3D3D3;
-}
-.nav {
-	float: right;
-}
-.product-box {
-	float:left;
-	width: 25%;
-}
-.box1 {
-	width: 45%;
-	display: inline-block;
-}
-.red {
-	color: red;
-}
-.box2 {
-	width: 100%;
-	float:right;
-}
-.total {
-	float:right;
+.item-total {
+	padding-left: 600px;
 }
 
+/*フッター*/
 footer {
 	background-color: #280b28;
 }
@@ -89,62 +70,3 @@ footer {
 	float: right;
 	padding-right: 30px;
 }
-
-// カテゴリ別商品一覧（仮にここに）
-.eye-catch{
-	width: 100%;
-	height: 300px;
-	background-image: url('gold.jpg');
-	margin-bottom: 50px;
-}
-// .product-body{
-// 	background-color: #EFEFEF;
-// }
-// .product-box{
-// 	background-color: white;
-// 	width: 260px;
-// 	height: 300px;
-// 	padding: 5px;
-// 	margin: 10px;
-// }
-// .product-image{
-// 	width: 200px;
-// 	height: 200px;
-// 	border: 1px solid #EFEFEF;
-// }
-
-// 案２
-// .product-box{
-// 	background-color: white;
-// 	width: 260px;
-// 	height: 300px;
-// 	padding: 5px;
-// 	border: 1px solid #EFEFEF;
-// }
-// .product-image{
-// 	width: 250px;
-// 	height: 250px;
-	
-// }
-//案3
-.product-body{
-	background-color: #EFEFEF;
-}
-.temporary-product-box{
-	background-color: white;
-	width: 260px;
-	height: 260px;
-	padding: 5px;
-	margin: 40px;
-}
-.product-image{
-	width: 250px;
-	height: 250px;
-}
-.product-text{
-	margin: 40px;
-	margin-top:20px;
-	margin-bottom: 80px;
-}
-
-

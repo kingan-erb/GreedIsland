@@ -1,10 +1,9 @@
 
-<%= link_to "詳細へ", product_path(@product.id) %><br>
-<%= link_to "一覧へ", products_path %><br>
-<p class="notice"><%= notice %></p>
+
+<%= link_to "詳細へ", admin_show_product_path(@product.id) %><br>
 
 商品編集
-<%= form_for @product, url: product_path, class: 'form-horizontal' do |f| %>
+<%= form_for @product, class: 'form-horizontal' do |f| %>
 	<!-- 仮にbootstrap方式 -->
 <div class="box">
 	<div class="container-fluid">
@@ -63,13 +62,14 @@
 <div class="box">
 	<div class="row add-product-field">
 		<%= f.submit '更新', class: 'btn btn-primary' %>
-		<%= link_to "Destroy", product_path(@product.id), method: :delete, "data-confirm" => "Are you sure?" %>
+		<%= link_to "Destroy", admin_show_product_path(@product.id), method: :delete, "data-confirm" => "Are you sure?" %>
 	</div>
 <% end %>
 <br>
 
 曲追加
-<%= form_for @music, url: music_new_path do |form| %>
+
+<%= form_for @music, url: admin_new_music_path do |form| %>
 
 <div class="field">
   <%= form.label :disk_number %>

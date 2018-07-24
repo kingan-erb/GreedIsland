@@ -21,6 +21,9 @@ Rails.application.config.assets.precompile += %w( order.js )
 Rails.application.config.assets.precompile += %w( administrators/registrations/new.scss )
 Rails.application.config.assets.precompile += %w( administrators/sessions/new.scss )
 
+#greeds
+Rails.application.config.assets.precompile += %w( greeds/new.scss )
+
 # users
 Rails.application.config.assets.precompile += %w( users/registrations/new.scss )
 Rails.application.config.assets.precompile += %w( users/sessions/new.scss )

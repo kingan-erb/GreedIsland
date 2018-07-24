@@ -1,48 +1,69 @@
-<h2>Users</h2>
 
-検索
-<%= form_tag admin_users_path, :method => 'get' do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :last_name => nil, :first_name => nil %>
-  </p>
-<% end %>
+<%= stylesheet_link_tag 'users/admin_index', :media => "all" %>
 
-<form name="sort_form">
-  並び替え
-    <select name="sort" onchange="dropsort()">
-        <option value="/admin/users"> すべて </option>
-        <option value="/admin/users?sort=id desc"<% if @navi == 'id desc' %>selected <% end %>>新しい順番</option>
-        <option value="/admin/users?sort=id asc"<% if @navi == 'id asc' %>selected <% end %>>古い順番</option>
-        <option value="/admin/users?sort=last_name_kana asc"<% if @navi == 'last_name asc' %>selected <% end %>>50音順</option>
-    </select>
-</form>
-<h4 class="total">総ユーザー数 <%= @total %> 人</h4>
+<main>
+  <div class="container">
+    <div class="row">
+        <h3>顧客一覧</h3>
+    </div>
+    <div class="row total">
+        <h4>総ユーザー数 <%= @total %> 人</h4>
+    </div>
+    <div class="row">
+      <div class="sort-box">
+        <div class="sort">
+        <%= form_tag admin_users_path, :method => 'get' do %>
+        <p>
+          <%= text_field_tag :search, params[:search] %>
+          <%= submit_tag "検索", :last_name => nil, :first_name => nil %>
+        </p>
+        <% end %>
+        </div>
+        <div class="sort">
+            <form name="sort_form">
+            並び替え
+              <select name="sort" onchange="dropsort()">
+                  <option value="/admin/users"> すべて </option>
+                  <option value="/admin/users?sort=id desc"<% if @navi == 'id desc' %>selected <% end %>>新しい順番</option>
+                  <option value="/admin/users?sort=id asc"<% if @navi == 'id asc' %>selected <% end %>>古い順番</option>
+                  <option value="/admin/users?sort=last_name_kana asc"<% if @navi == 'last_name asc' %>selected <% end %>>50音順</option>
+              </select>
+            </form>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <table class='table'>
+          <thead>
+            <tr>
+              <th class="id">ID</th>
+              <th class="date">登録日時</th>
+              <th class="greed">My欲</th>
+              <th class="user-name">氏名</th>
+              <th></th>
+            </tr>
+          </thead>
 
-<table class='table'>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>登録日時</th>
-      <th>氏名</th>
-      <th>欲</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <% @users.each do |user| %>
-  <tbody class="<% if user.deleted_at.present? %>unsubscribe<% end %>">
-    <tr>
-      <td><%= user.id %></td>
-      <td class="create"><%= user.created_at.to_s(:db) %></td>
-      <td><%= link_to admin_show_user_path(user.id) do %><%= user.last_name %> <%= user.first_name %><% end %></td>
-      <td><%= attachment_image_tag user.greed, :greed_image_name, :fill, 30, 30, format: 'jpeg' %></td>
-      <td><% if user.deleted_at.nil? %><%= link_to "Edit", admin_edit_user_path(user.id), class: "btn-sm btn-success" %><% end %></td>
-    </tr>
-  </tbody>
-  <% end %>
-</table>
-<% if @users.empty? %> 該当するユーザーは、見つかりませんでした。<% end %>
-<%= paginate @users %>
-<%= @users.total_count %>件中<%= @users.offset_value %>〜<%= @users.offset_value + @users.length %>件を表示しています。
+          <% @users.each do |user| %>
+          <tbody class="<% if user.deleted_at.present? %>unsubscribe<% end %>">
+            <tr>
+              <td class="id"><%= user.id %></td>
+              <td class="date"><%= user.created_at.to_s(:db) %></td>
+              <td class="greed"><%= attachment_image_tag user.greed, :greed_image_name, :fill, 30, 30, format: 'jpeg' %></td>
+              <td class="user-name"><%= link_to admin_show_user_path(user.id), class: 'user-link' do %><%= user.last_name %> <%= user.first_name %><% end %></td>
+              <td><% if user.deleted_at.nil? %><%= link_to "Edit", admin_edit_user_path(user.id), class: "square_btn" %><% end %></td>
+            </tr>
+          </tbody>
+          <% end %>
+      </table>
+      <% if @users.empty? %> 該当するユーザーは、見つかりませんでした。<% end %>
+      <div class="paginate">
+        <%= paginate @users %>
+        <div class="item-total">
+          <%= @users.total_count %>件中<%= @users.offset_value %>〜<%= @users.offset_value + @users.length %>件を表示しています。
+        </div>
+        </div>
+    </div>
+  </div>
+</main>
 

@@ -1,0 +1,71 @@
+
+<%= stylesheet_link_tag 'orders/admin_index', :media => "all" %>
+
+<main>
+  <div class="container">
+    <div class="row">
+      <h3>注文一覧</h3>
+    </div>
+    <div class="row total">
+      <h4 class="total">総注文数 <%= @total %> 件</h4>
+    </div>
+    <div class="row">
+      <div class="sort-box">
+        <form name="sort_form">
+        並び替え
+          <select name="sort" onchange="dropsort()">
+              <option value="/admin/orders"> すべて </option>
+              <option value="/admin/orders?sort=id desc"<% if @navi == 'id desc' %>selected <% end %>>新しい順番</option>
+              <option value="/admin/orders?sort=id asc"<% if @navi == 'id asc' %>selected <% end %>>古い順番</option>
+              <option value="/admin/orders?status=1"<% if @status == '1' %>selected <% end %>>出荷準備中</option>
+              <option value="/admin/orders?status=2"<% if @status == '2' %>selected <% end %>>配送中</option>
+              <option value="/admin/orders?status=3"<% if @status == '3' %>selected <% end %>>配達完了</option>
+          </select>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <table class='table'>
+        <thead>
+          <tr>
+            <th class="number">注文番号</th>
+            <th>My欲</th>
+            <th>氏名</th>
+            <th class="date">購入日時</th>
+            <th>金額</th>
+            <th>ステータス</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <% @orders.each do |order| %>
+        <tbody>
+          <tr>
+            <td class="number"><%= order.id %></td>
+            <td><%= attachment_image_tag order.user.greed, :greed_image_name, :fill, 30, 30, format: 'jpeg' %></td>
+            <td><%= order.user.last_name %> <%= order.user.first_name %></td>
+            <td class="date"><%= order.order_datetime.to_s(:db) %></td>
+            <td><%= order.total_price %></td>
+            <% if order.delivery_status == 1 %>
+               <td><%= "出荷準備中" %></td>
+            <% elsif order.delivery_status == 2 %>
+               <td><%= "配送中" %></td>
+            <% else %>
+               <td><%= "配達済み" %></td>
+            <% end %>
+            <td><%= link_to "詳細へ", admin_show_order_path(order.user_id, order.id), class: "square_btn" %></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+      <% if @orders.empty? %> 該当するオーダーは、見つかりませんでした。<% end %>
+      <div class="paginate">
+        <%= paginate @orders %>
+        <div class="item-total">
+          <%= @orders.total_count %>件中<%= @orders.offset_value %>〜<%= @orders.offset_value + @orders.length %>件を表示しています。
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+

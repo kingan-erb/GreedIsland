@@ -25,6 +25,7 @@ Rails.application.config.assets.precompile += %w( administrators/sessions/new.sc
 Rails.application.config.assets.precompile += %w( users/registrations/new.scss )
 Rails.application.config.assets.precompile += %w( users/sessions/new.scss )
 Rails.application.config.assets.precompile += %w( users/password_edit.scss )
+Rails.application.config.assets.precompile += %w( users/show.scss )
 
 
 #products

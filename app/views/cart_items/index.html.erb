@@ -25,7 +25,7 @@
 				<div class="cart-item-box">
 					<div class="item-info-box">
 						<div class="item-image">
-							<%= link_to userside_product_path(product.id) do %>
+							<%= link_to product_path(product.id) do %>
 								<%= attachment_image_tag product, :product_image_name, :fill, 100, 100, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %>
 							<% end %>
 						</div>

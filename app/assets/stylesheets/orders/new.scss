@@ -1,11 +1,19 @@
 ul{
 	list-style: none;
 }
-.cart-title-box{
+h3{
+	color: #999;
+	font-weight: bold;
+	padding-bottom: 35px;
+}
+.delivery-info,.cart-item{
+	padding-left: 20px;
+}
+.buy-title-box{
 	padding-top: 90px;
 	padding-bottom: 60px;
 }
-.cart-title{
+.buy-title{
 	padding-left: 15px;
 }
 .fas{
@@ -16,38 +24,36 @@ ul{
 	padding-bottom: 40px;
 	margin-bottom: 40px;
 	border-bottom: 1px solid lightgray;
+
+	.item-image{
+		transition: 0.2s;
+	}
+	.item-image:hover{
+		opacity: 0.7;
+	}
+	.item-description{
+		padding-left: 60px;
+	}
+	.item-name{
+		font-size: 18px;
+		line-height: 18px; //デフォルト25
+	}
+	.item-price{
+		margin-top: 15px;
+		font-size: 18px;
+	}
+	.item-stock{
+		margin-top: 25px;
+	}
+	.inventry{
+		margin-bottom: 3px;
+	}
+	.item-quantity{
+		padding-left: 50px;
+	}
 }
 .cart-item:last-child{
 	border-bottom :none;
-}
-.item-image{
-	transition: 0.2s;
-}
-.item-image:hover{
-	opacity: 0.7;
-}
-.item-description{
-	padding-left: 60px;
-}
-.item-name{
-	font-size: 18px;
-	line-height: 18px; //デフォルト25
-}
-.item-artist{
-}
-.item-price{
-	margin-top: 15px;
-	font-size: 18px;
-}
-
-.item-stock{
-	margin-top: 18px;
-}
-.inventry{
-	margin-bottom: 3px;
-}
-.item-quantity{
-	padding-left: 50px;
 }
 // 数量選択〜削除ボタン
 .quantity-setting-box{
@@ -65,6 +71,11 @@ ul{
 	margin-left: 10px;
 	width: 50px;
 }
+.quantity-box{
+	margin-top: 10px;
+	display: flex;
+	justify-content: space-between;
+}
 .delete-button{
 	margin-left: 70px;
 }
@@ -75,6 +86,38 @@ ul{
 	color: #5972ff;
 	text-decoration: none;
 }
+//支払い方法と住所選択部分
+.delivery-select-box{
+	margin-bottom: 30px;
+	display: flex;
+	align-items: center;
+}
+.delivery-select-box label{
+	// color: gray;
+	padding-bottom: 5px;
+}
+.payment-method{
+	padding-right: 70px;
+}
+.payment-method span{
+	padding-left: 5px;
+	padding-right: 15px;
+}
+.address-box{
+	padding-top: 15px;
+	display: flex;
+	// justify-content: space-between;
+	align-items: center;
+	border-top: 1px solid lightgray;
+}
+.address-box:last-child{
+	padding-bottom: 10px;
+	border-bottom: 1px solid lightgray;
+}
+.address-button{
+	padding-right: 25px;
+	padding-bottom: 10px;
+}
 // 購入ボタン部分
 .buy-box{
 	margin-left: 90px;
@@ -84,9 +127,8 @@ ul{
 	text-align: center;
 	// background-color: #fafafa;
 	border: 5px solid #280b28;
-	 border-radius: 90% 30% 50% 30%/30% 90% 30% 80%;
+	border-radius: 90% 30% 50% 30%/30% 90% 30% 80%;
 	box-shadow: 0px 20px 30px 0px rgba(0,0,0,0.1);
-
 }
 .total-price-box{
 	width: 100%;

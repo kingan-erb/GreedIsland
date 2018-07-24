@@ -64,7 +64,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<%= form_for(@order) do |f| %>
+			<%= form_for @order, url: admin_orders_path do |f| %>
 				<div class="col-ls-6 address-select">
 					<!-- 住所ラジオボタン -->
 					 <% array_num = 0 %>

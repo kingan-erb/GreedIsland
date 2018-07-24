@@ -14,9 +14,12 @@
 			<%= flash[:quantity_notice] %>
 		<% end %>
 	</div>
-	<% if @cart_items.nil? %>
-		<div>
-			<h2>現在カートに商品はありません。</h2>
+	<% if @cart_items.empty? %>
+		<div class="no-item-body">
+			<div class="no-item-text">
+				<h4>現在カートに商品はありません。</h4>
+				<p><%= link_to '買い物にもどる', products_path(current_user.greed.id), class: 'no-item-button' %></p>
+			</div>
 		</div>
 	<% else %>
 		<div class ="row">

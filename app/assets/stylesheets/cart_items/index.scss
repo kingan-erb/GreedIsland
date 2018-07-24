@@ -1,0 +1,119 @@
+ul{
+	list-style: none;
+}
+.cart-title-box{
+	padding-top: 90px;
+	padding-bottom: 60px;
+}
+.cart-title{
+	padding-left: 15px;
+}
+.fas{
+	margin-right: 25px;
+}
+.cart-item{
+	display: flex;
+	padding-bottom: 40px;
+	margin-bottom: 40px;
+	border-bottom: 1px solid lightgray;
+}
+.item-image:hover{
+	opacity: 0.7;
+}
+.item-description{
+	padding-left: 60px;
+}
+.item-name{
+	font-size: 18px;
+	line-height: 18px; //デフォルト25
+}
+.item-artist{
+}
+.item-price{
+	margin-top: 15px;
+	font-size: 18px;
+}
+
+.item-stock{
+	margin-top: 18px;
+}
+.inventry{
+	margin-bottom: 3px;
+}
+.item-quantity{
+	padding-left: 50px;
+}
+// 数量選択〜削除ボタン
+.quantity-setting-box{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 10px;
+	// margin-left: 40px;
+}
+.quantity-label{
+	font-weight: normal;
+	margin-right: 3px;
+}
+.submit-button{
+	margin-left: 10px;
+	width: 50px;
+}
+.delete-button{
+	margin-left: 70px;
+}
+.delete-button > a{
+	color: gray;
+}
+.delete-button > a:hover{
+	color: #5972ff;
+	text-decoration: none;
+}
+// 購入ボタン部分
+.buy-box{
+	margin-left: 90px;
+	padding: 60px;
+	width: 350px;
+	height: 350px;
+	text-align: center;
+	// background-color: #fafafa;
+	border: 5px solid #280b28;
+	border-radius: 5px;
+	box-shadow: 0px 20px 30px 0px rgba(0,0,0,0.1);
+
+}
+.total-price-box{
+	width: 100%;
+	margin-top: 40px;
+	padding-bottom: 15px;
+	font-size: 20px;
+	line-height: 20px; //「合計」と数字のずれ解消
+	display: flex;
+	justify-content: space-between;
+}
+.total-mark{
+	font-size: 20px;
+	margin-right: 5px;
+}
+.total-price{
+	font-size: 25px;
+}
+.buy-field{
+	margin-top: 40px;
+}
+.buy-button{
+	width: 100%;
+	display: block;
+	padding: 20px 60px;
+	border-radius: 5px;
+	background-color: #280b28;
+	color: white;
+}
+.buy-button:hover{
+	color: white;
+	text-decoration: none;
+	opacity: 0.9;
+}
+.link-back{
+	margin-top: 30px;
+}

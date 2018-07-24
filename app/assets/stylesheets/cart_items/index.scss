@@ -17,6 +17,9 @@ ul{
 	margin-bottom: 40px;
 	border-bottom: 1px solid lightgray;
 }
+.item-image{
+	transition: 0.2s;
+}
 .item-image:hover{
 	opacity: 0.7;
 }

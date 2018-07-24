@@ -88,7 +88,7 @@ before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :ed
 	def password_update
 	    @user = User.find(current_user.id)
 	    if @user.password == @user.current_password
-    	   redirect_to password_edit_path
+    	   redirect_to edit_password_path
 		   flash[:alert] = "パスワードが変更されていません"
 		else
 		    if @user.update_with_password(user_params)
@@ -98,7 +98,7 @@ before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :ed
 		      redirect_to user_path
 		    else
 		      flash[:notice] = "パスワードが正しく設定されていません"
-		      redirect_to password_edit_path
+		      redirect_to edit_password_path
 		    end
 		end
 	end

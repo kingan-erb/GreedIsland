@@ -17,9 +17,14 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 Rails.application.config.assets.precompile += %w( order.js )
 # ワイルドカードでうまくいかなかったため仮に
 
+# administrators
+Rails.application.config.assets.precompile += %w( administrators/registrations/new.scss )
+Rails.application.config.assets.precompile += %w( administrators/sessions/new.scss )
+
 # users
 Rails.application.config.assets.precompile += %w( users/registrations/new.scss )
 Rails.application.config.assets.precompile += %w( users/sessions/new.scss )
+Rails.application.config.assets.precompile += %w( users/password_edit.scss )
 Rails.application.config.assets.precompile += %w( users/admin_index.scss )
 
 #products

@@ -1,12 +1,10 @@
 <!-- 読み込むscssファイル -->
 <%= stylesheet_link_tag "users/sessions/new", :media => "all" %>
 
-<!-- navメニューのmargin,borderによる空白を相談 -->
 <main class="main">
   <div class="for-background">
     <div class="container-wrapper">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <%= devise_error_messages! %>
         <div class="containers">
           <section class="first-container">
             <div class="form-title">
@@ -38,7 +36,7 @@
             <% end -%>
 
             <div class="actions">
-              <%= f.submit "ログイン" %>
+              <%= f.submit "ログイン", class: "button" %>
             </div>
           </section>
         </div>

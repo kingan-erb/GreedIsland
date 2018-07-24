@@ -1,7 +1,18 @@
 main {
 	width: 90%;
 	margin: 0 auto;
-	height: 700px;
+    min-height: 700px;
+    height: auto !important;
+}
+.container {
+    padding-left: 80px;
+
+}
+.table1 {
+    width: 30%;
+}
+.table2 {
+    width: 80%;
 }
 h4 {
 	margin-top: 20px;
@@ -9,29 +20,13 @@ h4 {
 h3 {
 	margin: 20px 0;
 }
-.table {
-	width: 450px;
-}
+
 label, th {
 	font-weight: 500;
 }
-.product-input {
-	font-weight: 400;
+.btn {
+    color: #FF82B2;
 }
-.music {
-	margin-top: 50px;
-}
-.part_line{
-    position: relative;
-    display: inline-block;
-    font-weight: bold;
-    padding: 0.25em 0.5em;
-    text-decoration: none;
-    border-bottom: solid 3px #CCCCCC;
-    border-left: solid 3px #CCCCCC;
-    color: #777777;
-    transition: .4s;
-    }
 .square_btn{
     display: inline-block;
     padding: 0.25em 1em;
@@ -53,11 +48,10 @@ label, th {
     font-weight: bold;
     padding: 0.25em 0.5em;
     text-decoration: none;
-    color: #FFAD90;
+    color: #668ad8;
     background: #ECECEC;
     transition: .4s;
   }
-
 .square_btn2:hover {
     background: #00bcd4;
     color: white;

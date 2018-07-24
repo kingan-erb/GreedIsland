@@ -93,7 +93,7 @@
 					<% if @sum != 0 %>
 						<div class="buy-field">
 							<p><%= link_to '決済にすすむ', new_order_path ,class: "buy-button" %></p>
-							<p class="link-back"><%= link_to '買い物を続ける', products_path(current_user.greed.id) %></p>
+							<p class="link-back"><%= link_to '→買い物を続ける', products_path(current_user.greed.id) %></p>
 						</div>
 					<% end %>
 				</div>

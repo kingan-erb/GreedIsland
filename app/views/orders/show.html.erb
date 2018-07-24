@@ -1,47 +1,78 @@
-<h1>注文詳細ページ</h1>
+<!-- 読み込むscssファイル -->
+<%= stylesheet_link_tag "orders/show", :media => "all" %>
 
-<div class="body">
-	<div class="container">
-		<div class="row">
-			<h3>注文日：<%= @order.order_datetime.strftime('%Y年%m月%d日') %></h3>
-		</div>
-		<div class="row order-info">
-			<h3>支払い情報</h3>
-			<p>購入者：<span><%= @user.last_name + @user.first_name %></span></p>
-			<p>送付先：<span><%= @order.delivery_address %></span></p>
-		</div>
-		<div class="row">
-			<h3>注文商品</h3>
-			<% item_price = 0 %>
-			<% buy_quantity = 0 %>
-			<% total_price = 0 %>
-			<% total_quantity = 0 %>
-			<% @order_items.each do |order_item| %>
-				<%= link_to product_path(order_item.product_id) do %>
-					<div class="order-item-info">
-						<div>
-							<%= attachment_image_tag order_item, :o_product_image_name, :fill,100,100,format: 'jpeg' %>
-						</div>
-						<div>
-							<p>シングル/アルバム名</p>
-							<%= order_item.o_product_name %>
-							<p>アーティスト名</p>
-							<%= order_item.o_artist_name %>
-						</div>
-						<div>
-							<p>価格：<span><%= order_item.o_price %></span></p>
+<main class="main">
+	<div class="for-background">
+		<div class="container-wrapper">
+			<h2 class="page-title">マイアカウント</h2>
+			<hr class="hr-first">
+			<div class="containers">
+				<!-- 注文内容情報 -->
+				<div class="main-container">
+					<h4 class="container-title">注文内容</h4>
+					<p class="order-date">注文日：<%= @order.order_datetime.strftime('%Y年%m月%d日 %p %H:%M') %></p>
+					<table class='table'>
+						<tr>
+							<th>商品名</th>
+							<th>商品画像</th>
+							<th>アーティスト名</th>
+							<th>数量</th>
+							<th>金額</th>
+						</tr>
+						<% item_price = 0 %>
+						<% buy_quantity = 0 %>
+						<% total_price = 0 %>
+						<% total_quantity = 0 %>
+						<% @order_items.each do |order_item| %>
+							<tr>
+							    <td><%= link_to product_path(order_item.product_id) do %>
+							    	<%= order_item.o_product_name %><% end %></td>
+							    <td><%= attachment_image_tag order_item, :o_product_image_name, :fill, 50, 50,format: 'jpeg' %></td>
+								<td><%= order_item.o_artist_name %></td>
+								<td class="order-quantity"><%= order_item.o_quantity %></td>
+								<td><%= order_item.o_price %></td>
+							</tr>
 							<% item_price = order_item.o_price %>
-							<p>購入数：<span><%= order_item.o_quantity %></span></p>
 							<% buy_quantity = order_item.o_quantity %>
 							<% total_quantity += buy_quantity %>
 							<% total_price += item_price * buy_quantity %>
+						<% end %>
+						<div class="total">
+							<tr>
+								<th>合計</th>
+								<th></th>
+								<th></th>
+								<th class="total-quantity"><%= total_quantity %></th>
+								<th><%= total_price %> 円</th>
+							</tr>
+						</div>
+					</table>
+				</div>
+				<!-- 支払い情報 -->
+				<div  class="side-container">
+					<div class="first-box">
+						<h4 class="container-title">配送情報</h4>
+						<div class='order-info'>
+						    <p class="delivery-status">配送ステータス：
+						    	<% if @order.delivery_status == 1 %>
+									<%= "出荷準備中" %></p>
+								<% elsif @order.delivery_status == 2 %>
+									<%= "配送中" %></p>
+								<% else %>
+									<%= "配達済み" %></p>
+								<% end %>
+						    <p class="user-name"><%= @user.last_name %> <%= @user.first_name %></p>
+						  	<p class="user-address">〒<%= @order.postal_code %><br><%= @order.delivery_address %></p>
+						  	<p class="user-phone"></p>
+						  	<p class="user-greed"></p>
+						</div>
+
+						<div class="button">
+							<%= link_to "一覧に戻る", user_path(@user.id), class: "back-button" %>
 						</div>
 					</div>
-				<% end %>
-			<% end %>
-			<div class="row calc">
-				<p>購入数：<%= total_quantity %>,<span>合計：<%= total_price %></span></p>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
+</main>

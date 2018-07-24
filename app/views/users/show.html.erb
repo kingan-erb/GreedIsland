@@ -75,7 +75,6 @@
 							<% nos = 1..@range %>
 							<% @addresses.zip(nos).each do |address, no| %>
 						  <tr>
-						  	<!-- <td><% if @user.default_address == no %><div class="red"><%= no %>番を選択中</div><% else %><%= no %>番<% end %></td> -->
 						    <td> 〒<%= address.postal_code[0,3] %>-<%= address.postal_code[3,4] %><br><%= address.address %></td>
 						    <td><% if @range != 1 && @user.default_address != no %><%= link_to "削除", address_path(address.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn-sm" %><% end %></td>
 						  </tr>

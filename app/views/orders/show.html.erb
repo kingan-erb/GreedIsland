@@ -30,7 +30,7 @@
 							    <td><%= attachment_image_tag order_item, :o_product_image_name, :fill, 50, 50,format: 'jpeg' %></td>
 								<td><%= order_item.o_artist_name %></td>
 								<td class="order-quantity"><%= order_item.o_quantity %></td>
-								<td><%= order_item.o_price %></td>
+								<td><%= order_item.o_price.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1,') %></td>
 							</tr>
 							<% item_price = order_item.o_price %>
 							<% buy_quantity = order_item.o_quantity %>
@@ -43,7 +43,7 @@
 								<th></th>
 								<th></th>
 								<th class="total-quantity"><%= total_quantity %></th>
-								<th><%= total_price %> 円</th>
+								<th><%= total_price.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1,') %> 円</th>
 							</tr>
 						</div>
 					</table>

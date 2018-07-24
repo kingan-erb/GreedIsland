@@ -25,7 +25,7 @@
 									<% if j < 1 %>
 									    <td> <%= order.id %> </td>
 									    <td> <%= attachment_image_tag order_item, :o_product_image_name, :fill, 30, 30,format: 'jpeg' %>  •••</td>
-										<td> <%= order.total_price %> 円</td>
+										<td> <%= order.total_price.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1,') %> 円</td>
 										<td> <%= order.order_datetime.strftime('%Y年%m月%d日') %></td>
 										<% if order.delivery_status == 1 %>
 											<td><%= "出荷準備中" %></td>

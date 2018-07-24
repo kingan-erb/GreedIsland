@@ -20,12 +20,18 @@ td,th {
 th {
 	font-weight: 500;
 }
+.category {
+	padding-left: 30px !important;
+}
 .product-name {
 	text-align: left;
+	width: 250px;
 }
-
+.artist {
+	text-align: left;
+}
 .product-link {
-	width: 70% !important;
+	width: 80% !important;
     height: 100% !important;
     display: block !important;
     padding: 10px 0 !important;

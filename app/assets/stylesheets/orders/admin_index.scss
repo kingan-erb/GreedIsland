@@ -8,6 +8,7 @@ main {
 }
 h4 {
 	float: left;
+
 }
 .total {
 	padding-right: 80px;
@@ -21,19 +22,20 @@ th {
 }
 .sort-box {
 	text-align: left;
+	padding-bottom: 10px;
 }
 .sort {
 	display: inline-block;
 	padding-left: 20px;
 }
-.id {
-	width: 50px;
-	padding-left: 150px !important;
+.number {
+	width: 210px;
+	padding-left: 100px !important;
 	padding-right: 50px !important;
+	text-align: center;
 }
 .date {
 	width: 200px;
-	padding-left: 50px !important;
 }
 .greed {
 	text-align: center;
@@ -57,25 +59,21 @@ a.user-link:hover {
     position: relative;
     display: inline-block;
     font-weight: bold;
-    padding: 0.25em 0.7em;
+    padding: 0.25em 0.5em;
     text-decoration: none;
-    border-left: solid 2px #006400;
-    border-right: solid 2px #006400;
-    color: #2E8B57;
+    border-left: solid 2px #668ad8;
+    border-right: solid 2px #668ad8;
+    color: #668ad8;
     text-shadow: 0 0 5px white;
-    padding: 0.25em 0.7em;
-    background: -webkit-repeating-linear-gradient(-45deg, #32CD32, #32CD32 3px,#e9f4ff 3px, #e9f4ff 7px);
-    background: repeating-linear-gradient(-45deg, #cce7ff, #32CD32 3px,#e9f4ff 3px, #e9f4ff 7px);
+    padding: 0.25em 0.5em;
+    background: -webkit-repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+    background: repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 3px,#e9f4ff 3px, #e9f4ff 7px);
     transition: .4s;
 }
 
 .square_btn:hover {
-    background: -webkit-repeating-linear-gradient(-45deg, #32CD32, #32CD32 5px,#e9f4ff 5px, #e9f4ff 9px);
-    background: repeating-linear-gradient(-45deg, #32CD32, #32CD32 5px,#e9f4ff 5px, #e9f4ff 9px);
+    background: -webkit-repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 5px,#e9f4ff 5px, #e9f4ff 9px);
+    background: repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 5px,#e9f4ff 5px, #e9f4ff 9px);
 }
-input[type="submit"] {
-	width: 60px;
-}
-
 
 

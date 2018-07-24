@@ -1,7 +1,6 @@
 
 <div class="box">
-	<%= link_to "一覧へ", admin_user_index_path, class: "btn-sm" %>
-	<%= link_to "編集へ", edit_admin_user_path(@user.id), class: "btn-sm" %>
+	<%= link_to "編集へ", admin_edit_user_path(@user.id), class: "btn-sm" %>
 	<h4>顧客情報詳細</h4>
 	<% if @user.deleted_at.present? %><h4>退会済み</h4><% end %>
 	<table class='table'>

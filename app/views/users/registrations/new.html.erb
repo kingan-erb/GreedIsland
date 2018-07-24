@@ -1,79 +1,97 @@
-<span>＜＜新規登録＞＞</span><span>＜＜ログイン＞＞</span>
+<!-- 読み込むscssファイル -->
+<%= stylesheet_link_tag "users/registrations/new", :media => "all" %>
 
-<div class="container-wrapper">
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<!-- navメニューのmargin,borderによる空白を相談 -->
+<main class="main">
+  <div class="for-background">
+    <div class="container-wrapper">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+        <div class="containers">
+          <section class="first-container">
+            <div class="form-title">
+              <div class="sign-up active">
+                新規登録
+              </div>
+              <div class="sign-in">
+                <%= link_to "ログイン", new_user_session_path %>
+              </div>
+            </div>
+            <div class="field">
+              <%= f.label :email  %><span> ※</span><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", size: "30" %>
+            </div>
 
-  <div class="first-container">
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
+            <div class="field">
+              <%= f.label :password %>
+              <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> 文字以上)</em><span> ※</span>
+              <% end %><br />
+              <%= f.password_field :password, autocomplete: "off", size: "30" %>
+            </div>
 
-    <div class="field">
-      <%= f.label :password %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> 文字以上)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "off" %>
-    </div>
+            <div class="field">
+              <%= f.label :password_confirmation %><span> ※</span><br />
+              <%= f.password_field :password_confirmation, autocomplete: "off", size: "30" %>
+            </div>
+          </section>
 
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off" %>
-    </div>
-  </div>
+          <section class="second-container">
+            <div class="field">
+              <%= f.label :last_name %><br />
+              <%= f.text_field :last_name, autofocus: true, autocomplete: "off", placeholder: "姓（漢字）", size: "30" %>
+            </div>
 
-  <div class="second-container">
-    <div class="field">
-      <%= f.label :last_name %><br />
-      <%= f.text_field :last_name, autofocus: true, autocomplete: "off", placeholder: "姓（漢字）" %>
-    </div>
+            <div class="field">
+              <%= f.label :first_name %><br />
+              <%= f.text_field :first_name, autofocus: true, autocomplete: "off", placeholder: "名（漢字）", size: "30" %>
+            </div>
 
-    <div class="field">
-      <%= f.label :first_name %><br />
-      <%= f.text_field :first_name, autofocus: true, autocomplete: "off", placeholder: "名（漢字）" %>
-    </div>
+            <div class="field">
+              <%= f.label :last_name_kana %><br />
+              <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "off", placeholder: "姓（カナ）", size: "30" %>
+            </div>
 
-    <div class="field">
-      <%= f.label :last_name_kana %><br />
-      <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "off", placeholder: "姓（カナ）" %>
-    </div>
+            <div class="field">
+              <%= f.label :first_name_kana %><br />
+              <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "off", placeholder: "名（カナ）", size: "30" %>
+            </div>
 
-    <div class="field">
-      <%= f.label :first_name_kana %><br />
-      <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "off", placeholder: "名（カナ）" %>
-    </div>
+            <div class="field">
+              <%= f.fields_for :addresses do |g| %>
+                <div class="postal-code">
+                  <%= g.label :postal_code, "郵便番号" %><br />
+                  <%= g.text_field :postal_code, autofocus: true, autocomplete: "off", placeholder: "ハイフン不要", size: "30" %><br />
+                </div>
+                <div class="address">
+                  <%= g.label :address, "住所" %><br />
+                  <%= g.text_area :address, autofocus: true, autocomplete: "off", size: "29x3" %>
+                </div>
+              <% end %>
+            </div>
 
-    <div class="field">
-      <%= f.fields_for :addresses do |g| %>
-        <%= g.label :postal_code, "郵便番号" %><br />
-        <%= g.number_field :postal_code, autofocus: true, autocomplete: "off", placeholder: "ハイフン不要" %><br />
-        <%= g.label :address, "住所" %><br />
-        <%= g.text_field :address, autofocus: true, autocomplete: "off" %>
+            <div class="field">
+              <%= f.label :phone_number %><br />
+              <%= f.text_field :phone_number, autofocus: true, autocomplete: "off", placeholder: "ハイフン不要", maxlength: 11, size: "30" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :payment_method %><br />
+              <%= f.radio_button :payment_method, 1 %>代引き
+              <%= f.radio_button :payment_method, 2 %>銀行振込
+            </div>
+
+            <div class="field">
+              <%= f.label :greed_id %><br />
+              <%= f.select :greed_id,[['金',1],['癒',2],['力',3],['食',4],['愛',5]] %>
+            </div>
+
+            <div class="actions">
+              <%= f.submit "新規登録", class: "button" %>
+            </div>
+          </section>
+        </div>
       <% end %>
     </div>
-
-    <div class="field">
-      <%= f.label :phone_number %><br />
-      <%= f.number_field :phone_number, autofocus: true, autocomplete: "off", placeholder: "ハイフン不要", maxlength: 11 %>
-    </div>
-
-    <div class="field">
-      <%= f.label :payment_method %><br />
-      <%= f.radio_button :payment_method, 1 %>代引き
-      <%= f.radio_button :payment_method, 2 %>銀行振込
-    </div>
-
-    <div class="field">
-      <%= f.label :greed_id %><br />
-      <%= f.select :greed_id,[['金',1],['癒',2],['力',3],['食',4],['愛',5]] %>
-    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "新規登録" %>
-  </div>
-<% end %>
-</div>
-<%= render "users/shared/links" %>
+</main>

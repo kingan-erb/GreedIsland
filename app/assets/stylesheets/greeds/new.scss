@@ -1,0 +1,58 @@
+main {
+	width: 90%;
+	margin: 0 auto;
+    min-height: 700px;
+    height: auto !important;
+}
+.container {
+    padding-left: 80px;
+
+}
+.table1 {
+    width: 30%;
+}
+.table2 {
+    width: 80%;
+}
+h4 {
+	margin-top: 20px;
+}
+h3 {
+	margin: 20px 0;
+}
+
+label, th {
+	font-weight: 500;
+}
+.btn {
+    color: #FF82B2;
+}
+.square_btn{
+    display: inline-block;
+    padding: 0.25em 1em;
+    text-decoration: none;
+    background: #668ad8;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 4px #627295;
+    border-radius: 3px;
+}
+.square_btn:active {/*ボタンを押したとき*/
+    -ms-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    border-bottom: none;/*線を消す*/
+}
+.square_btn2{
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 0.25em 0.5em;
+    text-decoration: none;
+    color: #668ad8;
+    background: #ECECEC;
+    transition: .4s;
+  }
+.square_btn2:hover {
+    background: #00bcd4;
+    color: white;
+}

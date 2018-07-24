@@ -1,46 +1,41 @@
 
-欲カテゴリー追加
-<%= form_for @greed, url: greeds_path do |f| %>
-<div class="field">
-  <%= f.label :category %><br />
-  <%= f.text_field :greed_type %>
-</div>
-<div class="field">
-  <%= f.label :image %><br />
-  <%= f.attachment_field :greed_image_name %>
-</div>
-<div class="actions">
-  <%= f.submit "Create Greed" %>
-</div>
-<% end %>
+<%= stylesheet_link_tag 'greeds/new', :media => "all" %>
 
-<p class="notice"><%= notice %></p>
-
-<table>
-	<thead>
-		<tr>
-			<th>ID</th>
-			<th>アイコン</th>
-			<th></th>
-			<th>カテゴリー</th>
-			<th></th>
-			<th></th>
-			<th colspan="6"></th>
-		</tr>
-	</thead>
-
-	<tbody>
-	<% @greeds.each do |greed| %>
-		<tr>
-			<%= form_for greed, url: greed_path(greed.id) do |g| %>
-			<td><%= g.text_field :id %></td>
-			<td><%= attachment_image_tag greed, :greed_image_name, :fill, 40, 40, format: 'jpeg' %></td>
-			<td><%= g.attachment_field :greed_image_name %></td>
-			<td><%= g.text_field :greed_type %></td>
-			<td><%= g.submit 'Update Greed' %></td>
-			<td><%= link_to "Destroy", greed_path(greed.id), method: :delete, "data-confirm" => "本当に削除しますか?" %></td>
+<main>
+	<div class="container">
+		<div class="row">
+			<h3>欲カテゴリー追加</h3>
+			<%= form_for @greed, url: greeds_path do |f| %>
+			<table class='table table1'>
+			  	<tr>
+			    	<th><%= f.label :category %><th>
+			    	<th><%= f.text_field :greed_type %></th>
+			  	</tr>
+			  	<tr>
+			    	<th><%= f.label :image %><th>
+			    	<th><%= f.attachment_field :greed_image_name %></th>
+			  	</tr>
+			</table>
+			<%= f.submit "作成" , class: 'square_btn'%>
 			<% end %>
-		</tr>
-	<% end %>
-	</tbody>
-</table>
+		</div>
+		<div class="row">
+			<h4>一覧</h4>
+			<table class="table table2">
+				<% @greeds.each do |greed| %>
+				<%= form_for greed, url: greed_path(greed.id) do |g| %>
+				<tr>
+					<th class="id"><%= g.text_field :id %></th>
+					<th><%= attachment_image_tag greed, :greed_image_name, :fill, 80, 80, format: 'jpeg' %></th>
+					<th><%= g.attachment_field :greed_image_name %></th>
+					<th><%= g.text_field :greed_type %></th>
+					<th><%= g.submit '更新', class: 'square_btn2' %></th>
+					<th><%= link_to "削除", greed_path(greed.id), method: :delete, class: 'btn', "data-confirm" => "本当に削除しますか?" %></th>
+				</tr>
+				<% end %>
+				<% end %>
+			</table>
+		</div>
+	</div>
+</main>
+

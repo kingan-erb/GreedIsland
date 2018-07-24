@@ -14,12 +14,31 @@ main {
 .table {
 	margin-top: 10px;
 }
-.paginate {
-	margin-bottom: 10px;
+td,th {
+	text-align: center;
 }
-.pagination {
-	margin: 0 auto;
+th {
+	font-weight: 500;
 }
-.item-total {
-	padding-left: 700px;
+.category {
+	padding-left: 30px !important;
+}
+.product-name {
+	text-align: left;
+	width: 250px;
+}
+.artist {
+	text-align: left;
+}
+.product-link {
+	width: 80% !important;
+    height: 100% !important;
+    display: block !important;
+    padding: 10px 0 !important;
+}
+
+a.product-link:hover {
+    color: #23527c;
+    text-decoration: underline;
+    background-color: #C2EEFF !important;
 }

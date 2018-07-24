@@ -16,7 +16,7 @@ class User < ApplicationRecord
   validates :last_name_kana, presence: true
   validates :first_name_kana, presence: true
   validates :last_name_kana, presence: true
-  validates :phone_number, presence: true
+  validates :phone_number, presence: true, format: {with: /\A\d{10}$|^\d{11}\z/ }
   validates :last_name_kana, presence: true
   validates :greed_id, presence: true
   validates :customer_status, presence: true

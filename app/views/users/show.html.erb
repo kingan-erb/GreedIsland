@@ -1,92 +1,93 @@
+<!-- 読み込むscssファイル -->
+<%= stylesheet_link_tag "users/show", :media => "all" %>
 
-<div class="box">
-
-	<%= link_to "編集へ", edit_user_path(@user.id), class: "btn-sm" %>
-	<h4>アカウント情報</h4>
-	<table class='table'>
-	<p>登録内容</p>
-	  	<tr>
-	    	<th>お名前</th>
-	    	<th><sup><%= @user.last_name_kana %> <%= @user.first_name_kana %></sup><br>
-	    		<%= @user.last_name %> <%= @user.first_name %> </th>
-	  	</tr>
-	  	<tr>
-	    	<th>メールアドレス</th>
-	    	<th><%= @user.email %></th>
-	  	</tr>
-	  	<tr>
-	   	 	<th>電話番号</th>
-	    	<th><%= @user.phone_number %></th>
-	  	</tr>
-	  	<tr>
-	    	<th>私の欲</th>
-	    	<th><%= @user.greed.greed_type %></th>
-	  	</tr>
-	  	<tr>
-	    	<th>お支払い方法</th>
-	    	<th><% if @user.payment_method == 1 %>代引き<% else %>銀行振込<% end %></th>
-	  	</tr>
-	</table>
-</div>
-<div class="box">
-	<p>登録住所</p>
-	<% if @range != 1 %>
-	<form name="sort_form">
-	  お届け先
-	    <select name="sort" onchange="dropsort()">
-	        <option value=""> --変更-- </option>
-	        <% if @user.default_address != 1 %><option value="/users/<%= @user.id%>/addresses?sort=1">1番</option><% end %>
-	        <% if @user.default_address != 2 %><option value="/users/<%= @user.id%>/addresses?sort=2">2番</option><% end %>
-	        <% if @user.default_address != 3 && @range == 3 %><option value="/users/<%= @user.id%>/addresses?sort=3">3番</option><% end %>
-	    </select>
-	</form>
-	<% end %>
-
-	<table class='table'>
-		<% nos = 1..@range %>
-		<% @addresses.zip(nos).each do |address, no| %>
-	  <tr>
-	  	<td><% if @user.default_address == no %><div class="red"><%= no %>番を選択中</div><% else %><%= no %>番<% end %></td>
-	    <td><%= address.postal_code %></td>
-	    <td><%= address.address %></td>
-	    <td><% if @range != 1 && @user.default_address != no %><%= link_to "削除", address_path(address.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn-sm" %><% end %></td>
-	  </tr>
-	  	<% end %>
-	</table>
-</div>
-<%= link_to "退会", user_path(@user.id), method: :delete, "data-confirm" => "本当に退会しますか？", class: "btn-sm" %>
-
-<div class="box2">
-	<h4>購入履歴</h4>
-	<table class='table'>
-		<tr>
-			<th>注文番号</th>
-			<th>商品画像</th>
-			<th>購入金額</th>
-			<th>購入日</th>
-			<th>ステータス</th>
-			<th></th>
-		</tr>
-		<!-- ユーザーごとの購入履歴詳細ループ　※作成途中です -->
-		<% @orders.each do |order| %>
-			<% order.order_items.each_with_index do |order_item, j| %>
-				<tr>
-					<% if j < 1 %>
-					    <td> <%= order.id %> </td>
-					    <td> <%= attachment_image_tag order_item, :o_product_image_name, :fill, 30, 30,format: 'jpeg' %>  •••</td>
-						<td> <%= order.total_price %></td>
-						<td> <%= order.order_datetime.strftime('%Y年%m月%d日') %></td>
-						<% if order.delivery_status == 1 %>
-							<td><%= "出荷準備中" %></td>
-						<% elsif order.delivery_status == 2 %>
-							<td><%= "配送中" %></td>
-						<% else %>
-							<td><%= "配達済み" %></td>
+<main class="main">
+	<div class="for-background">
+		<div class="container-wrapper">
+			<h2 class="page-title">マイアカウント</h2>
+			<hr class="hr-first">
+			<div class="containers">
+				<!-- 購入履歴情報 -->
+				<div class="main-container">
+					<h4 class="container-title">購入履歴</h4>
+					<table class='table'>
+						<tr>
+							<th>注文番号</th>
+							<th>商品画像</th>
+							<th>購入金額</th>
+							<th>購入日</th>
+							<th>ステータス</th>
+							<th></th>
+						</tr>
+						<% @orders.each do |order| %>
+							<% order.order_items.each_with_index do |order_item, j| %>
+								<tr>
+									<% if j < 1 %>
+									    <td> <%= order.id %> </td>
+									    <td> <%= attachment_image_tag order_item, :o_product_image_name, :fill, 30, 30,format: 'jpeg' %>  •••</td>
+										<td> <%= order.total_price %> 円</td>
+										<td> <%= order.order_datetime.strftime('%Y年%m月%d日') %></td>
+										<% if order.delivery_status == 1 %>
+											<td><%= "出荷準備中" %></td>
+										<% elsif order.delivery_status == 2 %>
+											<td><%= "配送中" %></td>
+										<% else %>
+											<td><%= "配達済み" %></td>
+										<% end %>
+										<td> <%= link_to "詳細", user_order_path(order.user_id, order.id) %> </td>
+									<% end %>
+								</tr>
+							<% end %>
 						<% end %>
-						<td> <%= link_to "詳細", user_order_path(order.user_id, order.id) %> </td>
-					<% end %>
-				</tr>
-			<% end %>
-		<% end %>
-	</table>
-</div>
+					</table>
+				</div>
+				<!-- ユーザー情報 -->
+				<div  class="side-container">
+					<div class="first-box">
+						<h4 class="container-title">登録内容</h4>
+						<div class='my-info'>
+						    <p class="user-kana-name"><%= @user.last_name_kana %> <%= @user.first_name_kana %></p>
+						    <p class="user-name"><%= @user.last_name %> <%= @user.first_name %></p>
+						  	<p class="user-email"><%= @user.email %></p>
+						  	<p class="user-phone">
+						  		<% if @user.phone_number.length == 10 %>
+						  			<%= @user.phone_number[0,2] %>-<%= @user.phone_number[2,4] %>-<%= @user.phone_number[6,4] %></p>
+							  	<% else %>
+							  		<%= @user.phone_number[0,3] %>-<%= @user.phone_number[3,4] %>-<%= @user.phone_number[7,4] %></p>
+							  	<% end %>
+						  	<p class="user-greed">My欲：<%= attachment_image_tag @user.greed, :greed_image_name, :fill, 50, 50, format: 'jpeg', class: "greed-image" %></p>
+						</div>
+					</div>
+					<div class="second-box">
+						<p>登録住所</p>
+						<% if @range != 1 %>
+							<form name="sort_form">
+							  お届け先
+							    <select name="sort" onchange="dropsort()">
+							        <option value=""> --変更-- </option>
+							        <% if @user.default_address != 1 %><option value="/users/<%= @user.id%>/addresses?sort=1">1番</option><% end %>
+							        <% if @user.default_address != 2 %><option value="/users/<%= @user.id%>/addresses?sort=2">2番</option><% end %>
+							        <% if @user.default_address != 3 && @range == 3 %><option value="/users/<%= @user.id%>/addresses?sort=3">3番</option><% end %>
+							    </select>
+							</form>
+						<% end %>
+						<table class='table'>
+							<% nos = 1..@range %>
+							<% @addresses.zip(nos).each do |address, no| %>
+						  <tr>
+						  	<!-- <td><% if @user.default_address == no %><div class="red"><%= no %>番を選択中</div><% else %><%= no %>番<% end %></td> -->
+						    <td> 〒<%= address.postal_code[0,3] %>-<%= address.postal_code[3,4] %><br><%= address.address %></td>
+						    <td><% if @range != 1 && @user.default_address != no %><%= link_to "削除", address_path(address.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn-sm" %><% end %></td>
+						  </tr>
+						  	<% end %>
+						</table>
+						<div class="buttons">
+							<%= link_to "編集", edit_user_path(@user.id), class: "edit-button" %>
+							<%= link_to "退会", user_path(@user.id), method: :delete, "data-confirm" => "本当に退会しますか？", class: "destroy-button" %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>

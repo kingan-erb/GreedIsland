@@ -34,51 +34,25 @@
 	background-color: #280b28;
 	margin: 0;
 }
+.nav {
+	float: right;
+}
 .header-text{
 	color: white;
 }
 
-.box {
-	float: left;
-	width: 33%;
+/*ページネーション*/
+.paginate {
+	margin-bottom: 10px;
 }
-td,th {
-	text-align: center;
+.pagination {
+	margin: 0 auto;
 }
-th {
-	padding: 0px 5px;
-}
-.No {
-	width: 30px;
-}
-.create {
-	width: 20%;
-}
-.unsubscribe {
-	background-color: #D3D3D3;
-}
-.nav {
-	float: right;
-}
-.product-box {
-	float:left;
-	width: 25%;
-}
-.box1 {
-	width: 45%;
-	display: inline-block;
-}
-.red {
-	color: red;
-}
-.box2 {
-	width: 100%;
-	float:right;
-}
-.total {
-	float:right;
+.item-total {
+	padding-left: 600px;
 }
 
+/*フッター*/
 footer {
 	background-color: #280b28;
 }
@@ -96,6 +70,3 @@ footer {
 	float: right;
 	padding-right: 30px;
 }
-
-
-

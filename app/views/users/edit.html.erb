@@ -3,7 +3,7 @@
 	<%= link_to "詳細へ", user_path(@user.id), class: "btn-sm" %>
 
 	<h4>アカウント編集</h4>
-	<%= link_to "パスワード変更はこちら", password_edit_path, class: "btn-sm" %>
+	<%= link_to "パスワード変更はこちら", edit_password_path, class: "btn-sm" %>
 	<%= form_for @user, url: user_path(@user.id), class: 'form-horizontal' do |f| %>
 	<table class='table'>
 	  	<tr>
@@ -20,7 +20,7 @@
 	  	</tr>
 	  	<tr>
 	   	 	<th><%= f.label :phone_number %></th>
-	    	<th><%= f.number_field :phone_number %></th>
+	    	<th><%= f.text_field :phone_number, placeholder: "ハイフン不要" %></th>
 	  	</tr>
 	  	<tr>
 	    	<th><%= f.label :greed_id %></th>
@@ -38,7 +38,7 @@
 	<table>
 		<tr>
 	  		<th>住所</th>
-	    	<th><%= m.number_field :postal_code, class: 'form-control' %></th>
+	    	<th><%= m.text_field :postal_code, class: 'form-control' %></th>
 	    	<th><%= m.text_field :address, class: 'form-control' %></th>
 	    </tr>
 	</table>
@@ -50,25 +50,24 @@
 	</div>
 </div>
 <% if @user.addresses.length != 3 %>
-<div class="box1">
-	住所新規追加
-	<%= form_for @addressnew, url: address_new_path do |form| %>
+	<div class="box1">
+		住所新規追加
+		<%= form_for @addressnew, url: address_path do |form| %>
+			<div class="field">
+			  <%= form.label :postal_code, "郵便番号" %>
+			  <%= form.text_field :postal_code, placeholder: "ハイフン不要" %>
+			 </div>
 
-	<div class="field">
-	  <%= form.label :postal_code, "郵便番号" %>
-	  <%= form.number_field :postal_code %>
-	 </div>
+			<div class="field">
+			  <%= form.label :address, "住所" %>
+			  <%= form.text_field :address %>
+			</div>
 
-	<div class="field">
-	  <%= form.label :address, "住所" %>
-	  <%= form.text_field :address %>
+			<div class="actions">
+			  <%= form.submit "住所登録" %>
+			</div>
+		<% end %>
 	</div>
-
-	<div class="actions">
-	  <%= form.submit "住所登録" %>
-	</div>
-<% end %>
-</div>
 <% end %>
 
 

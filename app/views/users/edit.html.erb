@@ -52,7 +52,7 @@
 <% if @user.addresses.length != 3 %>
 	<div class="box1">
 		住所新規追加
-		<%= form_for @addressnew, url: address_path do |form| %>
+		<%= form_for @addressnew, url: create_address_path do |form| %>
 			<div class="field">
 			  <%= form.label :postal_code, "郵便番号" %>
 			  <%= form.text_field :postal_code, placeholder: "ハイフン不要" %>

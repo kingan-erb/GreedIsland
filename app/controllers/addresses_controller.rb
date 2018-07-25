@@ -29,7 +29,7 @@ before_action :ensure_correct_user
       @user.update(:default_address => @user.default_address - 1)
       @address.destroy
       if administrator_signed_in?
-        redirect_to admin_user_path(@user.id)
+        redirect_to admin_show_user_path(@user.id)
         flash[:notice] = "削除されました"
       else
         redirect_to user_path(@user.id)

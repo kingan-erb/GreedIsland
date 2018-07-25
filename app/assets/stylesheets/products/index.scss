@@ -1,5 +1,5 @@
 
-// カテゴリ別商品一覧（仮にここに）
+// カテゴリ別商品一覧
 .eye-catch{
 	width: 100%;
 	height: 350px;
@@ -9,18 +9,22 @@
 a:hover img{
 	opacity: 0.7;
 }
-.product-index-header{
+.category-choice,.product-index-header{
 	text-align: center;
 	padding-top: 40px;
 	padding-bottom: 30px;
 }
-.product-index-header h3{
+.category-choice h3,.product-index-header h3{
 	font-size: 20px;
 	font-weight: bold;
 }
-
-
 // サイドバーなし3列
+.sort-box{
+	// padding: 20px 0;
+	width: 100px;
+	margin-left: auto;
+	margin-right: 135px;
+}
 .product-index{
 	display: flex;
 	justify-content: center;
@@ -29,16 +33,16 @@ a:hover img{
 .product-box{
 	background-color: white;
 	position: relative;
-	width: 270px;
-	height: 405px;
-	margin: 65px;
+	width: 230px;
+	height: 380px;
+	margin: 80px;
 	margin-top: 20px;
 	margin-bottom: 60px;
 	border-bottom: 1px solid #EFEFEF; //不要？？
 }
 .product-image{
-	width: 270px;
-	height: 270px;
+	width: 230px;
+	height: 230px;
 	border: 1px solid #EFEFEF;
 }
 .product-text{
@@ -50,6 +54,10 @@ a:hover img{
 	margin-bottom: 20px;
 }
 .product-text-box{
+	margin-top: 25px;
+}
+.product-name > p{
+	font-size: 15px;
 	// padding: 5px;
 	// padding-left: 15px;
 }
@@ -60,14 +68,14 @@ a:hover img{
 	position: absolute;
 	bottom: 10px;
 	text-align: center;
-	font-size: 13px;
+	font-size: 14px;
 	color: gray;
 }
 .product-stock{
 	position: absolute;
 	bottom: 10px;
 	left: 70px;
-	font-size: 14px;
+	font-size: 15px;
 	color: red;
 }
 

@@ -1,58 +1,74 @@
+<%= stylesheet_link_tag 'products/admin_show', :media => 'all' %>
 
-<%= link_to "編集ページへ", admin_edit_product_path(@product.id) %><br>
-<%= link_to "ユーザー側詳細へ", product_path(@product.id) %><br>
 
-<div class="box">
-    <h4>登録情報</h4>
-    <table class='table'>
-      <tr><th><%= attachment_image_tag @product, :product_image_name, :fill, 100, 100, format: 'jpeg' %></th></tr>
-      <tr>
-        <th>シングル名/アルバム名</th>
-        <td><%= @product.product_name %></td>
-      </tr>
-      <tr>
-        <th>アーティスト名</th>
-        <td><%= @product.artist_name %></td>
-      </tr>
-      <tr>
-        <th>値段</th>
-        <td><%= @product.price %></td>
-      </tr>
-      <tr>
-        <th>在庫</th>
-        <td><%= @product.inventry_status %></td>
-      </tr>
-      <tr>
-        <th>レーベル名</th>
-        <td><%= @product.label_name %></td>
-      </tr>
-      <tr>
-        <th>ジャンル</th>
-        <td><%= @product.genre_name %></td>
-      </tr>
-    </table>
-</div>
+<div class='container product-box'>
+  <div class="row">
+    <div class="nav-box">
+      <div class="title-box">
+        <h4>登録情報</h4>
+      </div>
+      <div class="links">
+        <%= link_to '編集へ', admin_edit_product_path(@product.id), class: "edit-box"%>
+        <%= link_to 'ユーザー側表示', product_path(@product.id),class: "usershow-box" %>
+      </div>
+    </div>
+      <table class='table'>
+        <tr>
+          <th>ジャケット画像</th>
+          <td><%= attachment_image_tag @product, :product_image_name, :fill, 100, 100, format: 'jpeg' %></td>
+        </tr>
+        <tr>
+          <th>シングル名/アルバム名</th>
+          <td><%= @product.product_name %></td>
+        </tr>
+        <tr>
+          <th>アーティスト名</th>
+          <td><%= @product.artist_name %></td>
+        </tr>
+        <tr>
+          <th>価格</th>
+          <td><%= @product.price.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1,') %></td>
+        </tr>
+        <tr>
+          <th>在庫</th>
+          <td><%= @product.inventry_status.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1,') %></td>
+        </tr>
+        <tr>
+          <th>レーベル名</th>
+          <td><%= @product.label_name %></td>
+        </tr>
+        <tr>
+          <th>ジャンル</th>
+          <td><%= @product.genre_name %></td>
+        </tr>
+        <tr>
+          <th>売上</th>
+          <td><%= @product.sales_quantity.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1,') %></td>
+        </tr>
+      </table>
+  </div>
 
-<div class="box">
-    <h4>曲リスト</h4>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Disk</th>
-                <th>曲順</th>
-                <th>Music_name</th>
-                <th colspan="3"></th>
-            </tr>
-        </thead>
+  <div class="row">
+      <h4>曲リスト</h4>
+      <table class="table">
+          <thead>
+              <tr>
+                  <th>Disk</th>
+                  <th>曲順</th>
+                  <th>曲名</th>
+                  <th colspan="3"></th>
+              </tr>
+          </thead>
 
-        <tbody>
-        <% @musics.each do |music| %>
-            <tr>
-                <td><%= music.disk_number %></td>
-                <td><%= music.music_number %></td>
-                <td><%= music.music_name %></td>
-            </tr>
-        <% end %>
-        </tbody>
-    </table>
+          <tbody>
+          <% @musics.each do |music| %>
+              <tr>
+                  <td><%= music.disk_number %></td>
+                  <td><%= music.music_number %></td>
+                  <td><%= music.music_name %></td>
+              </tr>
+          <% end %>
+          </tbody>
+      </table>
+  </div>
 </div>

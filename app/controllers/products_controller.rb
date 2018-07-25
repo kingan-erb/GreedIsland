@@ -3,6 +3,7 @@ before_action :authenticate_administrator!, except: [:index, :search, :show]
 
 ##　ユーザー　##
   USER_PER = 12
+  SEARCH_PER = 20
   #カテゴリー別商品一覧
   def index
     @greed = Greed.find(params[:id])
@@ -13,8 +14,9 @@ before_action :authenticate_administrator!, except: [:index, :search, :show]
 
   #商品名検索
   def search
-    @products = Product.search(params[:search]).page(params[:page]).per(USER_PER)
+    @products = Product.search(params[:search]).page(params[:page]).per(SEARCH_PER)
     @search_form_flag = true
+    @cart_item = CartItem.new
   end
 
   #商品詳細

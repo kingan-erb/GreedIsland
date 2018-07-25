@@ -14,8 +14,10 @@
 			</div>
 		</div>
         <div class="row">
-        	<div class="product-index-header">
+        	<div class="product-index-title">
         		<h3>欲を満たすCD</h3>
+        	</div>
+        	<div class="product-index-header">
         		<div class="sort-box">
 				<form name="sort_form">
 	    			<select name="sort" onchange="dropsort()">
@@ -36,7 +38,7 @@
 					<div class="product-image-box">
 						<div class="product-image">
 							<%= link_to product_path(product.id) do %>
-								<%= attachment_image_tag product,:product_image_name, :fill,230,230 %>
+								<%= attachment_image_tag product,:product_image_name, :fill,220,220 %>
 							<% end %>
 						</div>
 					</div>
@@ -57,7 +59,7 @@
 			</div>
 		</div>
 	</div>
-</div>
 	<div class="paginate">
 		<%= paginate @products %>
 	</div>
+</div>

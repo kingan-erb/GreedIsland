@@ -25,7 +25,7 @@
 									<% if j < 1 %>
 									    <td> <%= order.id %> </td>
 									    <td> <%= attachment_image_tag order_item, :o_product_image_name, :fill, 30, 30,format: 'jpeg' %>  •••</td>
-										<td> <%= order.total_price %> 円</td>
+										<td> <%= order.total_price.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1,') %> 円</td>
 										<td> <%= order.order_datetime.strftime('%Y年%m月%d日') %></td>
 										<% if order.delivery_status == 1 %>
 											<td><%= "出荷準備中" %></td>
@@ -75,7 +75,6 @@
 							<% nos = 1..@range %>
 							<% @addresses.zip(nos).each do |address, no| %>
 						  <tr>
-						  	<!-- <td><% if @user.default_address == no %><div class="red"><%= no %>番を選択中</div><% else %><%= no %>番<% end %></td> -->
 						    <td> 〒<%= address.postal_code[0,3] %>-<%= address.postal_code[3,4] %><br><%= address.address %></td>
 						    <td><% if @range != 1 && @user.default_address != no %><%= link_to "削除", address_path(address.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn-sm" %><% end %></td>
 						  </tr>

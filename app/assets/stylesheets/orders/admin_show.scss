@@ -1,0 +1,94 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
+main {
+	font-family: 'Noto Sans Japanese', sans-serif;
+	font-weight: 200;
+}
+
+.container-wrapper {
+	max-width: 1180px;
+	margin: 0 auto;
+	padding-bottom: 60px;
+
+	.page-title {
+		margin-top: 60px;
+	}
+
+	hr{
+		clear: both;
+	    border-top: solid #bebebe;
+	    border-width: 1px 0 0;
+	    margin: 30px 0;
+	    height: 0;
+	}
+
+	.containers {
+		display: flex;
+	}
+
+	.main-container {
+		flex-grow: 2;
+		margin-right: 30px;
+	}
+
+	.side-container {
+		flex-grow: 1;
+	}
+}
+
+.main-container {
+
+	.container-title {
+		margin-bottom: 20px;
+	}
+
+	.order-quantity, .total-quantity {
+		padding-left: 18px;
+	}
+}
+.side-container {
+	.first-box {
+		margin-bottom: 20px;
+
+		.container-title {
+			margin-bottom: 20px;
+		}
+
+		.delivery-status, .user-name {
+			margin-bottom: 15px;
+		}
+
+		.user-address {
+			margin-bottom: 30px;
+		}
+
+		.status-change {
+
+			border: 0.5px solid;
+
+			padding: 20px 0;
+			text-align: center;
+
+			.change-button {
+			  display       : inline-block;
+			  font-size     : 10pt;        /* 文字サイズ */
+			  text-align    : center;      /* 文字位置   */
+			  padding       : 12px 12px;   /* 余白       */
+			  background    : rgba(255, 255, 255, 0.8);     /* 背景色     */
+			  color         : rgba(0, 0, 0, 0.8);     /* 文字色     */
+			  line-height   : 1em;         /* 1行の高さ  */
+			  transition    : .3s;         /* なめらか変化 */
+			  box-shadow    : 3px 3px 1px #666666;  /* 影の設定 */
+			  border        : 0.5px solid rgba(0, 0, 0, 0.8);    /* 枠の指定 */
+			  position: relative;
+			  text-decoration: none;
+			  text-transform: uppercase;
+			}
+			.change-button:hover {
+			  box-shadow    : none;        /* カーソル時の影消去 */
+			  color         : rgba(255, 255, 255, 0.8);     /* 背景色     */
+			  background    : rgba(0, 0, 0, 0.8);     /* 文字色     */
+			}
+		}
+
+	}
+}

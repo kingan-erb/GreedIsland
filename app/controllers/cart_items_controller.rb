@@ -33,11 +33,20 @@ before_action :ensure_correct_user, except: [:show, :index, :create]
       #すでに同じ商品がカートに追加されていた場合
         added_item = CartItem.new(quantity_params)
         exiting_item.quantity += added_item.quantity
-        #在庫オーバーするかどうかチェック
+        #在庫オーバーと10個以上購入するかどうかチェック
         if exiting_item.quantity > exiting_item.product.inventry_status
           exiting_item.quantity = exiting_item.product.inventry_status
           if exiting_item.save
             flash[:notice] = '在庫切れです。これ以上追加できません。'
+            redirect_to cart_items_path
+          else
+            flash[:notice] = '処理に失敗しました。'
+            redirect_to product_path(added_product.id)
+          end
+        elsif exiting_item.quantity > 10
+          exiting_item.quantity = 10
+          if exiting_item.save
+            flash[:notice] = '購入上限です。これ以上追加できません。'
             redirect_to cart_items_path
           else
             flash[:notice] = '処理に失敗しました。'

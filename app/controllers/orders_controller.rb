@@ -141,8 +141,8 @@ before_action :authenticate_administrator!, only: [:index, :admin_show, :edit, :
     @order = Order.find(params[:id])
     @order.update(order_params)
     flash[:notice] = "配達状況を変更しました"
-    redirect_to show_admin_order_path
-  end
+    redirect_to admin_show_order_path
+    end
   #
   def update
   end

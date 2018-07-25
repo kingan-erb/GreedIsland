@@ -44,3 +44,6 @@ Rails.application.config.assets.precompile += %w( cart_items/index.scss )
 #orders
 Rails.application.config.assets.precompile += %w( orders/admin_index.scss )
 Rails.application.config.assets.precompile += %w( orders/new.scss )
+Rails.application.config.assets.precompile += %w( orders/admin_show.scss )
+Rails.application.config.assets.precompile += %w( orders/show.scss )
+

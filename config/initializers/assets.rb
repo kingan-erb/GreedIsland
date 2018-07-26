@@ -31,6 +31,7 @@ Rails.application.config.assets.precompile += %w( users/sessions/new.scss )
 Rails.application.config.assets.precompile += %w( users/password_edit.scss )
 Rails.application.config.assets.precompile += %w( users/show.scss )
 Rails.application.config.assets.precompile += %w( users/admin_index.scss )
+Rails.application.config.assets.precompile += %w( users/delivery.scss )
 
 
 #products
@@ -43,4 +44,6 @@ Rails.application.config.assets.precompile += %w( products/admin_new.scss )
 Rails.application.config.assets.precompile += %w( orders/admin_index.scss )
 Rails.application.config.assets.precompile += %w( orders/admin_show.scss )
 Rails.application.config.assets.precompile += %w( orders/show.scss )
+Rails.application.config.assets.precompile += %w( orders/thanks.scss )
+Rails.application.config.assets.precompile += %w( thanks.js )
 

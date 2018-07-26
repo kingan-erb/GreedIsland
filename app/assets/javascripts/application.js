@@ -17,7 +17,7 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require nested_form_fields
-//= require_tree .
+// require_tree .
 function dropsort() {
     var browser = document.sort_form.sort.value;
     location.href = browser

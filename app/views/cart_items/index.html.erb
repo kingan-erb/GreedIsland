@@ -14,9 +14,12 @@
 			<%= flash[:quantity_notice] %>
 		<% end %>
 	</div>
-	<% if @cart_items.nil? %>
-		<div>
-			<h2>現在カートに商品はありません。</h2>
+	<% if @cart_items.empty? %>
+		<div class="no-item-body">
+			<div class="no-item-text">
+				<h4>現在カートに商品はありません。</h4>
+				<p><%= link_to '買い物にもどる', products_path(current_user.greed.id), class: 'no-item-button' %></p>
+			</div>
 		</div>
 	<% else %>
 		<div class ="row">
@@ -36,7 +39,7 @@
 							<p class="item-name"><%= product.product_name %></p>
 							<p class="item-artist"><%= product.artist_name %></p>
 							<div class="item-price">
-								<p>¥  <%= product.price %></p>
+								<p>¥  <%= product.price.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse %></p>
 								<% subtotal = product.price * cart_item.quantity %>
 								<% @sum += subtotal %>
 							</div>
@@ -88,7 +91,10 @@
 				<div class="buy-box">
 					<div class="total-price-box">
 						<label>合計</label>
-						<span><span class="total-mark">¥</span><span class="total-price"><%= @sum.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse %></span></span>
+						<span>
+							<span class="total-mark">¥</span>
+							<span class="total-price"><%= @sum.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse %></span>
+						</span>
 					</div>
 					<% if @sum != 0 %>
 						<div class="buy-field">

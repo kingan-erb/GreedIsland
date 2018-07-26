@@ -4,20 +4,31 @@
 <div class="product-body">
 	<div class="eye-catch">
 	</div>
-	<div class="container">
-		<div class="row">
-			<div class="category-choice">
-				<h3>他の欲をみる</h3>
-				<p>欲選択に合わせて実装</p>
-				<div class="category-image">
-				</div>
-			</div>
+	<div class="categories">
+		<div class=" container sub-nav">
+			<ul class="sub-nav-ul">
+				<% @greeds.each do |greed| %>
+					<% if greed.id == @greed.id %>
+						<li><%= link_to products_path(greed.id) do %>
+								<p class="spot-light"><%= greed.greed_type %><span class="spot-light text-pop">POP</span></p>
+							<% end %>
+						</li>
+						<% else %>
+							<li><%= link_to products_path(greed.id) do %>
+									<p><%= greed.greed_type %><span class="text-pop">POP</span></p>
+								<% end %>
+							</li>
+						<% end %>
+					<% end %>
+				</ul>
 		</div>
+	</div>
+	<div class="container">
         <div class="row">
-        	<div class="product-index-title">
-        		<h3>欲を満たすCD</h3>
-        	</div>
         	<div class="product-index-header">
+        		<div class="product-index-title">
+        		<h3>欲を満たすCD</h3>
+        		</div>
         		<div class="sort-box">
 				<form name="sort_form">
 	    			<select name="sort" onchange="dropsort()">

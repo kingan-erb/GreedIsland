@@ -23,6 +23,7 @@ Rails.application.config.assets.precompile += %w( administrators/sessions/new.sc
 
 #greeds
 Rails.application.config.assets.precompile += %w( greeds/new.scss )
+Rails.application.config.assets.precompile += %w( greeds/index.scss )
 
 # users
 Rails.application.config.assets.precompile += %w( users/registrations/new.scss )
@@ -31,7 +32,9 @@ Rails.application.config.assets.precompile += %w( users/password_edit.scss )
 Rails.application.config.assets.precompile += %w( users/show.scss )
 Rails.application.config.assets.precompile += %w( users/edit.scss )
 Rails.application.config.assets.precompile += %w( users/admin_index.scss )
+Rails.application.config.assets.precompile += %w( users/admin_show.scss )
 Rails.application.config.assets.precompile += %w( users/admin_edit.scss )
+
 
 
 #products
@@ -39,11 +42,18 @@ Rails.application.config.assets.precompile += %w( products/index.scss )
 Rails.application.config.assets.precompile += %w( products/show.scss )
 Rails.application.config.assets.precompile += %w( products/admin_index.scss )
 Rails.application.config.assets.precompile += %w( products/admin_new.scss )
+Rails.application.config.assets.precompile += %w( products/admin_show.scss )
+Rails.application.config.assets.precompile += %w( products/search.scss )
+Rails.application.config.assets.precompile += %w( products/admin_edit.scss )
 
+
+
+#cart-items
 Rails.application.config.assets.precompile += %w( cart_items/index.scss )
 
 #orders
 Rails.application.config.assets.precompile += %w( orders/admin_index.scss )
+Rails.application.config.assets.precompile += %w( orders/new.scss )
 Rails.application.config.assets.precompile += %w( orders/admin_show.scss )
 Rails.application.config.assets.precompile += %w( orders/show.scss )
 

@@ -1,0 +1,120 @@
+.container-wrapper {
+	margin: 0 auto;
+	max-width: 1150px;
+	padding-top: 50px;
+
+
+	hr{
+		clear: both;
+	    border-top: solid #bebebe;
+	    border-width: 1px 0 0;
+	    margin: 30px 0;
+	    height: 0;
+	}
+
+
+	.greed-img-1, .greed-img-2, .greed-img-3, .greed-img-4, .greed-img-5 {
+		border-radius: 50%;
+		width:			250px;
+		height:			250px;
+		overflow:		hidden;
+		position:		relative;
+		box-shadow: 2px 2px 20px;
+		transition: 0.3s;
+	}
+
+	.greed-img-1 {
+		border: solid 1.5px gold;
+	}
+
+	.greed-img-2 {
+		border: solid 1.5px lightgreen;
+	}
+
+	.greed-img-3 {
+		border: solid 1.5px orange;
+	}
+
+	.greed-img-4 {
+		border: solid 1.5px blue;
+	}
+
+	.greed-img-5 {
+		border: solid 1.5px red;
+	}
+	.greed-img-1:hover, .greed-img-2:hover, .greed-img-3:hover, .greed-img-4:hover, .greed-img-5:hover {
+		box-shadow: 5px 15px 50px 10px rgba(0,0,0,0.5) ;
+	}
+
+	.greed-img-1 .mask, .greed-img-2 .mask, .greed-img-3 .mask, .greed-img-4 .mask, .greed-img-5 .mask {
+		width:			100%;
+		height:			100%;
+		position:		absolute;
+		top:			0;
+		left:			0;
+		background-color:	rgba(0,0,0,0.4);
+		-webkit-transition:	all 0.4s ease;
+		transition:		all 0.4s ease;
+		-webkit-transform:	scale(0);
+		transform:		scale(0);
+	}
+	.greed-img-1:hover .mask {
+		-webkit-transform:	scale(1);
+		transform:		scale(1);
+		background: url(/images/money.jpg) no-repeat;
+		background-size: cover;
+		background-position: center center;
+	}
+
+	.greed-img-2:hover .mask {
+		-webkit-transform:	scale(1);
+		transform:		scale(1);
+		background: url(/images/heal.jpg) no-repeat;
+		background-size: cover;
+		background-position: center center;
+	}
+
+	.greed-img-3:hover .mask {
+		-webkit-transform:	scale(1);
+		transform:		scale(1);
+		background: url(/images/power.jpg) no-repeat;
+		background-size: cover;
+		background-position: center center;
+	}
+
+	.greed-img-4:hover .mask {
+		-webkit-transform:	scale(1);
+		transform:		scale(1);
+		background: url(/images/food.jpg) no-repeat;
+		background-size: cover;
+		background-position: center center;
+	}
+
+	.greed-img-5:hover .mask {
+		-webkit-transform:	scale(1);
+		transform:		scale(1);
+		background: url(/images/love.jpg) no-repeat;
+		background-size: cover;
+		background-position: center center;
+	}
+
+
+	.upper-stage {
+		display: flex;
+		justify-content: space-around;
+		margin-bottom: 100px;
+	}
+
+	.lower-stage {
+		display: flex;
+
+		.greed-img-4 {
+			margin-left: 250px;
+		}
+
+		.greed-img-5 {
+			margin-left: 150px;
+		}
+	}
+
+}

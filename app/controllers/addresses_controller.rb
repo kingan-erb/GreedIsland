@@ -9,7 +9,7 @@ before_action :ensure_correct_user
     @address.user_id = @user.id
     if @address.save
       if administrator_signed_in?
-        redirect_to edit_admin_user_path(@user.id)
+        redirect_to admin_edit_user_path(@user.id)
         flash[:notice] = "作成されました"
       else
         redirect_to edit_user_path(@user.id)
@@ -38,7 +38,7 @@ before_action :ensure_correct_user
     elsif
       @address.destroy
       if administrator_signed_in?
-        redirect_to admin_user_path(@user.id)
+        redirect_to admin_show_user_path(@user.id)
         flash[:notice] = "削除されました"
       else
         redirect_to user_path(@user.id)

@@ -1,73 +1,100 @@
 
-<div class="box1">
-	<%= link_to "詳細へ", user_path(@user.id), class: "btn-sm" %>
+<%= stylesheet_link_tag 'users/edit', :media => "all" %>
 
-	<h4>アカウント編集</h4>
-	<%= link_to "パスワード変更はこちら", edit_password_path, class: "btn-sm" %>
-	<%= form_for @user, url: user_path(@user.id), class: 'form-horizontal' do |f| %>
-	<table class='table'>
-	  	<tr>
-	    	<th><%= f.label :last_name, "お名前" %></th>
-	    	<th>姓<%= f.text_field :last_name %> 名<%= f.text_field :first_name %></th>
-	  	</tr>
-	  	<tr>
-	    	<th><%= f.label :last_name, "フリガナ" %></th>
-	    	<th>セイ<%= f.text_field :last_name_kana %> メイ<%= f.text_field :first_name_kana %></th>
-	  	</tr>
-	  	<tr>
-	    	<th><%= f.label :email %></th>
-	    	<th><%= f.email_field :email %></th>
-	  	</tr>
-	  	<tr>
-	   	 	<th><%= f.label :phone_number %></th>
-	    	<th><%= f.text_field :phone_number, placeholder: "ハイフン不要" %></th>
-	  	</tr>
-	  	<tr>
-	    	<th><%= f.label :greed_id %></th>
-	    	<th><%= f.select :greed_id,[['金',1],['癒',2],['力',3],['食',4],['愛',5]] %></th>
-	  	</tr>
-	  	<tr>
-	    	<th><%= f.label :payment_method %></th>
-	    	<th><%= f.radio_button :payment_method, 1 %>代引き<%= f.radio_button :payment_method, 2 %>銀行振込</th>
-	  	</tr>
-	</table>
-
-	<p>住所の編集</p>
-	<% @user.addresses.each do |address| %>
-	<%= f.fields_for :addresses, address do |m| %>
-	<table>
-		<tr>
-	  		<th>住所</th>
-	    	<th><%= m.text_field :postal_code, class: 'form-control' %></th>
-	    	<th><%= m.text_field :address, class: 'form-control' %></th>
-	    </tr>
-	</table>
-	<% end %>
-	<% end %>
-	<div>
-		<%= f.submit "Update User" %>
-		<% end %>
-	</div>
-</div>
-<% if @user.addresses.length != 3 %>
-	<div class="box1">
-		住所新規追加
-		<%= form_for @addressnew, url: create_address_path do |form| %>
-			<div class="field">
-			  <%= form.label :postal_code, "郵便番号" %>
-			  <%= form.text_field :postal_code, placeholder: "ハイフン不要" %>
-			 </div>
-
-			<div class="field">
-			  <%= form.label :address, "住所" %>
-			  <%= form.text_field :address %>
+<main>
+	<div class="container">
+		<div class="row">
+			<h2>マイアカウント編集</h2>
+			<div class="link">
+				<%= link_to "詳細", user_path(@user.id), class: "show-btn" %>
+				<%= link_to "パスワード変更はこちら", edit_password_path, class: "btn-sm" %>
+			</div>
+			<hr class="hr-first">
+		</div>
+		<div class="row">
+			<%= form_for @user, url: user_path(@user.id) do |f| %>
+		 	<div class="col-lg-6">
+				<table class='table'>
+				  	<tr class="table-top">
+				    	<th><%= f.label :last_name, "お名前" %></th>
+				    	<th><%= f.text_field :last_name %>　<%= f.text_field :first_name %></th>
+				  	</tr>
+				  	<tr>
+				    	<th><%= f.label :last_name, "フリガナ" %></th>
+				    	<th><%= f.text_field :last_name_kana %>　<%= f.text_field :first_name_kana %></th>
+				  	</tr>
+				  	<tr>
+				    	<th><%= f.label :email %></th>
+				    	<th><%= f.email_field :email, class: 'email-field' %></th>
+				  	</tr>
+				  	<tr>
+				   	 	<th><%= f.label :phone_number %></th>
+				    	<th><%= f.text_field :phone_number, placeholder: "ハイフン不要" %></th>
+				  	</tr>
+				  	<tr>
+				    	<th><%= f.label :payment_method %></th>
+				    	<th class="payment"><%= f.radio_button :payment_method, 1 %> 代引き　<%= f.radio_button :payment_method, 2 %> 銀行振込</th>
+				  	</tr>
+				  	<tr>
+				    	<th class="my-greed"><%= f.label :greed_id, 'My欲' %></th>
+				    	<th>
+				    		<label for="user_greed_id_1" class="radio-label" >
+				    			<%= f.radio_button :greed_id, 1, class: 'radio' %>
+				    			<%= attachment_image_tag Greed.find_by(id: 1), :greed_image_name, :fill, 50, 50, format: 'jpeg' %>
+				    		</label>
+				    		<label for="user_greed_id_2" class="radio-label" >
+				    			<%= f.radio_button :greed_id, 2, class: 'radio' %>
+				    			<%= attachment_image_tag Greed.find_by(id: 2), :greed_image_name, :fill, 50, 50, format: 'jpeg' %>
+				    		</label>
+				    		<label for="user_greed_id_3" class="radio-label" >
+				    			<%= f.radio_button :greed_id, 3, class: 'radio' %>
+				    			<%= attachment_image_tag Greed.find_by(id: 3), :greed_image_name, :fill, 50, 50, format: 'jpeg' %>
+				    		</label>
+				    		<label for="user_greed_id_4" class="radio-label" >
+				    			<%= f.radio_button :greed_id, 4, class: 'radio' %>
+				    			<%= attachment_image_tag Greed.find_by(id: 4), :greed_image_name, :fill, 50, 50, format: 'jpeg' %>
+				    		</label>
+				    		<label for="user_greed_id_5" class="radio-label" >
+				    			<%= f.radio_button :greed_id, 5, class: 'radio' %>
+				    			<%= attachment_image_tag Greed.find_by(id: 5), :greed_image_name, :fill, 50, 50, format: 'jpeg' %>
+				    		</label>
+				    	</th>
+				  	</tr>
+				</table>
 			</div>
 
-			<div class="actions">
-			  <%= form.submit "住所登録" %>
-			</div>
-		<% end %>
-	</div>
-<% end %>
 
+			<div class="col-lg-6 box">
+				<p class="address-text">住所の編集</p>
+				<% @user.addresses.each do |address| %>
+				<%= f.fields_for :addresses, address do |m| %>
+				    <div class="address-box">
+				    	〒 <%= m.text_field :postal_code, class: 'post-code' %>　<%= m.text_field :address, class: 'address-field' %>
+				    </div>
+				<% end %>
+				<% end %>
+				<div class="btn-box">
+					<%= f.submit "保存", class: 'update-btn' %>
+				</div>
+				<% end %>
+
+				<hr class="hr-first">
+
+				<% if @user.addresses.length != 3 %>
+				<div class="box1">
+					<p class="address-text">新規住所追加</p>
+					<%= form_for @addressnew, url: create_address_path do |form| %>
+					<div class="address-box">
+						〒 <%= form.text_field :postal_code, placeholder: "郵便番号", class: 'post-code' %>　<%= form.text_field :address, placeholder: "住所", class: 'address-field' %>
+					</div>
+					<div class="create-box">
+					  <%= form.submit "登録", class: 'create-btn' %>
+					</div>
+					<% end %>
+				</div>
+			<% end %>
+			</div>
+		</div>
+	</div>
+</main>
 

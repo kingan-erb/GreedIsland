@@ -39,7 +39,7 @@ before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :ed
 		   flash[:notice] = "変更されました"
 		elsif administrator_signed_in?
 			@user.update(:default_address => params[:sort])
-		    redirect_to admin_user_path(@user.id)
+		    redirect_to admin_show_user_path(@user.id)
 		    flash[:notice] = "変更されました"
 		else
 			redirect_to greeds_path
@@ -129,10 +129,10 @@ before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :ed
 	def admin_update
     	@user = User.find(params[:id])
 		if @user.update(user_params)
-		   redirect_to admin_user_path(@user.id)
+		   redirect_to admin_show_user_path(@user.id)
 		   flash[:notice] = "更新されました"
 		else
-		   redirect_to admin_user_index_path
+		   redirect_to admin_edit_user_index_path
 		   flash[:alert] = "エラーが発生しました"
 		end
 	end

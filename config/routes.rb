@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   get 'greeds/:id/products' => 'products#index', as:'products'
   get 'greeds/products/search' => 'products#search',as:'search_products'
   get 'greeds/products/:id' => 'products#show',as:'product'
+  get 'greeds/:id/products/recommend' => 'products#recommend',as:'recommend_products'
   #管理者
   get 'admin/products' => 'products#admin_index', as: 'admin_products'
   get 'admin/greed/:id/products' => 'products#admin_category', as: 'admin_show_category'

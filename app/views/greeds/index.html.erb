@@ -7,7 +7,7 @@
 			<h1 class="page-title">欲の選択</h1>
 			<hr class="hr-first">
 			<div class="upper-stage">
-				<%= link_to products_path(@greeds[0].id) do %>
+				<%= link_to recommend_products_path(@greeds[0].id) do %>
 					<div class="greed-img-1">
 						<%= attachment_image_tag @greeds[0], :greed_image_name, :fill, 250, 250, format: 'jpeg', class: "greed-image" %>
 						<div class="mask">
@@ -15,7 +15,7 @@
 						</div>
 					</div>
 				<% end %>
-				<%= link_to products_path(@greeds[1].id) do %>
+				<%= link_to recommend_products_path(@greeds[1].id) do %>
 					<div class="greed-img-2">
 						<%= attachment_image_tag @greeds[1], :greed_image_name, :fill, 250, 250, format: 'jpeg', class: "greed-image" %>
 						<div class="mask">

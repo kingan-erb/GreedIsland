@@ -23,6 +23,7 @@ Rails.application.config.assets.precompile += %w( administrators/sessions/new.sc
 
 #greeds
 Rails.application.config.assets.precompile += %w( greeds/new.scss )
+Rails.application.config.assets.precompile += %w( greeds/index.scss )
 
 # users
 Rails.application.config.assets.precompile += %w( users/registrations/new.scss )

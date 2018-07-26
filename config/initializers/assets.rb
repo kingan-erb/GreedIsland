@@ -40,7 +40,9 @@ Rails.application.config.assets.precompile += %w( products/show.scss )
 Rails.application.config.assets.precompile += %w( products/admin_index.scss )
 Rails.application.config.assets.precompile += %w( products/admin_new.scss )
 Rails.application.config.assets.precompile += %w( products/admin_show.scss )
+Rails.application.config.assets.precompile += %w( products/search.scss )
 Rails.application.config.assets.precompile += %w( products/admin_edit.scss )
+
 
 
 #cart-items

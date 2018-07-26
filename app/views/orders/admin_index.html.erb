@@ -53,7 +53,7 @@
             <% else %>
                <td><%= "配達済み" %></td>
             <% end %>
-            <td><%= link_to "詳細へ", admin_show_order_path(order.user_id, order.id), class: "square_btn" %></td>
+            <td><%= link_to "詳細", admin_show_order_path(order.user_id, order.id), class: "square_btn" %></td>
           </tr>
         </tbody>
         <% end %>

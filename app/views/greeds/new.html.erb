@@ -21,9 +21,9 @@
 		</div>
 		<div class="row">
 			<h4>一覧</h4>
+			<% @greeds.each do |greed| %>
+			<%= form_for greed, url: greed_path(greed.id) do |g| %>
 			<table class="table table2">
-				<% @greeds.each do |greed| %>
-				<%= form_for greed, url: greed_path(greed.id) do |g| %>
 				<tr>
 					<th class="id"><%= g.text_field :id %></th>
 					<th><%= attachment_image_tag greed, :greed_image_name, :fill, 80, 80, format: 'jpeg' %></th>
@@ -32,9 +32,9 @@
 					<th><%= g.submit '更新', class: 'square_btn2' %></th>
 					<th><%= link_to "削除", greed_path(greed.id), method: :delete, class: 'btn', "data-confirm" => "本当に削除しますか?" %></th>
 				</tr>
-				<% end %>
-				<% end %>
 			</table>
+			<% end %>
+			<% end %>
 		</div>
 	</div>
 </main>

@@ -1,0 +1,154 @@
+main {
+	width: 90%;
+	margin: 0 auto;
+	height: 700px;
+}
+h2 {
+	padding-top: 20px;
+}
+hr {
+	clear: both;
+    border-top: solid #bebebe;
+    border-width: 1px 0 0;
+    margin: 30px 0;
+    height: 0;
+}
+.table-top th {
+	border-top: 0px !important;
+}
+.a-input-text, input[type=text], input[type=email] {
+    background-color: #fff;
+    height: 31px;
+    padding: 3px 7px;
+    line-height: normal;
+}
+.a-input-text, input[type=text], input[type=email] {
+    border: 1px solid #a6a6a6;
+    border-top-color: #949494;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(255,255,255,.5), 0 1px 0 rgba(0,0,0,.07) inset;
+    outline: 0;
+}
+input {
+    -webkit-transition: all 100ms linear;
+    transition: all 100ms linear;
+    font-family: "Hiragino Kaku Gothic Pro W3","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+    line-height: 19px;
+    color: #111;
+    font-weight: 500;
+}
+input[type="text"], input[type=email] {
+  border: 0;
+  box-shadow: 0 0 1px 0 rgba(0,0,0,0.5);
+}
+input[type="text"]:focus, input[type=email]:focus {
+  box-shadow: 0 0 7px 0 rgba(255,153,0,1);
+  outline: 0;
+}
+.email-field {
+	width: 370px;
+}
+.box {
+	padding-left: 60px;
+}
+.address-text {
+	font-weight: 600;
+	padding-bottom: 5px;
+}
+.address-box {
+	padding-bottom: 10px;
+}
+.post-code {
+	width: 90px;
+}
+.address-field {
+	width: 300px;
+}
+.btn-box {
+	padding-top: 20px;
+}
+.update-btn {
+	display       : inline-block;
+	font-size     : 15pt;        /* 文字サイズ */
+	text-align    : center;      /* 文字位置   */
+	padding       : 12px 12px;   /* 余白       */
+	background    : #2E8B57	;     /* 背景色     */
+	color         : rgba(255, 255, 255, 0.8);     /* 文字色     */
+	line-height   : 1em;         /* 1行の高さ  */
+	transition    : .3s;         /* なめらか変化 */
+	box-shadow    : 3px 3px 1px #666666;  /* 影の設定 */
+	border        : 0.5px solid rgba(0, 0, 0, 0.8);    /* 枠の指定 */
+}
+.update-btn:hover {
+	box-shadow    : none;        /* カーソル時の影消去 */
+	color         : rgba(0, 0, 0, 0.8);     /* 背景色     */
+	background    : rgba(255, 255, 255, 0.8);     /* 文字色     */
+}
+.create-btn {
+	display       : inline-block;
+	font-size     : 15pt;        /* 文字サイズ */
+	text-align    : center;      /* 文字位置   */
+	padding       : 12px 12px;   /* 余白       */
+	background    : #ff8181;     /* 背景色     */
+	color         : rgba(0, 0, 0, 0.8);     /* 文字色     */
+	line-height   : 1em;         /* 1行の高さ  */
+	transition    : .3s;         /* なめらか変化 */
+	box-shadow    : 3px 3px 1px #666666;  /* 影の設定 */
+	border        : 0.5px solid rgba(0, 0, 0, 0.8);    /* 枠の指定 */
+}
+.create-btn:hover {
+	box-shadow    : none;        /* カーソル時の影消去 */
+	color         : rgba(0, 0, 0, 0.8);     /* 背景色     */
+	background    : rgba(255, 255, 255, 0.8);     /* 文字色     */
+}
+.create-box {
+	padding-top: 15px;
+}
+.btn-sm {
+	font-size: 15px;
+}
+.show-btn {
+	display       : inline-block;
+	font-size     : 15pt;        /* 文字サイズ */
+	text-align    : center;      /* 文字位置   */
+	padding       : 6px 6px;   /* 余白       */
+	background    : #668ad8;     /* 背景色     */
+	color         : rgba(255, 255, 255, 0.8);     /* 文字色     */
+	line-height   : 1em;         /* 1行の高さ  */
+	transition    : .3s;         /* なめらか変化 */
+	box-shadow    : 3px 3px 1px #666666;  /* 影の設定 */
+	border        : 0.5px solid rgba(0, 0, 0, 0.8);    /* 枠の指定 */
+}
+.show-btn:hover {
+	box-shadow    : none;        /* カーソル時の影消去 */
+	color         : rgba(0, 0, 0, 0.8);     /* 背景色     */
+	background    : rgba(255, 255, 255, 0.8);     /* 文字色     */
+}
+label {
+	padding-top: 10px;
+	padding-left: 10px;
+}
+.link {
+	padding-top: 10px;
+}
+.my-greed {
+	padding-top: 20px !important;
+}
+.radio-label {
+	padding-top: 5px;
+	padding-left: 15px;
+}
+.payment {
+	padding-top: 17px !important;
+}
+.radio {
+	display: none;
+}
+.radio + .greed_image_name {
+	border: 1px #bebebe solid;
+	border-radius: 50%;
+	opacity: 0.2;
+}
+.radio:checked + .greed_image_name {
+	opacity: 1;
+}

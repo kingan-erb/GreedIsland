@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   #ユーザー
   resources :users
   get 'users/:id/addresses' => 'users#address_update'
-  post 'users/:id/address/new' => 'addresses#create'
+  post 'users/:id/address/new' => 'addresses#create', as: 'create_address'
   get 'users/:id/password/new' => 'users#password_edit', as: 'edit_password'
   patch 'users/:id/password' => 'users#password_update'
   get 'service' => 'users#service', as:'service'

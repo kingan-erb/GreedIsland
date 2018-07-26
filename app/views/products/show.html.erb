@@ -23,7 +23,7 @@
 					<p>在庫：<span class="inventry"> <%= @inventry_symbol %></span></p>
 				</div>
 				<% if @no_inventry == true %>
-					<p>現在お取り扱いできません</p>
+					<p class="no-inventry">現在お取り扱いできません</p>
 				<% else %>
 					<%= form_for(@cart_item, url:create_cart_item_path(@product.id)) do |f| %>
 						<%= f.label :quantity, '数量' %>

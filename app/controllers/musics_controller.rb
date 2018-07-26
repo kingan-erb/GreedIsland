@@ -7,10 +7,9 @@ class MusicsController < ApplicationController
 		@music = Music.new(music_params)
 		@music.product_id = @product.id
 		if  @music.save
-			redirect_to edit_product_path(@product.id)
-			flash[:notice] = "追加されました"
+			redirect_to admin_edit_product_path(@product.id)
 		else
-			redirect_to edit_product_path(@product.id)
+			redirect_to admin_edit_product_path(@product.id)
 			flash[:alert] = "エラーが発生しました"
 		end
 	end

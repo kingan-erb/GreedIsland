@@ -51,7 +51,7 @@
               <td class="date"><%= user.created_at.to_s(:db) %></td>
               <td class="greed"><%= attachment_image_tag user.greed, :greed_image_name, :fill, 30, 30, format: 'jpeg' %></td>
               <td class="user-name"><%= link_to admin_show_user_path(user.id), class: 'user-link' do %><%= user.last_name %> <%= user.first_name %><% end %></td>
-              <td><% if user.deleted_at.nil? %><%= link_to "Edit", admin_edit_user_path(user.id), class: "square_btn" %><% end %></td>
+              <td><% if user.deleted_at.nil? %><%= link_to "編集", admin_edit_user_path(user.id), class: "square_btn" %><% end %></td>
             </tr>
           </tbody>
           <% end %>

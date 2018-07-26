@@ -17,7 +17,7 @@
 						<%= link_to "買い物を続ける", greeds_path, class: "continue-button" %>
 					</div>
 					<div class="my-page-link">
-						<%= link_to "注文詳細を見る", greeds_path, class: "show-button" %>
+						<%= link_to "注文詳細を見る", user_order_path(params[:id]), class: "show-button" %>
 					</div>
 				</div>
 			</div>
@@ -25,8 +25,7 @@
 				<%= link_to "注文No.:#{@order.id}", user_order_path(params[:id]) %>
 			</div>
 			<div class="payment-info">
-				<p>支払いについては<%= link_to "こちら", delivery_path %>をご確認ください</p>
-				<div class="bank-transfer"></div>
+				<p>支払いについては<%= link_to "こちら", payment_path %>をご確認ください</p>
 			</div>
 		</div>
 	</div>

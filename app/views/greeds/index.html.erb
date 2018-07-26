@@ -23,7 +23,7 @@
 						</div>
 					</div>
 				<% end %>
-				<%= link_to products_path(@greeds[2].id) do %>
+				<%= link_to recommend_products_path(@greeds[2].id) do %>
 					<div class="greed-img-3">
 						<%= attachment_image_tag @greeds[2], :greed_image_name, :fill, 250, 250, format: 'jpeg', class: "greed-image" %>
 						<div class="mask">
@@ -33,7 +33,7 @@
 				<% end %>
 			</div>
 			<div class="lower-stage">
-				<%= link_to products_path(@greeds[3].id) do %>
+				<%= link_to recommend_products_path(@greeds[3].id) do %>
 					<div class="greed-img-4">
 						<%= attachment_image_tag @greeds[3], :greed_image_name, :fill, 250, 250, format: 'jpeg', class: "greed-image" %>
 						<div class="mask">
@@ -41,7 +41,7 @@
 						</div>
 					</div>
 				<% end %>
-				<%= link_to products_path(@greeds[4].id) do %>
+				<%= link_to recommend_products_path(@greeds[4].id) do %>
 					<div class="greed-img-5">
 						<%= attachment_image_tag @greeds[4], :greed_image_name, :fill, 250, 250, format: 'jpeg', class: "greed-image" %>
 						<div class="mask">

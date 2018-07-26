@@ -11,6 +11,7 @@
 				<div class="main-container">
 					<h4 class="container-title">注文内容</h4>
 					<p class="order-date">注文日：<%= @order.order_datetime.strftime('%Y年%m月%d日 %p %H:%M') %></p>
+					<p class="order-id">注文番号：<%= @order.id %></p>
 					<table class='table'>
 						<tr>
 							<th>商品名</th>

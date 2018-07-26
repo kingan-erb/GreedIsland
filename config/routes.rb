@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   get 'service' => 'users#service', as:'service'
   get 'privacy' => 'users#privacy', as:'privacy'
   get 'contact' => 'users#contact', as:'contact'
-  get 'delivery' => "users#delivery", as: "delivery"
+  get 'payment' => "users#payment", as: "payment"
   #管理者
   get 'admin/users' => 'users#admin_index', as:'admin_users'
   get 'admin/users/:id/edit' => 'users#admin_edit', as:'admin_edit_user'

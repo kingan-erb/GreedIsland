@@ -7,6 +7,7 @@ before_action :authenticate_administrator!, except: [:index, :search, :show]
   #カテゴリー別商品一覧
   def index
     @greed = Greed.find(params[:id])
+    @greeds = Greed.all
     @products = @greed.products.order(params[:sort]).order(sales_quantity: :desc).page(params[:page]).per(USER_PER)
     @navi = params[:sort]
     @search_form_flag = true #ヘッダー分岐

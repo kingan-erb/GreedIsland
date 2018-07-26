@@ -33,6 +33,8 @@ Rails.application.config.assets.precompile += %w( users/show.scss )
 Rails.application.config.assets.precompile += %w( users/edit.scss )
 Rails.application.config.assets.precompile += %w( users/admin_index.scss )
 Rails.application.config.assets.precompile += %w( users/admin_show.scss )
+Rails.application.config.assets.precompile += %w( users/admin_edit.scss )
+
 
 
 #products

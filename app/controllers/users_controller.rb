@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 before_action :authenticate_administrator!, only: [:admin_index, :admin_show, :admin_edit, :admin_update]
-before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :edit, :update]
+before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :edit, :update, :password_edit, :password_update]
 
 ## 共通　##
 	#利用規約

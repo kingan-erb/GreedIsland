@@ -55,7 +55,6 @@ before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :ed
 	def password_update
 	    @user = User.find(params[:id])
 	    if @user.update_with_password(user_params)
-	      # Sign in the user by passing validation in case their password changed
 	      	bypass_sign_in(@user)
 			flash[:notice] = "パスワードを変更しました"
 			redirect_to user_path

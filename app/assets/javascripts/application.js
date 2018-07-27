@@ -28,6 +28,7 @@ function dropcid() {
 }
 $( document ).ready(function() {
     $('.alert').fadeOut(3000);
+    $(".alert-text").removeClass('hide');
 });
 
 

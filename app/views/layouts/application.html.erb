@@ -114,8 +114,16 @@
     <% end %>
 
     </nav>
-    <% if alert %><p class="alert alert-danger"><%= alert %></p><% end %>
-    <% if notice %><p class="alert alert-danger"><%= notice %></p><% end %>
+    <% if alert %>
+      <div class="alert-text hide">
+        <p class="alert alert-danger"><%= alert %></p>
+      </div>
+    <% end %>
+    <% if notice %>
+      <div class="alert-text hide">
+        <p class="alert alert-danger"><%= notice %></p>
+      </div>
+    <% end %>
     <% end %>
 
     <%= yield %>
@@ -124,20 +132,19 @@
     <!-- フッター -->
     <div class="clearfix"></div>
     <footer class="clearfix">
-      <div class="footer-nav">
-        <ul id="nav2" class="nav navbar-nav">
-        <% if user_signed_in? %>
-          <li><%= link_to '利用規約', service_path, class: "" %></li>
-          <li><%= link_to 'プライバシーポリシー', privacy_path, class: "" %></li>
-          <li><%= link_to 'お問い合わせ先', contact_path, class: "" %></li>
-          <li><%= link_to '支払いについて', payment_path, class: "" %></li>
-          <li><%= link_to '退会', user_path(current_user.id), class: "" %></li>
-        <% end %>
-        </ul>
-      </div>
-        <div class="copy">
-           <p>©︎2018 Infratop.inc</p>
-        </div>
+
+      <ul id="nav2" class="nav navbar-nav">
+        <li><%= link_to '利用規約', service_path, class: "" %></li>
+        <li><%= link_to 'プライバシーポリシー', privacy_path, class: "" %></li>
+        <li><%= link_to 'お問い合わせ先', contact_path, class: "" %></li>
+      <% if user_signed_in? %>
+        <li><%= link_to '退会', user_path(current_user.id), class: "" %></li>
+      <% end %>
+    </ul>
+    <div class="copy">
+       <p>CopyRight Infratop.inc</p>
+    </div>
+
     </footer>
     <% end %>
 

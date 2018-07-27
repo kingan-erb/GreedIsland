@@ -14,7 +14,6 @@
 
 .container-wrapper {
 	width: 100%;
-	height: 1152px;
 	margin: 0 auto;
 	padding-top: 100px;
 	text-align: center;
@@ -93,4 +92,16 @@
 
 .first-container {
 	margin-bottom: 20px;
+}
+.devise-alert{
+	color: red;
+	padding-left: 20px;
+	padding-top: 10px;
+	width: 300px;
+}
+.field_with_errors {
+	input, textarea {
+	border: 1px solid red;
+  	outline: 0;
+  }
 }

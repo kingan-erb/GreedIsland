@@ -31,8 +31,13 @@
 
 /*ヘッダー*/
 .navbar{
-	background-color: #280b28;
 	margin: 0;
+}
+.navbar-admin{
+	background-color: #fff;
+}
+.navbar-user{
+	background-color: #280b28;
 }
 .nav {
 	float: right;

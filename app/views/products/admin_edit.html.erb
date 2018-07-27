@@ -81,6 +81,7 @@
 				<% end %>
 
 				<h4 class="add-music">曲追加</h4>
+				<%= form_for @music, url: admin_new_music_path do |form| %>
 				<table class="table">
 					<thead>
 						<tr>
@@ -90,17 +91,15 @@
 							<th colspan="3"></th>
 						</tr>
 					</thead>
-
 					<tbody>
-						<%= form_for @music, url: admin_new_music_path do |form| %>
 						<tr>
 							<td><%= form.select :disk_number,[['Disc1',1],['Disc2',2],['Disc3',3],['Disc4',4]] %></td>
 							<td><%= form.text_field :music_name %></td>
 							<td><%= form.submit "追加", class: 'add-btn' %></td>
 						</tr>
-						<% end %>
 					</tbody>
 				</table>
+				<% end %>
 			</div>
 		</div>
 	</div>

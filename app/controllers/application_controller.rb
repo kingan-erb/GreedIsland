@@ -23,7 +23,12 @@ class ApplicationController < ActionController::Base
 	end
 
 	def after_sign_out_path_for(resource)
-	  	new_user_session_path
+
+    if resource == :user
+      new_user_session_path
+    else
+      new_administrator_session_path
+        end
 	end
 
 end

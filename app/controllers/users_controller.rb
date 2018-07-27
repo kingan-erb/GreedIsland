@@ -87,10 +87,7 @@ before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :ed
 	#パスワード更新
 	def password_update
 	    @user = User.find(current_user.id)
-	    if @user.password == @user.current_password
-    	   redirect_to edit_password_path
-		   flash[:alert] = "パスワードが変更されていません"
-		else
+
 		    if @user.update_with_password(user_params)
 		      # Sign in the user by passing validation in case their password changed
 		      bypass_sign_in(@user)
@@ -100,7 +97,7 @@ before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :ed
 		      flash[:notice] = "パスワードが正しく設定されていません"
 		      redirect_to edit_password_path
 		    end
-		end
+
 	end
 
 ##  管理者  ##

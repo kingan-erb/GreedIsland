@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+before_action :authenticate_user!
 before_action :authenticate_administrator!, only: [:admin_index, :admin_show, :admin_edit, :admin_update]
 before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :edit, :update, :password_edit, :password_update]
 
@@ -39,12 +40,28 @@ before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :ed
 		   flash[:notice] = "変更されました"
 		elsif administrator_signed_in?
 			@user.update(:default_address => params[:sort])
-		    redirect_to admin_user_path(@user.id)
+		    redirect_to admin_show_user_path(@user.id)
 		    flash[:notice] = "変更されました"
 		else
 			redirect_to greeds_path
 			flash[:alert] = "エラーが発生しました"
 		end
+	end
+	#パスワード変更
+	def password_edit
+		@user = User.find(params[:id])
+	end
+	#パスワード更新
+	def password_update
+	    @user = User.find(params[:id])
+	    if @user.update_with_password(user_params)
+	      	bypass_sign_in(@user)
+			flash[:notice] = "パスワードを変更しました"
+			redirect_to user_path
+	    else
+	        flash[:notice] = "パスワードが正しく設定されていません"
+	        redirect_to edit_password_path
+	    end
 	end
 
 ##  ユーザー  ##
@@ -80,25 +97,7 @@ before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :ed
 		   flash[:alert] = "エラーが発生しました"
 		end
 	end
-	#パスワード変更
-	def password_edit
-		@user = User.find(current_user.id)
-	end
-	#パスワード更新
-	def password_update
-	    @user = User.find(current_user.id)
 
-		    if @user.update_with_password(user_params)
-		      # Sign in the user by passing validation in case their password changed
-		      bypass_sign_in(@user)
-		      flash[:notice] = "パスワードを変更しました"
-		      redirect_to user_path
-		    else
-		      flash[:notice] = "パスワードが正しく設定されていません"
-		      redirect_to edit_password_path
-		    end
-
-	end
 
 ##  管理者  ##
 	#ページング
@@ -126,10 +125,10 @@ before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :ed
 	def admin_update
     	@user = User.find(params[:id])
 		if @user.update(user_params)
-		   redirect_to admin_user_path(@user.id)
+		   redirect_to admin_show_user_path(@user.id)
 		   flash[:notice] = "更新されました"
 		else
-		   redirect_to admin_user_index_path
+		   redirect_to admin_edit_user_index_path
 		   flash[:alert] = "エラーが発生しました"
 		end
 	end

@@ -52,23 +52,36 @@
 	padding-left: 600px;
 }
 
+body {
+	 display: flex;
+	 flex-direction: column;
+	 min-height: 100vh;
+}
+
 /*フッター*/
 footer {
+	height: 100px;
 	background-color: #280b28;
+	margin-top: auto;
 }
-.service {
-	width: 90%;
-	margin: 0 auto;
+.service-info, .privacy-info, .contact-info, .payment-info {
+	max-width: 90%;
+	margin-bottom: 50px;
 }
-#nav2 {
-	float:left;
+.footer-nav {
+	display: flex;
+	justify-content: space-around;
 }
 .copy {
 	color: white;
 	height: 50px;
 	line-height: 50px;
-	float: right;
 	padding-right: 30px;
+	text-align: center;
+
+	p {
+		margin:0;
+	}
 }
 .alert-text {
     padding: 0 15px;

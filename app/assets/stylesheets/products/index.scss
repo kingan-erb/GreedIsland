@@ -1,13 +1,71 @@
-
 // カテゴリ別商品一覧
 .product-body{
 	background-color: #fafafa;
 }
 .eye-catch{
 	width: 100%;
-	height: 350px;
+	height: 400px;
+	// background-color: green;
 	background-image: url(/assets/gold.jpg);
-	margin-bottom: 50px;
+	// margin-bottom: 50px;
+}
+//他の欲へのリンク
+.categories{
+	height: 75px;
+	// background-color: #EFEFEF;
+	background-color: #fff;
+}
+.sub-nav{
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.sub-nav-ul{
+	width: 600px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 0;
+}
+.sub-nav-ul li{
+	list-style: none;
+	position: relative;
+}
+.sub-nav-ul p{
+	margin-bottom: 0;
+}
+.sub-nav-ul .text-pop{
+	font-size: 14px;
+	padding-left: 2px;
+	letter-spacing: 0.05em;
+}
+.sub-nav-ul li a{
+	color: #333;
+	font-size: 18px;
+}
+.sub-nav-ul li a:hover{
+	// text-decoration: none;
+}
+.sub-nav-ul li .spot-light{
+	color: #00d098;
+	font-size: 18px;
+}
+.sub-nav-ul li .spot-light .text-pop{
+	font-size: 14px;
+}
+.sub-nav-ul li:not(:last-child):after{
+	content: "";
+    height: 20px;
+    width: 1px;
+    display: block;
+    background-color: #a5a5a5;
+    position: absolute;
+    top: 50%;
+    left: 180%;
+    // right: 0;
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
 }
 img{
 	transition: 0.2s;
@@ -15,12 +73,12 @@ img{
 a:hover img{
 	opacity: 0.7;
 }
-.category-choice,.product-index-title{
+.product-index-title{
 	text-align: center;
 	padding-top: 40px;
-	padding-bottom: 20px;
+	padding-bottom: 40px;
 }
-.category-choice h3,.product-index-title h3{
+.product-index-title h3{
 	font-size: 20px;
 	font-weight: bold;
 }
@@ -33,7 +91,7 @@ a:hover img{
 }
 .product-index-header{
 	padding-right: 15px;
-	padding-top: 50px;
+	margin-top: 50px;
 	background-color: white;
 }
 .product-index{

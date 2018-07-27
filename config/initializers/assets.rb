@@ -15,6 +15,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 
 Rails.application.config.assets.precompile += %w( order.js )
+Rails.application.config.assets.precompile += %w( recommend.js )
 # ワイルドカードでうまくいかなかったため仮に
 
 # administrators
@@ -33,11 +34,18 @@ Rails.application.config.assets.precompile += %w( users/show.scss )
 Rails.application.config.assets.precompile += %w( users/edit.scss )
 Rails.application.config.assets.precompile += %w( users/admin_index.scss )
 Rails.application.config.assets.precompile += %w( users/admin_show.scss )
+Rails.application.config.assets.precompile += %w( users/admin_edit.scss )
+Rails.application.config.assets.precompile += %w( users/service.scss )
+Rails.application.config.assets.precompile += %w( users/privacy.scss )
+Rails.application.config.assets.precompile += %w( users/contact.scss )
+Rails.application.config.assets.precompile += %w( users/payment.scss )
+
 
 
 #products
 Rails.application.config.assets.precompile += %w( products/index.scss )
 Rails.application.config.assets.precompile += %w( products/show.scss )
+Rails.application.config.assets.precompile += %w( products/recommend.scss )
 Rails.application.config.assets.precompile += %w( products/admin_index.scss )
 Rails.application.config.assets.precompile += %w( products/admin_new.scss )
 Rails.application.config.assets.precompile += %w( products/admin_show.scss )
@@ -54,4 +62,6 @@ Rails.application.config.assets.precompile += %w( orders/admin_index.scss )
 Rails.application.config.assets.precompile += %w( orders/new.scss )
 Rails.application.config.assets.precompile += %w( orders/admin_show.scss )
 Rails.application.config.assets.precompile += %w( orders/show.scss )
+Rails.application.config.assets.precompile += %w( orders/thanks.scss )
+Rails.application.config.assets.precompile += %w( thanks.js )
 

@@ -16,19 +16,18 @@ class ApplicationController < ActionController::Base
 	def after_sign_in_path_for(resource)
 		case resource
 		when User
-        	greeds_path
-      	when Administrator
-       		admin_products_path
-      	end
+    	products_path(@user.greed_id)
+  	when Administrator
+   		admin_products_path
+  	end
 	end
 
 	def after_sign_out_path_for(resource)
-
     if resource == :user
       new_user_session_path
     else
       new_administrator_session_path
-        end
-	end
+    end
+  end
 
 end

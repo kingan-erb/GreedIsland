@@ -1,26 +1,32 @@
-<div class="thanks_box">
-	<div class="thanks_image">
-		<p><img src="image.png"></p>
-		<p>ありがとうございやす！</p>
+<!-- 読み込むscssファイル -->
+<%= stylesheet_link_tag "orders/thanks", :media => "all" %>
+<%= javascript_include_tag "thanks.js" %>
+
+
+<main class="main">
+	<div class="for-background">
+		<div class="container-wrapper">
+			<div class="page-title">
+				<h1>ご注文ありがとうございます！・・・でも、本当に</h1>
+			</div>
+			<div class="thanks-img">
+				<%= image_tag "thanks.png", size: "400x400", alt: "thanks!", class: "thanks-image" %>
+				<div class="thanks-text">
+					<p class="title">魅力的な商品はまだたくさんあります！</p>
+					<div class="top-page-link">
+						<%= link_to "買い物を続ける", greeds_path, class: "continue-button" %>
+					</div>
+					<div class="my-page-link">
+						<%= link_to "注文詳細を見る", user_order_path(params[:id]), class: "show-button" %>
+					</div>
+				</div>
+			</div>
+			<div class ="order-info">
+				<%= link_to "注文No.:#{@order.id}", user_order_path(params[:id]) %>
+			</div>
+			<div class="payment-info">
+				<p>支払いについては<%= link_to "こちら", payment_path %>をご確認ください</p>
+			</div>
+		</div>
 	</div>
-	<div class ="order_information">
-		<%= link_to "注文No.:#{@order.id}", user_order_path(params[:id]) %>
-	</div>
-	<div>
-		<table>
-			<thead>
-				<tr>決済情報</tr>
-			</thead>
-			<tbody>
-				<tr>代金引換
-					<td>代引情報記入</td>
-					<td>代引情報記入</td>
-				</tr>
-				<tr>銀行振込
-					<td>振込先情報記入</td>
-					<td>振込先情報記入</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-</div>
+</main>

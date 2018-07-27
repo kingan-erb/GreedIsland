@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+before_action :authenticate_user!
 before_action :authenticate_administrator!, only: [:admin_index, :admin_show, :admin_edit, :admin_update]
 before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :edit, :update]
 
@@ -53,25 +54,15 @@ before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :ed
 	#パスワード更新
 	def password_update
 	    @user = User.find(params[:id])
-	    if @user.password == @user.current_password
-    	   redirect_to edit_password_path
-		   flash[:alert] = "パスワードが変更されていません"
-		else
-		    if @user.update_with_password(user_params)
-		      # Sign in the user by passing validation in case their password changed
-		      bypass_sign_in(@user)
-				if  administrator_signed_in?
-					flash[:notice] = "パスワードを変更しました"
-					redirect_to admin_show_user_path
-				else
-					flash[:notice] = "パスワードを変更しました"
-					redirect_to user_path
-				end
-		    else
-		      flash[:notice] = "パスワードが正しく設定されていません"
-		      redirect_to edit_password_path
-		    end
-		end
+	    if @user.update_with_password(user_params)
+	      # Sign in the user by passing validation in case their password changed
+	      	bypass_sign_in(@user)
+			flash[:notice] = "パスワードを変更しました"
+			redirect_to user_path
+	    else
+	        flash[:notice] = "パスワードが正しく設定されていません"
+	        redirect_to edit_password_path
+	    end
 	end
 
 ##  ユーザー  ##

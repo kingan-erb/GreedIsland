@@ -58,7 +58,7 @@
 							 		<% if array_num == @default_button_num %>
 										<div class="address-button"><%= f.radio_button :delivery_address,@address_array[array_num], :checked => true %></div>
 									<% else %>
-										<div><%= f.radio_button :delivery_address,@address_array[array_num] %></div>
+										<div class="address-button"><%= f.radio_button :delivery_address,@address_array[array_num] %></div>
 									<% end %>
 									<div>
 										<p>〒<%= @postal_array[array_num] %></p>

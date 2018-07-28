@@ -1,5 +1,5 @@
 class CartItemsController < ApplicationController
-before_action :ensure_correct_user, except: [:show, :index, :create]
+# before_action :ensure_correct_user, except: [:show, :index, :create]
 ##  ユーザー  ##
   #カートに追加
   def create
@@ -97,7 +97,7 @@ before_action :ensure_correct_user, except: [:show, :index, :create]
     last_quantity = @cart_item.quantity
 
     if @cart_item.update!(quantity_params)
-      # modified_quantity = last_quantity - @cart_item.quantity
+      flash[:notice] = '数量が更新されました。'
       redirect_to cart_items_path
     else
       flash[:notice] = '処理に失敗しました。'

@@ -2,17 +2,13 @@
 
 <div class="container">
 	<div class="notice">
-		<% if flash[:notice] %>
-			<%= flash[:notice] %>
-		<% end %>
+		
 	</div>
 	<div class="row cart-title-box">
 		<h2 class="cart-title"><i class="fas fa-shopping-cart fa-flip-horizontal"></i>ショッピングカート</h2>
 	</div>
 	<div class="quantity_change_notice">
-		<% if flash[:quantity_notice] %>
-			<%= flash[:quantity_notice] %>
-		<% end %>
+		
 	</div>
 	<% if @cart_items.empty? %>
 		<div class="no-item-body">

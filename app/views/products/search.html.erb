@@ -6,6 +6,14 @@
 	<div class="search-header">
 		<h2>検索結果</h2>
 	</div>
+	<% if @products.empty? %>
+	<div class="no-item-body">
+		<div class="no-item-text">
+			<h4>該当する商品はありません。</h4>
+			<p><%= link_to '買い物にもどる', products_path(current_user.greed.id), class: 'no-item-button' %></p>
+		</div>
+	</div>
+	<% end %>
 		<% @products.each do |product| %>
 			<div class="search-item">
 				<div class="item-image">

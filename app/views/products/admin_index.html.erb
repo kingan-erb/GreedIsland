@@ -63,7 +63,7 @@
 				<td><%= attachment_image_tag product, :product_image_name, :fill, 40, 40, format: 'jpeg' %></td>
 				<td class="product-name"><%= link_to admin_show_product_path(product.id), class: 'product-link' do %><%= product.product_name %><% end %></td>
 				<td class="artist"><%= product.artist_name %></td>
-				<td><%= product.price %></td>
+				<td><%= product.price.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1,') %></td>
 				<td><%= product.inventry_status %></td>
 				<td><%= product.sales_quantity %></td>
 			</tr>
@@ -74,7 +74,7 @@
 	<div class="paginate">
 		<%= paginate @products %>
 		<div class="item-total">
-			<%= @products.total_count %>件中<%= @products.offset_value %>〜<%= @products.offset_value + @products.length %>件を表示しています。
+			<%= @products.total_count %>件中<%= @products.offset_value + 1 %>〜<%= @products.offset_value + @products.length %>件を表示しています。
 		</div>
 	</div>
 </main>

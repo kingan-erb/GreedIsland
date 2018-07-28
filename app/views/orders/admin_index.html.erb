@@ -45,13 +45,13 @@
             <td><%= attachment_image_tag order.user.greed, :greed_image_name, :fill, 30, 30, format: 'jpeg' %></td>
             <td><%= order.user.last_name %> <%= order.user.first_name %></td>
             <td class="date"><%= order.order_datetime.to_s(:db) %></td>
-            <td><%= order.total_price %></td>
+            <td><%= order.total_price.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1,') %></td>
             <% if order.delivery_status == 1 %>
-               <td><%= "出荷準備中" %></td>
+               <td class="prepare" ><%= "出荷準備中" %></td>
             <% elsif order.delivery_status == 2 %>
-               <td><%= "配送中" %></td>
+               <td class="delivery" ><%= "配送中" %></td>
             <% else %>
-               <td><%= "配達済み" %></td>
+               <td class="complete" ><%= "配達済み" %></td>
             <% end %>
             <td><%= link_to "詳細", admin_show_order_path(order.user_id, order.id), class: "square_btn" %></td>
           </tr>
@@ -62,7 +62,7 @@
       <div class="paginate">
         <%= paginate @orders %>
         <div class="item-total">
-          <%= @orders.total_count %>件中<%= @orders.offset_value %>〜<%= @orders.offset_value + @orders.length %>件を表示しています。
+          <%= @orders.total_count %>件中<%= @orders.offset_value + 1 %>〜<%= @orders.offset_value + @orders.length %>件を表示しています。
         </div>
       </div>
     </div>

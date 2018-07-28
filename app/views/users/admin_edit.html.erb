@@ -7,7 +7,6 @@
 			<h2>顧客情報編集</h2>
 			<div class="link">
 				<%= link_to "詳細", admin_show_user_path(@user.id), class: "show-btn" %>
-				<%= link_to "パスワード変更はこちら", edit_password_path, class: "btn-sm" %>
 				<%= link_to "削除", user_path(@user.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "destroy-btn" %>
 			</div>
 			<hr class="hr-first">

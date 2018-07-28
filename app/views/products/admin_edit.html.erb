@@ -4,12 +4,15 @@
 <main>
 	<div class="container">
 		<div class="row">
-		 	<h4><%= link_to "詳細へ", admin_show_product_path(@product.id) %></h4>
+			<h2>商品編集</h2>
+			<div class="link">
+				<%= link_to "詳細", admin_show_product_path(@product.id), class: "show-btn" %>
+			</div>
+			<hr class="hr-first">
 		</div>
 		<div class="row">
 			<%= form_for @product, url: admin_show_product_path, class: 'form-horizontal' do |f| %>
 		 	<div class="col-lg-6">
-				<h3>商品編集</h3>
 				<table class='table'>
 					<tr>
 						<%= attachment_image_tag @product, :product_image_name, :fill, 100, 100, format: 'jpeg' %>

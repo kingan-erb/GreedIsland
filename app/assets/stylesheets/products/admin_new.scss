@@ -3,8 +3,15 @@ main {
 	margin: 0 auto;
 	height: 700px;
 }
+hr {
+    clear: both;
+    border-top: solid #bebebe;
+    border-width: 1px 0 0;
+    margin: 20px 0 30px;
+    height: 0;
+}
 h4 {
-	margin-top: 20px;
+	margin-top: 25px;
 }
 h3 {
 	margin: 20px 0;
@@ -34,7 +41,7 @@ label, th {
     }
 .square_btn{
     display: inline-block;
-    padding: 0.25em 1em;
+    padding: 0.5em 1.0em;
     text-decoration: none;
     background: #668ad8;/*ボタン色*/
     color: #FFF;

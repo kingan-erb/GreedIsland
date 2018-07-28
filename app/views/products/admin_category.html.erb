@@ -77,7 +77,7 @@
 	<div class="paginate">
 		<%= paginate @products %>
 		<div class="item-total">
-			<%= @products.total_count %>件中<%= @products.offset_value %>〜<%= @products.offset_value + @products.length %>件を表示しています。
+			<%= @products.total_count %>件中<%= @products.offset_value + 1 %>〜<%= @products.offset_value + @products.length %>件を表示しています。
 		</div>
 	</div>
 </main>

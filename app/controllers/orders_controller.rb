@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
-before_action :authenticate_administrator!, only: [:index, :admin_show, :edit, :admin_update]
+before_action :authenticate_administrator!, only: [:admin_index, :admin_show, :admin_update]
+before_action :ensure_correct_user, only: [:thanks, :show]
 
 ##  ユーザー  ##
   USER_PER = 20
@@ -144,11 +145,24 @@ before_action :authenticate_administrator!, only: [:index, :admin_show, :edit, :
     redirect_to admin_show_order_path
     end
   #
-  def update
-  end
 
   private
     def order_params
       params.require(:order).permit(:payment_method,:delivery_address,:delivery_date,:delivery_time, :delivery_status, :user_id)
+    end
+
+    def ensure_correct_user
+      if administrator_signed_in?
+      elsif user_signed_in?
+        @order = Order.find(params[:id])
+        @user = User.find(@order.user_id)
+        if  current_user.id != @user.id
+          redirect_to user_path(current_user.id)
+          flash[:notice] = "権限がありません"
+        end
+      else
+        redirect_to greeds_path
+        flash[:notice] = "権限がありません"
+      end
     end
 end

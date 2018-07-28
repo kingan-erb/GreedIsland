@@ -1,5 +1,5 @@
 class CartItemsController < ApplicationController
-before_action :ensure_correct_user, except: [:show, :index, :create]
+before_action :ensure_correct_user, except: [:show, :index, :create,:update, :destroy]
 ##  ユーザー  ##
   #カートに追加
   def create

@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-before_action :authenticate_administrator!, except: [:index, :search, :show]
+before_action :authenticate_administrator!, except: [:index, :search, :show, :recommend]
 
 ##　ユーザー　##
   USER_PER = 12

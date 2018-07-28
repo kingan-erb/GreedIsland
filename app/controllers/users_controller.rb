@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-before_action :authenticate_user!
+#before_action :authenticate_user!
 before_action :authenticate_administrator!, only: [:admin_index, :admin_show, :admin_edit, :admin_update]
 before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :edit, :update, :password_edit, :password_update]
 
@@ -26,7 +26,6 @@ before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :ed
 			redirect_to greeds_path
 			flash[:notice] = "退会しました"
 		else
-			sign_out(@user)
 			redirect_to greeds_path
 			flash[:alert] = "エラーが発生しました"
 		end
@@ -43,7 +42,7 @@ before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :ed
 		    redirect_to admin_show_user_path(@user.id)
 		    flash[:notice] = "変更されました"
 		else
-			redirect_to greeds_path
+			redirect_to user_path(@user.id)
 			flash[:alert] = "エラーが発生しました"
 		end
 	end
@@ -93,7 +92,7 @@ before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :ed
 		   redirect_to user_path(@user.id)
 		   flash[:notice] = "更新されました"
 		else
-		   redirect_to user_path(@user.id)
+		   redirect_to edit_user_path(@user.id)
 		   flash[:alert] = "エラーが発生しました"
 		end
 	end
@@ -128,7 +127,7 @@ before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :ed
 		   redirect_to admin_show_user_path(@user.id)
 		   flash[:notice] = "更新されました"
 		else
-		   redirect_to admin_edit_user_index_path
+		   redirect_to admin_show_user_path(@user.id)
 		   flash[:alert] = "エラーが発生しました"
 		end
 	end

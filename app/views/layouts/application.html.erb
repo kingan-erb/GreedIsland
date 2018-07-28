@@ -138,7 +138,7 @@
         <li><%= link_to 'プライバシーポリシー', privacy_path, class: "" %></li>
         <li><%= link_to 'お問い合わせ先', contact_path, class: "" %></li>
       <% if user_signed_in? %>
-        <li><%= link_to '退会', user_path(current_user.id), class: "" %></li>
+        <li><%= link_to '退会', edit_user_path(current_user.id), class: "" %></li>
       <% end %>
     </ul>
     <div class="copy">

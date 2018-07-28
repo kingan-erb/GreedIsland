@@ -1,5 +1,4 @@
 class AddressesController < ApplicationController
-before_action :ensure_correct_user
 
 ##  共通  ##
   #住所追加
@@ -16,7 +15,7 @@ before_action :ensure_correct_user
         flash[:notice] = "作成されました"
       end
     else
-      redirect_to greeds_path
+      redirect_to edit_user_path(@user.id)
       flash[:alert] = "エラーが発生しました"
     end
   end
@@ -54,20 +53,5 @@ before_action :ensure_correct_user
 
   def address_params
     params.require(:address).permit(:postal_code, :address, :user_id)
-  end
-
-  def ensure_correct_user
-    if administrator_signed_in?
-    elsif user_signed_in?
-      @address = Address.find_by(id: params[:id])
-      @user = User.find_by(id: params[:id])
-      if  (current_user.id != @address.user_id) && (current_user.id != @user.id)
-          redirect_to user_path(current_user.id)
-          flash[:notice] = "権限がありません"
-      end
-    else
-      redirect_to greeds_path
-      flash[:notice] = "権限がありません"
-    end
   end
 end

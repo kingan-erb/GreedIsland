@@ -1,5 +1,4 @@
 class CartItemsController < ApplicationController
-before_action :ensure_correct_user, except: [:show, :index, :create]
 ##  ユーザー  ##
   #カートに追加
   def create
@@ -99,6 +98,7 @@ before_action :ensure_correct_user, except: [:show, :index, :create]
     if @cart_item.update!(quantity_params)
       # modified_quantity = last_quantity - @cart_item.quantity
       redirect_to cart_items_path
+      flash[:notice] = "カート内の数量が変更されました"
     else
       flash[:notice] = '処理に失敗しました。'
       redirect_to cart_items_path
@@ -109,6 +109,7 @@ before_action :ensure_correct_user, except: [:show, :index, :create]
     cart_item = CartItem.find(params[:id])
     if cart_item.destroy
      redirect_to cart_items_path
+     flash[:notice] = "削除されました"
     else
       flash[:notice] = '処理に失敗しました。'
       redirect_to product_path(added_product.id)
@@ -122,17 +123,5 @@ before_action :ensure_correct_user, except: [:show, :index, :create]
     params.require(:cart_item).permit(:quantity)
   end
 
-  def ensure_correct_user
-    if administrator_signed_in?
-    elsif user_signed_in?
-      @user = User.find_by(id: params[:id])
-      if  current_user.id != @user.id
-        redirect_to user_path(current_user.id)
-        flash[:notice] = "権限がありません"
-      end
-    else
-          redirect_to greeds_path
-          flash[:notice] = "権限がありません"
-    end
-  end
+
 end

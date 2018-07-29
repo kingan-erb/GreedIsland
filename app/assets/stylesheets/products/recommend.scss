@@ -25,6 +25,7 @@ body{
 }
 h2{
 	margin-top: 100px;
+	letter-spacing: 0.1em;
 }
 
 .products-box{
@@ -72,11 +73,11 @@ h2{
 	border: 2px solid #280b28;
 	border-radius: 240px 30px 100px 25px/15px 220px 10px 180px;
 	color: #280b28;
-	transition: 0.2s;
+	transition: 0.5s;
 }
 .products-show:hover{
 	text-decoration: none;
 	color: #280b28;
-	letter-spacing: 0.2em;
+	letter-spacing: 0.15em;
 
 }

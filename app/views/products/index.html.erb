@@ -2,8 +2,35 @@
 <%= stylesheet_link_tag "products/index", :media => "all" %>
 
 <div class="product-body">
-	<div class="eye-catch">
-	</div>
+	<% if @greed.id == 1 %>
+		<div class="eye-catch money">
+			若いときの自分は、金こそ人生でもっとも大切なものだと思っていた。<br>
+			今、歳をとってよくわかったのだが、まったくその通りだった。<br>
+			ー　オスカー・ワイルド　ー
+		</div>
+	<% elsif @greed.id == 2 %>
+		<div class="eye-catch heal">
+			元気を出しなさい。<br>
+			今日の失敗ではなく、明日訪れるかもしれない成功について考えるのです。<br>
+			ー　ヘレン・ケラー　ー
+		</div>
+	<% elsif @greed.id == 3 %>
+		<div class="eye-catch power">
+			筋肉がNO！と言ったら、私はYES！と答える。<br>
+			ー　アーノルド・シュワルツェネッガー　ー
+		</div>
+	<% elsif @greed.id == 4 %>
+		<div class="eye-catch food">
+			痩せろ？この体に幾らかけたと思ってるんだ！<br>
+			ー（作者不詳）ー
+		</div>
+	<% else %>
+		<div class="eye-catch love">
+			恋につまづいたくらいならば、立ち直るのは簡単だ。<br>
+			けれど、一度でも恋に落ちてしまったら、そこから抜け出すのは容易なことではないよ。<br>
+			ー　アルベルト・アインシュタイン　ー
+		</div>
+	<% end %>
 	<div class="categories">
 		<div class=" container sub-nav">
 			<ul class="sub-nav-ul">

@@ -5,10 +5,33 @@
 .eye-catch{
 	width: 100%;
 	height: 400px;
+	background-size: cover;
+	background-position: center center;
+	color: #fff;
+	font-family: 'klee','Yu Mincho Light','YuMincho','Yu Mincho','游明朝体','Apple Chancery',sans-serif;
+	font-size: 25px;
 	// background-color: green;
-	background-image: url(/assets/gold.jpg);
+	// background-image: url(/assets/gold.jpg);
 	// margin-bottom: 50px;
 }
+
+.money {
+	background-image: url(/assets/1.jpg);
+}
+.heal {
+	background-image: url(/assets/2.jpg);
+}
+.power {
+	background-image: url(/assets/3.jpg);
+}
+.food {
+	background-image: url(/assets/4.jpg);
+}
+.love {
+	background-image: url(/assets/5.jpg);
+}
+
+
 //他の欲へのリンク
 .categories{
 	height: 75px;

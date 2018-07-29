@@ -4,18 +4,8 @@
 <%= javascript_include_tag "order.js" %>
 
 <div class="container orders_new">
-	<div class="notice">
-		<% if flash[:notice] %>
-			<%= flash[:notice] %>
-		<% end %>
-	</div>
 	<div class="row buy-title-box">
 		<h2 class="buy-title">ご注文内容の確認</h2>
-	</div>
-	<div class="quantity_change_notice">
-		<% if flash[:quantity_notice] %>
-			<%= flash[:quantity_notice] %>
-		<% end %>
 	</div>
 	<div class="buy-form">
 		<% if @sum == 0 %>

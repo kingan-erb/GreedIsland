@@ -1,7 +1,9 @@
 main {
 	width: 90%;
 	margin: 0 auto;
-	height: 700px;
+	min-height: 600px;
+    height: auto;
+    padding-bottom: 40px;
 }
 h4 {
 	margin-top: 20px;
@@ -15,7 +17,7 @@ hr {
     border-width: 1px 0 0;
     margin: 20px 0 30px;
     height: 0;
-}
+} 
 
 .table {
 	width: 450px;

@@ -2,35 +2,57 @@
 .product-body{
 	background-color: #fafafa;
 }
-.eye-catch{
-	width: 100%;
-	height: 400px;
-	background-size: cover;
-	background-position: center center;
+// アイキャッチ
+.eye-catch-text{
+	// width: 600px;
 	color: #fff;
 	font-family: 'klee','Yu Mincho Light','YuMincho','Yu Mincho','游明朝体','Apple Chancery',sans-serif;
 	font-size: 25px;
+	font-weight: bold;
+	padding: 270px 80px 0 80px;
+	opacity: 0.9;
+}
+.eye-catch-text > span{
+	font-size: 18px;
+	padding-top:10px;
+}
+.money {
+	background: linear-gradient(rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.6) 70%, rgba(0, 0, 0, 1)), url(/assets/1.jpg);
+}
+.money > .eye-catch-text{
+	padding-top: 240px;
+}
+.heal {
+	background: linear-gradient(rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.6) 70%, rgba(0, 0, 0, 1)), url(/assets/2.jpg);
+}
+.power {
+	background: linear-gradient(rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.6) 70%, rgba(0, 0, 0, 1)), url(/assets/3.jpg);
+}
+.power > .eye-catch-text{
+	padding-top: 280px;
+	padding-left: 80px;
+}
+.food {
+	background: linear-gradient(rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.6) 70%, rgba(0, 0, 0, 1)), url(/assets/4.jpg);
+}
+.food > .eye-catch-text{
+	padding-top: 280px;
+	padding-left: 80px;
+}
+.love {
+	background: linear-gradient(rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.6) 70%, rgba(0, 0, 0, 1)), url(/assets/5.jpg);
+}
+.eye-catch{
+	width: 100%;
+	height: 450px;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	// background-
 	// background-color: green;
 	// background-image: url(/assets/gold.jpg);
 	// margin-bottom: 50px;
 }
-
-.money {
-	background-image: url(/assets/1.jpg);
-}
-.heal {
-	background-image: url(/assets/2.jpg);
-}
-.power {
-	background-image: url(/assets/3.jpg);
-}
-.food {
-	background-image: url(/assets/4.jpg);
-}
-.love {
-	background-image: url(/assets/5.jpg);
-}
-
 
 //他の欲へのリンク
 .categories{

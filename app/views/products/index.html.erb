@@ -4,31 +4,43 @@
 <div class="product-body">
 	<% if @greed.id == 1 %>
 		<div class="eye-catch money">
-			若いときの自分は、金こそ人生でもっとも大切なものだと思っていた。<br>
-			今、歳をとってよくわかったのだが、まったくその通りだった。<br>
-			ー　オスカー・ワイルド　ー
+			<div class="eye-catch-text">
+			若いときの自分は、<br>
+			金こそ人生でもっとも大切なものだと思っていた。<br>
+			今、歳をとってよくわかったのだが、
+			まったくその通りだった。<br>
+			<span>ー　オスカー・ワイルド　ー</span>
+			</div>
 		</div>
 	<% elsif @greed.id == 2 %>
 		<div class="eye-catch heal">
+			<div class="eye-catch-text">
 			元気を出しなさい。<br>
 			今日の失敗ではなく、明日訪れるかもしれない成功について考えるのです。<br>
-			ー　ヘレン・ケラー　ー
+			<span>ー　ヘレン・ケラー　ー</span>
+			</div>
 		</div>
 	<% elsif @greed.id == 3 %>
 		<div class="eye-catch power">
+			<div class="eye-catch-text">
 			筋肉がNO！と言ったら、私はYES！と答える。<br>
-			ー　アーノルド・シュワルツェネッガー　ー
+			<span>ー　アーノルド・シュワルツェネッガー　ー</span>
+			</div>
 		</div>
 	<% elsif @greed.id == 4 %>
 		<div class="eye-catch food">
+			<div class="eye-catch-text">
 			痩せろ？この体に幾らかけたと思ってるんだ！<br>
-			ー（作者不詳）ー
+			<span>ー（作者不詳）ー</span>
+			</div>
 		</div>
 	<% else %>
 		<div class="eye-catch love">
+			<div class="eye-catch-text">
 			恋につまづいたくらいならば、立ち直るのは簡単だ。<br>
 			けれど、一度でも恋に落ちてしまったら、そこから抜け出すのは容易なことではないよ。<br>
-			ー　アルベルト・アインシュタイン　ー
+			<span> ー　アルベルト・アインシュタイン　ー</span>
+			</div>
 		</div>
 	<% end %>
 	<div class="categories">

@@ -1,4 +1,8 @@
 .container-wrapper {
+	
+	.page-title {
+		padding: 0 20px;
+	}
 
 	hr{
 		clear: both;
@@ -9,6 +13,7 @@
 	}
 
 	.privacy-info {
+		color: #000;
 		padding-left: 60px;
 
 		h2 {

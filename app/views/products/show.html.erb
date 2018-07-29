@@ -1,7 +1,5 @@
-
 <%= stylesheet_link_tag "products/show", :media => "all" %>
 
-<%= link_to "一覧へ", products_path(@product.greed_id) %><br>
 <!-- クラス名は仮でつけています -->
 <div class="body container">
 	<div class="row">
@@ -39,6 +37,9 @@
 			<div class="col-xs-4 label-box">
 				<p>レーベル /<span class="music-label"><%= @product.label_name %></span></p>
 				<p>ジャンル /<span class="music-label"><%= @product.genre_name %></span></p>
+				<div class="link-index">
+					<%= link_to "一覧へもどる", products_path(@product.greed_id) %>
+				</div>
 			</div>
 			<div class="col-xs-8 music-box">
 					<!-- とりあえずビューで記述 -->

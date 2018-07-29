@@ -68,6 +68,9 @@ ul{
 .delete-button{
 	margin-left: 70px;
 }
+.delete-button.no-item{
+	margin-left: 210px;
+}
 .delete-button > a{
 	color: gray;
 }

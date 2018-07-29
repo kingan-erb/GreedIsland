@@ -27,7 +27,7 @@ function dropcid() {
     location.href = browser
 }
 $( document ).ready(function() {
-    $('.alert').fadeOut(3000);
+    $('.alert').fadeOut(5000);
     $(".alert-text").removeClass('hide');
 });
 

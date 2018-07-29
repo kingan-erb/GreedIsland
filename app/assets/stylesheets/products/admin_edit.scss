@@ -1,7 +1,9 @@
 main {
 	width: 90%;
 	margin: 0 auto;
-	height: 700px;
+	min-height: 600px;
+    height: auto;
+    padding-bottom: 40px;
 }
 h4 {
 	margin-top: 20px;

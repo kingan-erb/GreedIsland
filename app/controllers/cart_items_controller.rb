@@ -18,7 +18,7 @@ class CartItemsController < ApplicationController
           if @cart_item.save
             redirect_to cart_items_path
           else
-            flash[:notice] = '処理に失敗しました。'
+            flash[:alert] = '処理に失敗しました。'
             redirect_to product_path(added_product.id)
           end
           # added_product.inventry_status -= @cart_item.quantity #決済時の反映に変更予定
@@ -27,7 +27,7 @@ class CartItemsController < ApplicationController
         # end
         #   redirect_to edit_cart_items_path
         # rescue => e
-        #   flash[:notice] = '処理に失敗しました。'
+        #   flash[:alert] = '処理に失敗しました。'
         #   redirect_to product_path(added_product.id)
       else
       #すでに同じ商品がカートに追加されていた場合
@@ -37,26 +37,26 @@ class CartItemsController < ApplicationController
         if exiting_item.quantity > exiting_item.product.inventry_status
           exiting_item.quantity = exiting_item.product.inventry_status
           if exiting_item.save
-            flash[:notice] = '在庫切れです。これ以上追加できません。'
+            flash[:alert] = '在庫切れです。これ以上追加できません。'
             redirect_to cart_items_path
           else
-            flash[:notice] = '処理に失敗しました。'
+            flash[:alert] = '処理に失敗しました。'
             redirect_to product_path(added_product.id)
           end
         elsif exiting_item.quantity > 10
           exiting_item.quantity = 10
           if exiting_item.save
-            flash[:notice] = '購入上限です。これ以上追加できません。'
+            flash[:alert] = '購入上限です。これ以上追加できません。'
             redirect_to cart_items_path
           else
-            flash[:notice] = '処理に失敗しました。'
+            flash[:alert] = '処理に失敗しました。'
             redirect_to product_path(added_product.id)
           end
         else
           if exiting_item.save
             redirect_to cart_items_path
           else
-            flash[:notice] = '処理に失敗しました。'
+            flash[:alert] = '処理に失敗しました。'
             redirect_to product_path(added_product.id)
           end
         end
@@ -80,7 +80,7 @@ class CartItemsController < ApplicationController
       if cart_item.quantity > cart_item.product.inventry_status
         cart_item.quantity = cart_item.product.inventry_status
         if cart_item.save #ここが抜けてた
-          flash[:quantity_notice] = "カート内の数量が変更されました"
+          flash[:notice] = "カート内の数量が変更されました"
         end
       end
     end
@@ -101,7 +101,7 @@ class CartItemsController < ApplicationController
       redirect_to cart_items_path
       flash[:notice] = "カート内の数量が変更されました"
     else
-      flash[:notice] = '処理に失敗しました。'
+      flash[:alert] = '処理に失敗しました。'
       redirect_to cart_items_path
     end
   end
@@ -112,7 +112,7 @@ class CartItemsController < ApplicationController
      redirect_to cart_items_path
      flash[:notice] = "削除されました"
     else
-      flash[:notice] = '処理に失敗しました。'
+      flash[:alert] = '処理に失敗しました。'
       redirect_to product_path(added_product.id)
     end
   end

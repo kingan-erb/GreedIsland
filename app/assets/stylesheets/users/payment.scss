@@ -1,5 +1,9 @@
 .container-wrapper {
 
+	.page-title {
+		padding: 0 20px;
+	}
+
 	hr{
 		clear: both;
 	    border-top: solid #bebebe;
@@ -9,6 +13,8 @@
 	}
 
 	.payment-info {
+
+		color: #000;
 		padding-left: 60px;
 
 		.title {

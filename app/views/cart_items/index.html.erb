@@ -55,9 +55,7 @@
 					         				inventry_symbol = '◯'
 									end %>
 									<p class="inventry">在庫：<%= inventry_symbol %></p>
-								<% if no_inventry == true %>
-									<p class="inventry">ー</p>
-								<% else %>
+								<% if no_inventry != true %>
 									<% inventry_array = []
 									product.inventry_status.times do |q|
 										if q < 10
@@ -65,34 +63,38 @@
 										else
 											break
 										end %>
+									<% end %>
 								<% end %>
 							</div>
-								<!-- カテゴリ画像挿入予定（エラー起きた） -->
 								<div class="quantity-setting-box">
+								<% if no_inventry != true %>
 									<%= form_for(cart_item, url:cart_item_path(cart_item.id)) do |f| %>
 										<%= f.label :quantity, '数量', class: "quantity-label"%>
 										<%= f.select :quantity, inventry_array %>
 										<%= f.submit '更新', class: "submit-button"%>
 									<% end %>
-								<!-- 一旦分けて表示(最終的にはプルダウンボタンで完結したい) -->
-									<div class="delete-button"><%= link_to '削除', cart_item_path(cart_item.id),method: :delete %></div>
-								</div>
-							<% end %>
+									<div class="delete-button"><%= link_to '削除', cart_item_path(cart_item.id),method: :delete %>
+									</div>
+								<% else %>
+									<div class="delete-button no-item"><%= link_to '削除', cart_item_path(cart_item.id),method: :delete %>
+									</div>
+								<% end %>
+							</div>
 						</div>
 					</div>
 				</div>
 			<% end %>
 			</div>
 			<div class="col-xs-6">
-				<div class="buy-box">
-					<div class="total-price-box">
-						<label>合計</label>
-						<span>
-							<span class="total-mark">¥</span>
-							<span class="total-price"><%= @sum.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse %></span>
-						</span>
-					</div>
-					<% if @sum != 0 %>
+				<% if @sum != 0 %>
+					<div class="buy-box">
+						<div class="total-price-box">
+							<label>合計</label>
+							<span>
+								<span class="total-mark">¥</span>
+								<span class="total-price"><%= @sum.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse %></span>
+							</span>
+						</div>
 						<div class="buy-field">
 							<p><%= link_to '決済にすすむ', new_order_path ,class: "buy-button" %></p>
 							<p class="link-back"><%= link_to '→買い物を続ける', products_path(current_user.greed.id) %></p>

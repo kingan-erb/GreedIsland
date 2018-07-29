@@ -83,6 +83,14 @@ class CartItemsController < ApplicationController
           flash[:notice] = "カート内の数量が変更されました"
         end
       end
+      if cart_item.quantity == 0
+        if cart_item.product.inventry_status > 0
+          cart_item.quantity = 1
+          if cart_item.save #ここが抜けてた
+            flash[:notice] = "カート内の商品が入荷しました"
+          end
+        end
+      end
     end
   end
 

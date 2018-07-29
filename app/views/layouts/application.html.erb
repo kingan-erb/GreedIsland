@@ -121,17 +121,17 @@
     <!-- フッター -->
     <div class="clearfix"></div>
     <footer class="clearfix">
-
-      <ul id="nav2" class="nav navbar-nav">
-        <li><%= link_to '利用規約', service_path, class: "" %></li>
-        <li><%= link_to 'プライバシーポリシー', privacy_path, class: "" %></li>
-        <li><%= link_to 'お問い合わせ先', contact_path, class: "" %></li>
+      <div class="footer-contents">
+        <%= link_to '利用規約', service_path, class: "service-info" %>
+        <%= link_to 'プライバシーポリシー', privacy_path, class: "privacy-info" %>
+        <%= link_to 'お問い合わせ先', contact_path, class: "contact-info" %>
+        <%= link_to 'お支払いについて', payment_path, class: "payment-info" %>
       <% if user_signed_in? %>
-        <li><%= link_to '退会', user_path(current_user.id), class: "" %></li>
+        <%= link_to '退会', user_path(current_user.id), class: "unsubscribe" %>
       <% end %>
-    </ul>
+    </div>
     <div class="copy">
-       <p>CopyRight Infratop.inc</p>
+       <p>©︎ 2018 Infratop.inc</p>
     </div>
 
     </footer>

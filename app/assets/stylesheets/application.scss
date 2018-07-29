@@ -125,13 +125,15 @@ footer {
 	background-color: #202020;
 	margin-top: auto;
 }
-.service-info, .privacy-info, .contact-info, .payment-info {
+.service-info, .privacy-info, .contact-info, .payment-info, .unsubscribe {
 	max-width: 90%;
-	margin-bottom: 50px;
+	color: #fff;
 }
-.footer-nav {
+.footer-contents {
 	display: flex;
 	justify-content: space-around;
+	height: 50px;
+	line-height: 50px;
 }
 .copy {
 	color: white;

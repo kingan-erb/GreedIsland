@@ -21,11 +21,13 @@
 					</div>
 				</div>
 			</div>
-			<div class ="order-info">
-				<%= link_to "注文No.:#{@order.id}", user_order_path(params[:id]) %>
-			</div>
-			<div class="payment-info">
-				<p>支払いについては<%= link_to "こちら", payment_path %>をご確認ください</p>
+			<div class="info">
+				<div class ="order-info">
+					<%= "注文No:#{@order.id}" %>
+				</div>
+				<div class="payment-info">
+					<p>支払いについては<%= link_to "こちら", payment_path %>をご確認ください</p>
+				</div>
 			</div>
 		</div>
 	</div>

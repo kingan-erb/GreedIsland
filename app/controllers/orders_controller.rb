@@ -25,7 +25,7 @@ before_action :ensure_correct_user, only: [:thanks, :show]
       if cart_item.quantity > cart_item.product.inventry_status
         cart_item.quantity = cart_item.product.inventry_status
         if cart_item.save
-          flash[:quantity_notice] = "カート内の数量が変更されました"
+          flash[:notice] = "カート内の数量が変更されました"
         end
       end
       subtotal = cart_item.product.price * cart_item.quantity
@@ -104,7 +104,7 @@ before_action :ensure_correct_user, only: [:thanks, :show]
     end
       redirect_to thanks_order_path(@order.id)
     rescue => e
-      flash[:notice] = "処理に失敗しました"
+      flash[:alert] = "処理に失敗しました"
       redirect_to new_order_path
   end
   #Thanksページ
@@ -158,11 +158,11 @@ before_action :ensure_correct_user, only: [:thanks, :show]
         @user = User.find(@order.user_id)
         if  current_user.id != @user.id
           redirect_to user_path(current_user.id)
-          flash[:notice] = "権限がありません"
+          flash[:alert] = "権限がありません"
         end
       else
         redirect_to greeds_path
-        flash[:notice] = "権限がありません"
+        flash[:alert] = "権限がありません"
       end
     end
 end

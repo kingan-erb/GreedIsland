@@ -20,7 +20,7 @@ before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :ed
 		@user.soft_delete
 		if administrator_signed_in?
 			sign_out(@user)
-			redirect_to admin_user_index_path
+			redirect_to admin_users_path
 			flash[:notice] = "削除されました"
 		elsif user_signed_in?
 			sign_out(@user)
@@ -149,11 +149,11 @@ before_action :ensure_correct_user, only: [:destroy, :address_update, :show, :ed
 			@user = User.find_by(id: params[:id])
 			if 	current_user.id != @user.id
 				redirect_to user_path(current_user.id)
-				flash[:notice] = "権限がありません"
+				flash[:alert] = "権限がありません"
 			end
         else
         	redirect_to greeds_path
-        	flash[:notice] = "権限がありません"
+        	flash[:alert] = "権限がありません"
         end
     end
 end

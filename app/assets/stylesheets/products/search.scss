@@ -6,6 +6,7 @@ body{
 	padding-left: 60px;
 	padding-right: 90px;
 	background-color: white;
+	min-height: 550px;
 }
 .search-header{
 	padding-top: 60px;
@@ -77,4 +78,33 @@ h3{
 }
 .search-item:last-child{
 	border-bottom :none;
+}
+// 検索結果が空のとき
+.no-item-body{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.no-item-text{
+	padding-top: 50px;
+	text-align: center;
+}
+.no-item-text p{
+	padding-top: 50px;
+}
+.no-item-text h4{
+	letter-spacing: 0.1em;
+}
+.no-item-button{
+	padding: 15px 40px;
+	border: 2px solid #999;
+	border-radius: 240px 30px 100px 25px/15px 220px 10px 180px;
+	color: #999;
+}
+.no-item-button:hover{
+	text-decoration: none;
+	color: white;
+	// border-color: white;
+	background-color: #280b28;
+	transition: 0.7s;
 }

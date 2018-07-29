@@ -32,20 +32,76 @@
 /*ヘッダー*/
 .navbar{
 	margin: 0;
+	border: none;
+	border-radius: 0;
 }
 .navbar-admin{
 	background-color: #fff;
 }
 .navbar-user{
-	background-color: #280b28;
+	background-color: #202020;
 }
 .nav {
 	float: right;
 }
 .header-text{
-	color: white;
+	color: #202020;
+	width: 400px;
+	padding: 10px;
+	display: inline-block;
 }
-
+.header-text p {
+	margin: 0;
+}
+.greed-icon{
+	margin-top: 3px;
+	padding-left: 5px;
+}
+.search-form{
+	display: inline-block;
+	width: 300px;
+	height: 50px;
+	margin-left: 40px;
+}
+.search-form p{
+	margin: 0;
+	padding: 11px;
+}
+.search-form input,.search-form-admin input{
+	border: none;
+	background-color: white;
+	padding: 3px;
+}
+.search-form p #search{
+	border: 1px solid #EFEFEF;
+	width: 200px;
+	padding-left: 10px;
+	border-radius: 2px;
+}
+.search-form p .search-button{
+	border: #EFEFEF;
+	color: #333;
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: #EFEFEF;
+	border-radius: 2px;
+}
+.navbar-default .navbar-nav > li > a{
+	color: #ccc;
+}
+.navbar-admin .navbar-nav > li > a{
+	color: gray;
+}
+.navbar-default .navbar-nav > li > a:hover{
+	color: #ccc;
+	opacity: 0.8;
+}
+//欲の選択へのリンク
+// .navbar-default .navbar-nav > li:last-child{
+// 	border: 2px solid white;
+// 	border-radius: 50%;
+// 	color: #fff;
+// }
 /*ページネーション*/
 .paginate {
 	margin: 10px 0;
@@ -67,16 +123,18 @@ body {
 /*フッター*/
 footer {
 	height: 100px;
-	background-color: #280b28;
+	background-color: #202020;
 	margin-top: auto;
 }
-.service-info, .privacy-info, .contact-info, .payment-info {
+.service-info, .privacy-info, .contact-info, .payment-info, .unsubscribe {
 	max-width: 90%;
-	margin-bottom: 50px;
+	color: #fff;
 }
-.footer-nav {
+.footer-contents {
 	display: flex;
 	justify-content: space-around;
+	height: 50px;
+	line-height: 50px;
 }
 .copy {
 	color: white;

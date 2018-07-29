@@ -1,6 +1,8 @@
 <%= stylesheet_link_tag 'products/admin_show', :media => 'all' %>
 
-
+<div class="title">
+  <h2>商品詳細情報</h2>
+</div>
 <div class='container product-box'>
   <div class="row">
     <div class="nav-box">
@@ -49,15 +51,14 @@
   </div>
 
   <div class="row">
+    <div class=" col-xs-8">
       <h4>曲リスト</h4>
       <table class="table">
           <thead>
               <tr>
-                  <th>Disk</th>
-                  <th>曲順</th>
+                  <th class="disc-number-column">Disc</th>
+                  <th class="music-number-column">曲順</th>
                   <th>曲名</th>
-                  <th colspan="3"></th>
-              </tr>
           </thead>
 
           <tbody>
@@ -70,5 +71,7 @@
           <% end %>
           </tbody>
       </table>
+    </div>
   </div>
 </div>
+</main>

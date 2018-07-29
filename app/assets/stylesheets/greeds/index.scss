@@ -1,15 +1,22 @@
+
+.main {
+	background: url(/images/greed_background.jpg) no-repeat;
+	background-size: cover;
+	background-position: center center;
+}
+
+.for-background {
+	background: rgba(255,255,255,0.7)
+}
+.wf-kokoro { font-family: "Kokoro"; }
+
 .container-wrapper {
 	margin: 0 auto;
 	max-width: 1150px;
 	padding-top: 50px;
 
-
-	hr{
-		clear: both;
-	    border-top: solid #bebebe;
-	    border-width: 1px 0 0;
-	    margin: 30px 0;
-	    height: 0;
+	.page-title {
+		padding-bottom: 30px;
 	}
 
 

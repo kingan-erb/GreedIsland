@@ -8,6 +8,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/earlyaccess/kokoro.css" rel="stylesheet">
   </head>
 
   <body>
@@ -28,24 +29,21 @@
             </div>
           </div>
           <% if @search_form_flag == true %>
-            <div class="search_form">
+            <div class="search-form search-form-admin">
               <%= form_tag search_products_path, :method => 'get' do %> <%#　projects_pathはモデル名で読みかえること %>
                 <p>
-                  <%= text_field_tag :search, params[:search] %>
-                  <%= submit_tag "Search", :product_name => nil %>
+                  <%= text_field_tag :search, params[:search], placeholder: "商品名を入力" %>
+                 <%= submit_tag "検索", :product_name => nil ,class: "search-button" %>
                 </p>
               <% end %>
             </div>
           <% end %>
           <div class="header-text">
             <p>管理者：<%= current_administrator.email %>でログイン中</p>
-          </div>
           <% if user_signed_in? %>
-            <div class="header-text-user">
-              <p>ユーザー：<%= current_user.first_name %>でログイン中</p>
-            </div>
+            <p>ユーザー：<%= current_user.first_name %>でログイン中</p>
           <% end %>
-          <div id="gnavi" class="collapse navbar-collapse">
+          </div>
             <ul class="nav navbar-nav">
                  <li><%= link_to '商品追加', admin_new_product_path, class: "" %></li>
                 <li><%= link_to '商品一覧', admin_products_path, class: "" %></li>
@@ -56,7 +54,6 @@
                 </li>
             </ul>
         </div>
-      </div>
     </nav>
 
     <% else %>
@@ -69,47 +66,39 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <div class= "navbar-brand">
+            <div class= "greed-icon">
               <% if user_signed_in? %>
-                <%= link_to '欲望.com', products_path(current_user.greed.id) %>
+                <%= link_to image_tag('logo1.jpg', :size => "55x45", :alt => "アイコン"),products_path(current_user.greed.id), class: "greed-icon" %>
               <% else %>
-                <%= link_to '欲望.com', greeds_path %>
+                <%= link_to image_tag('logo1.jpg', :size => "55x45", :alt => "アイコン"), greeds_path, class: "greed-icon" %>
               <% end %>
             </div>
           </div>
           <% if @search_form_flag == true %>
-            <div class="search_form">
-              <%= form_tag search_products_path, :method => 'get' do %> <%#　projects_pathはモデル名で読みかえること %>
+            <div class="search-form">
+              <%= form_tag search_products_path, :method => 'get' do %>
               <p>
-                <%= text_field_tag :search, params[:search] %>
-                <%= submit_tag "Search", :product_name => nil %>
+                <%= text_field_tag :search, params[:search] , placeholder: "商品名を入力" %>
+                <%= submit_tag "検索", :product_name => nil ,class: "search-button" %>
               </p>
             <% end %>
             </div>
           <% end %>
-
-          <% if user_signed_in? %>
-            <div class="header-text">
-              <p><%= current_user.first_name %>でログイン中</p>
-            </div>
-          <% end %>
-
-          <div id="gnavi" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
               <% if user_signed_in? %>
-                <li><%= link_to 'トップ', greeds_path, class: "" %></li>
                 <li><%= link_to 'マイページ', user_path(current_user.id), class: "" %></li>
                 <li><%= link_to 'カート', cart_items_path, class: "" %></li>
                 <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete,
-                     "data-confirm" => "本当にログアウトしますか？", class: "" %></li>
+                     "data-confirm" => "本当にログアウトしますか？", class: "" %>
+                <li><%= link_to '欲選び', greeds_path, class: "" %></li>
+                     </li>
               <% else %>
-                <li><%= link_to 'トップ', greeds_path, class: "" %></li>
                 <li><%= link_to 'ログイン', new_user_session_path, class: "" %></li>
                 <li><%= link_to '会員登録', new_user_registration_path, class: "" %></li>
                  <li><%= link_to '管理者ログイン', new_administrator_session_path, class: "" %></li>
+                <li><%= link_to '欲選び', greeds_path, class: "greed-choice" %></li>
               <% end %>
             </ul>
-        </div>
       </div>
     <% end %>
 
@@ -132,17 +121,17 @@
     <!-- フッター -->
     <div class="clearfix"></div>
     <footer class="clearfix">
-
-      <ul id="nav2" class="nav navbar-nav">
-        <li><%= link_to '利用規約', service_path, class: "" %></li>
-        <li><%= link_to 'プライバシーポリシー', privacy_path, class: "" %></li>
-        <li><%= link_to 'お問い合わせ先', contact_path, class: "" %></li>
+      <div class="footer-contents">
+        <%= link_to '利用規約', service_path, class: "service-info" %>
+        <%= link_to 'プライバシーポリシー', privacy_path, class: "privacy-info" %>
+        <%= link_to 'お問い合わせ先', contact_path, class: "contact-info" %>
+        <%= link_to 'お支払いについて', payment_path, class: "payment-info" %>
       <% if user_signed_in? %>
-        <li><%= link_to '退会', edit_user_path(current_user.id), class: "" %></li>
+        <%= link_to '退会', user_path(current_user.id), class: "unsubscribe" %>
       <% end %>
-    </ul>
+    </div>
     <div class="copy">
-       <p>CopyRight Infratop.inc</p>
+       <p>©︎ 2018 Infratop.inc</p>
     </div>
 
     </footer>

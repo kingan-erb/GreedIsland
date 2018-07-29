@@ -1,5 +1,10 @@
+.title {
+	width: 90%;
+	margin: 0 auto;
+	text-align: center;
+}
 .product-box{
-	margin-top: 50px;
+	margin: 50px auto;
 }
 h4{
 	margin-top: 50px;
@@ -11,19 +16,28 @@ h4{
 	align-items: center;
 }
 .edit-box,.usershow-box{
-	padding: 20px 40px;
-	border: 1px solid;
 	margin-left: 30px;
 	letter-spacing: 0.1em;
-	border-radius: 2px;
 }
 .edit-box{
-	background-color: green;
-	border-color: green;
-	color: white;
+	display: inline-block;
+    padding: 0.7em 1.4em;
+    text-decoration: none;
+    background: green;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 4px #003C27;
+    border-radius: 3px;
 }
 .usershow-box{
-	background-color: #4285f4;
-	border-color: #4285f4;
-	color: white;
+	 display: inline-block;
+    padding: 0.7em 1.4em;
+    text-decoration: none;
+    background: #668ad8;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 4px #627295;
+    border-radius: 3px;
+
+}
+.music-number-column,.disc-number-column{
+	width: 100px;
 }

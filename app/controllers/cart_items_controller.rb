@@ -99,6 +99,7 @@ class CartItemsController < ApplicationController
     if @cart_item.update!(quantity_params)
       flash[:notice] = '数量が更新されました。'
       redirect_to cart_items_path
+      flash[:notice] = "カート内の数量が変更されました"
     else
       flash[:notice] = '処理に失敗しました。'
       redirect_to cart_items_path
@@ -109,6 +110,7 @@ class CartItemsController < ApplicationController
     cart_item = CartItem.find(params[:id])
     if cart_item.destroy
      redirect_to cart_items_path
+     flash[:notice] = "削除されました"
     else
       flash[:notice] = '処理に失敗しました。'
       redirect_to product_path(added_product.id)
@@ -122,17 +124,5 @@ class CartItemsController < ApplicationController
     params.require(:cart_item).permit(:quantity)
   end
 
-  def ensure_correct_user
-    if administrator_signed_in?
-    elsif user_signed_in?
-      @user = User.find_by(id: params[:id])
-      if  current_user.id != @user.id
-        redirect_to user_path(current_user.id)
-        flash[:notice] = "権限がありません"
-      end
-    else
-          redirect_to greeds_path
-          flash[:notice] = "権限がありません"
-    end
-  end
+
 end

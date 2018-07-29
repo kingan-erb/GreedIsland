@@ -7,9 +7,13 @@
 		 	<h4><%= link_to "カテゴリー作成",  new_greed_path %></h4>
 		</div>
 		<div class="row">
+			<h2>新規商品追加</h2>
+			<hr class="hr-first">
+		</div>
+		<div class="row">
 			<%= form_for @product, url: admin_products_path, class: 'form-horizontal' do |f| %>
 		 	<div class="col-lg-6">
-				<h3>新規商品追加</h3>
+		 		<h4>商品情報</h4>
 				<table class='table'>
 				  	<tr>
 				    	<th><%= f.label :product_image_name, "画像" %><th>
@@ -48,7 +52,7 @@
 
 			<div class="col-lg-6">
 				<div class="row add-product-field">
-					<%= f.submit '確定', class: 'square_btn' %>
+					<%= f.submit '商品追加', class: 'square_btn' %>
 				</div>
 			</div>
 			<div class="col-lg-6">

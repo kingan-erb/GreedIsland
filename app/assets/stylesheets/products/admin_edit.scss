@@ -9,6 +9,14 @@ h4 {
 h3 {
 	margin: 20px 0;
 }
+hr {
+    clear: both;
+    border-top: solid #bebebe;
+    border-width: 1px 0 0;
+    margin: 20px 0 30px;
+    height: 0;
+}
+
 .table {
 	width: 450px;
 }
@@ -70,4 +78,28 @@ label, th {
 }
 .form {
     width: 250px;
+}
+.show-btn {
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 0.25em 0.5em;
+    text-decoration: none;
+    border-left: solid 2px #668ad8;
+    border-right: solid 2px #668ad8;
+    color: #668ad8;
+    text-shadow: 0 0 5px white;
+    padding: 0.25em 0.5em;
+    background: -webkit-repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+    background: repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+    transition: .4s;
+}
+
+.show-btn:hover {
+    background: -webkit-repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 5px,#e9f4ff 5px, #e9f4ff 9px);
+    background: repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 5px,#e9f4ff 5px, #e9f4ff 9px);
+}
+.link {
+    padding-top: 10px;
+    width: 90%;
 }

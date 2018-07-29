@@ -61,7 +61,6 @@ before_action :authenticate_administrator!, except: [:index, :search, :show, :re
     @greed = Greed.find(params[:id])
     @products = @greed.products
     @greed_flag = true #ヘッダーフッター非表示
-    
   end
 
 

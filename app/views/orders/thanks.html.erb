@@ -14,7 +14,7 @@
 				<div class="thanks-text">
 					<p class="title">魅力的な商品はまだたくさんあります！</p>
 					<div class="top-page-link">
-						<%= link_to "買い物を続ける", greeds_path, class: "continue-button" %>
+						<%= link_to "買い物を続ける", products_path(@order.user.greed_id), class: "continue-button" %>
 					</div>
 					<div class="my-page-link">
 						<%= link_to "注文詳細を見る", user_order_path(params[:id]), class: "show-button" %>

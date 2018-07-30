@@ -1,0 +1,22 @@
+current directory: /vagrant/GreedIsland/vendor/bundle/ruby/2.3.0/gems/unf_ext-0.0.7.5/ext/unf_ext
+/home/vagrant/.rbenv/versions/2.3.7/bin/ruby -r ./siteconf20180730-9812-1bghjyi.rb extconf.rb
+checking for main() in -lstdc++... yes
+creating Makefile
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /vagrant/GreedIsland/vendor/bundle/ruby/2.3.0/extensions/x86-linux/2.3.0-static/unf_ext-0.0.7.5/mkmf.log
+
+current directory: /vagrant/GreedIsland/vendor/bundle/ruby/2.3.0/gems/unf_ext-0.0.7.5/ext/unf_ext
+make "DESTDIR=" clean
+
+current directory: /vagrant/GreedIsland/vendor/bundle/ruby/2.3.0/gems/unf_ext-0.0.7.5/ext/unf_ext
+make "DESTDIR="
+compiling unf.cc
+cc1plus: warning: command line option ‘-Wdeclaration-after-statement’ is valid for C/ObjC but not for C++ [enabled by default]
+cc1plus: warning: command line option ‘-Wimplicit-function-declaration’ is valid for C/ObjC but not for C++ [enabled by default]
+linking shared-object unf_ext.so
+
+current directory: /vagrant/GreedIsland/vendor/bundle/ruby/2.3.0/gems/unf_ext-0.0.7.5/ext/unf_ext
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 unf_ext.so ./.gem.20180730-9812-1djqqc7

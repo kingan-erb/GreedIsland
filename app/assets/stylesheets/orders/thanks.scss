@@ -60,7 +60,7 @@
 		    padding       : 12px 12px;
 		    background    : rgba(255, 255, 255, 0.8);
 		    color         : rgba(0, 0, 0, 0.8);
-		    line-height   : 1em; 
+		    line-height   : 1em;
 		    transition    : .3s;
 		    box-shadow    : 3px 3px 1px #666666;
 		    border        : 0.5px solid rgba(0, 0, 0, 0.8);    /* 枠の指定 */
@@ -73,7 +73,7 @@
 		}
 	}
 
-	.order-info, .payment-info {
+	.order-info, .payment-link {
 		margin: 0 auto;
 		font-size: 20px;
 	}

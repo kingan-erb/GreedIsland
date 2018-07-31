@@ -16,12 +16,12 @@
               </div>
             </div>
             <div class="field">
-              <%= f.label :email  %><span> ※</span><br />
+              <%= f.label :email  %><br />
               <%= f.email_field :email, autofocus: true, autocomplete: "email", size: "30" %>
             </div>
 
             <div class="field">
-              <%= f.label :password %><span> ※</span>
+              <%= f.label :password %>
               <% if @minimum_password_length %>
               <em>(<%= @minimum_password_length %> 文字以上)</em>
               <% end %><br />

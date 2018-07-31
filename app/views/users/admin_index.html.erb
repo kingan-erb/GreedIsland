@@ -45,7 +45,7 @@
           </thead>
 
           <% @users.each do |user| %>
-          <tbody class="<% if user.deleted_at.present? %>unsubscribe<% end %>">
+          <tbody class="<% if user.deleted_at.present? %>unsubscribe1<% end %>">
             <tr>
               <td class="id"><%= user.id %></td>
               <td class="date"><%= user.created_at.to_s(:db) %></td>

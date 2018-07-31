@@ -17,20 +17,20 @@
               </div>
             </div>
             <div class="field">
-              <%= f.label :email  %><span> ※</span><br />
+              <%= f.label :email  %><br />
               <%= f.email_field :email, autofocus: true, autocomplete: "email", size: "30" %>
             </div>
 
             <div class="field">
               <%= f.label :password %>
               <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %> 文字以上)</em><span> ※</span>
+              <em>(<%= @minimum_password_length %> 文字以上)</em>
               <% end %><br />
               <%= f.password_field :password, autocomplete: "off", size: "30" %>
             </div>
 
             <div class="field">
-              <%= f.label :password_confirmation %><span> ※</span><br />
+              <%= f.label :password_confirmation %><br />
               <%= f.password_field :password_confirmation, autocomplete: "off", size: "30" %>
             </div>
           </section>
